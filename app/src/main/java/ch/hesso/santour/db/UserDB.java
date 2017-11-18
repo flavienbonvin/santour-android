@@ -2,6 +2,8 @@ package ch.hesso.santour.db;
 
 import android.util.Log;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,19 +24,37 @@ import ch.hesso.santour.model.User;
 public class UserDB {
     private static DatabaseReference usersDB = FirebaseDatabase.getInstance().getReference("users");
 
-    public static void addUser(User u) {
+    public static void add(User u) {
         // on récupere l'id généré par firebase
         String id = usersDB.push().getKey();
         // on ajoute l'enfant dans la DB
         usersDB.child(id).setValue(u);
     }
 
-    public static void updateUser(User u) {
-        // on récupère le user sur le bon id et on l'update
+    public static void add(User track, final DBCallback callback) {
+        final String id = usersDB.push().getKey();
+        usersDB.child(id).setValue(track).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                getById(id, callback);
+            }
+        });
+    }
+
+    public static void update(User u) {
         usersDB.child(u.id).setValue(u);
     }
 
-    public static void getAllUsers(final DBCallback callback) {
+    public static void update(final User u, final DBCallback callback) {
+        usersDB.child(u.id).setValue(u).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                getById(u.id, callback);
+            }
+        });
+    }
+
+    public static void getAll(final DBCallback callback) {
         // on fait une query pour firebase
         Query q = usersDB.orderByChild("pseudo");
         // le callback quand firebase return une réponse
@@ -63,7 +83,7 @@ public class UserDB {
         q.addValueEventListener(valueEventListener);
     }
 
-    public static void getUser(String id, final DBCallback callback) {
+    public static void getById(String id, final DBCallback callback) {
         // on récupère la bonne entrée
         Query q = usersDB.child(id);
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -82,5 +102,17 @@ public class UserDB {
         };
 
         q.addValueEventListener(valueEventListener);
+    }
+
+    public static void delete(String id) {
+        usersDB.child(id).removeValue();
+    }
+    public static void delete(String id, final DBCallback callback) {
+        usersDB.child(id).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                callback.resolve(true);
+            }
+        });
     }
 }

@@ -24,6 +24,7 @@ import java.util.List;
 
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.UserDB;
+import ch.hesso.santour.dev.Seed;
 import ch.hesso.santour.model.User;
 
 public class TestActivity extends AppCompatActivity {
@@ -60,8 +61,8 @@ public class TestActivity extends AppCompatActivity {
         // on autorise firebase a créer une copie locale des donées pour travailler sans connexion
         database.setPersistenceEnabled(true);
 
-        // ici il suffit de coller des méthodes ecrit en dessous pour tester
-        readUserById();
+        // utilisation du seed
+        new Seed();
     }
 
     // pour le retour de la selection de fichier
@@ -90,37 +91,4 @@ public class TestActivity extends AppCompatActivity {
         }
     }
 
-
-
-    private void addUser(){
-        User u = new User("pseudoTemp", "emailTemp", "pass", "tracker");
-        UserDB.addUser(u);
-    }
-
-    private void readAllUsers(){
-        DBCallback callback = new DBCallback() {
-            @Override
-            public void resolve(Object o) {
-                List<User> users = (List<User>)o;
-                Log.d("maxTag",users.size()+" personnes");
-            }
-        };
-        UserDB.getAllUsers(callback);
-    }
-
-    private void readUserById(){
-        DBCallback callback = new DBCallback() {
-            @Override
-            public void resolve(Object o) {
-                User u = (User)o;
-                Log.d("maxTag", u.toString());
-
-                //on lance l'update de mot de passe
-                u.password = "changementDePassasd";
-                UserDB.updateUser(u);
-            }
-        };
-        UserDB.getUser("-KzDctVEm3NtjVd5vvxa",callback);
-
-    }
 }
