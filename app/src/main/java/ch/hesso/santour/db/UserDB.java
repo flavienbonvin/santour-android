@@ -107,6 +107,7 @@ public class UserDB {
     public static void delete(String id) {
         usersDB.child(id).removeValue();
     }
+
     public static void delete(String id, final DBCallback callback) {
         usersDB.child(id).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

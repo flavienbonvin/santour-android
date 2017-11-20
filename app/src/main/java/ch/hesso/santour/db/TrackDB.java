@@ -24,6 +24,7 @@ public class TrackDB {
         String id = tracksDB.push().getKey();
         tracksDB.child(id).setValue(track);
     }
+
     public static void add(Track track, final DBCallback callback) {
         final String id = tracksDB.push().getKey();
         tracksDB.child(id).setValue(track).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -33,9 +34,11 @@ public class TrackDB {
             }
         });
     }
+
     public static void update(Track track) {
         tracksDB.child(track.id).setValue(track);
     }
+
     public static void update(final Track track, final DBCallback callback) {
         tracksDB.child(track.id).setValue(track).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -44,6 +47,7 @@ public class TrackDB {
             }
         });
     }
+
     public static void getAll(final DBCallback callback) {
         Query q = tracksDB.orderByChild("name");
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -64,6 +68,7 @@ public class TrackDB {
         };
         q.addValueEventListener(valueEventListener);
     }
+
     public static void getById(String id, final DBCallback callback) {
         Query q = tracksDB.child(id);
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -84,6 +89,7 @@ public class TrackDB {
     public static void delete(String id){
         tracksDB.child(id).removeValue();
     }
+
     public static void delete(String id, final DBCallback callback) {
         tracksDB.child(id).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
