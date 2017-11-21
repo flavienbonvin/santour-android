@@ -2,7 +2,6 @@ package ch.hesso.santour.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by flavien on 11/21/17.
@@ -73,4 +72,14 @@ public class POD {
         this.categoriesID = categoriesID;
     }
 
+    @Override
+    public String toString() {
+        return "POI{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", picturePath='" + picturePath + '\'' +
+                ", position=" + position +
+                ", categoriesID=" + categoriesID +
+                '}';
+    }
 }

@@ -71,4 +71,15 @@ public class POI {
     public void setCategoriesID(List<String> categoriesID) {
         this.categoriesID = categoriesID;
     }
+
+    @Override
+    public String toString() {
+        return "POI{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", picturePath='" + picturePath + '\'' +
+                ", position=" + position +
+                ", categoriesID=" + categoriesID +
+                '}';
+    }
 }

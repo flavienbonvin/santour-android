@@ -20,16 +20,17 @@ public class Track {
     public int difficulty;
     public String idUser;
     public List<Position> positions;
-    public List<POD> dangers;
-    public List<POI> interests;
+    public List<POD> pods;
+    public List<POI> pois;
+    public String typeTrackID;
 
     public Track() {
         this.positions = new ArrayList<>();
-        this.dangers = new ArrayList<>();
-        this.interests = new ArrayList<>();
+        this.pods = new ArrayList<>();
+        this.pois = new ArrayList<>();
     }
 
-    public Track(String id, String name, int pauseDuration, boolean isForEveryone, int difficulty, String idUser, List<Position> positions, List<POD> dangers, List<POI> interests) {
+    public Track(String id, String name, int pauseDuration, boolean isForEveryone, int difficulty, String idUser, List<Position> positions, List<POD> pods, List<POI> pois, String typeTrackID) {
         this.id = id;
         this.name = name;
         this.pauseDuration = pauseDuration;
@@ -37,24 +38,27 @@ public class Track {
         this.difficulty = difficulty;
         this.idUser = idUser;
         this.positions = positions;
-        this.dangers = dangers;
-        this.interests = interests;
+        this.pods = pods;
+        this.pois = pois;
+        this.typeTrackID = typeTrackID;
     }
 
-    public Track(String name, int pauseDuration, boolean isForEveryone, int difficulty, String idUser, List<Position> positions, List<POD> dangers, List<POI> interests) {
+    public Track(String name, int pauseDuration, boolean isForEveryone, int difficulty, String idUser, List<Position> positions, List<POD> pods, List<POI> pois, String typeTrackID) {
         this.name = name;
         this.pauseDuration = pauseDuration;
         this.isForEveryone = isForEveryone;
         this.difficulty = difficulty;
         this.idUser = idUser;
         this.positions = positions;
-        this.dangers = dangers;
-        this.interests = interests;
+        this.pods = pods;
+        this.pois = pois;
+        this.typeTrackID = typeTrackID;
     }
 
     public void addPosition(Position p){
         this.positions.add(p);
     }
+
 
     @Override
     public String toString() {
@@ -66,6 +70,9 @@ public class Track {
                 ", difficulty=" + difficulty +
                 ", idUser='" + idUser + '\'' +
                 ", positions=" + positions +
+                ", dangers=" + pods +
+                ", interests=" + pois +
+                ", typeTrackID='" + typeTrackID + '\'' +
                 '}';
     }
 }
