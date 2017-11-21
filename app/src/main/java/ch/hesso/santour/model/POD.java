@@ -13,14 +13,14 @@ public class POD {
     private String description;
     private String picturePath;
     private Position position;
-    private List<String> categoriesID;
+    private List<RatePOD> categoriesID;
 
 
     public POD() {
         this.categoriesID = new ArrayList<>();
     }
 
-    public POD(String name, String description, String picturePath, Position position, List<String> categoriesID) {
+    public POD(String name, String description, String picturePath, Position position, List<RatePOD> categoriesID) {
         this.name = name;
         this.description = description;
         this.picturePath = picturePath;
@@ -28,7 +28,7 @@ public class POD {
         this.categoriesID = categoriesID;
     }
 
-    public void addCategory(String categoryID){
+    public void addCategory(RatePOD categoryID){
         categoriesID.add(categoryID);
     }
 
@@ -48,7 +48,7 @@ public class POD {
         return position;
     }
 
-    public List<String> getCategoriesID() {
+    public List<RatePOD> getCategoriesID() {
         return categoriesID;
     }
 
@@ -68,7 +68,7 @@ public class POD {
         this.position = position;
     }
 
-    public void setCategoriesID(List<String> categoriesID) {
+    public void setCategoriesID(List<RatePOD> categoriesID) {
         this.categoriesID = categoriesID;
     }
 

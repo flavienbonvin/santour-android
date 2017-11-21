@@ -57,8 +57,9 @@ public class Seed {
                     @Override
                     public void resolve(Object o) {
                         CategoryPOD categoryPOD1 = (CategoryPOD) o;
-                        List<String> categoryListPOD = new ArrayList<>();
-                        categoryListPOD.add(categoryPOD1.getId());
+                        List<RatePOD> categoryListPOD = new ArrayList<>();
+                        RatePOD temp = new RatePOD(categoryPOD1.getId(),5);
+                        categoryListPOD.add(temp);
 
                         List<POD> podList = new ArrayList<>();
                         for (int i = 0; i < 5; i++) {
