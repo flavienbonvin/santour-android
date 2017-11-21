@@ -20,12 +20,16 @@ public class Track {
     public int difficulty;
     public String idUser;
     public List<Position> positions;
+    public List<POD> dangers;
+    public List<POI> interests;
 
     public Track() {
         this.positions = new ArrayList<>();
+        this.dangers = new ArrayList<>();
+        this.interests = new ArrayList<>();
     }
 
-    public Track(String id, String name, int pauseDuration, boolean isForEveryone, int difficulty, String idUser, List<Position> positions) {
+    public Track(String id, String name, int pauseDuration, boolean isForEveryone, int difficulty, String idUser, List<Position> positions, List<POD> dangers, List<POI> interests) {
         this.id = id;
         this.name = name;
         this.pauseDuration = pauseDuration;
@@ -33,15 +37,19 @@ public class Track {
         this.difficulty = difficulty;
         this.idUser = idUser;
         this.positions = positions;
+        this.dangers = dangers;
+        this.interests = interests;
     }
 
-    public Track(String name, int pauseDuration, boolean isForEveryone, int difficulty, String idUser, List<Position> positions) {
+    public Track(String name, int pauseDuration, boolean isForEveryone, int difficulty, String idUser, List<Position> positions, List<POD> dangers, List<POI> interests) {
         this.name = name;
         this.pauseDuration = pauseDuration;
         this.isForEveryone = isForEveryone;
         this.difficulty = difficulty;
         this.idUser = idUser;
         this.positions = positions;
+        this.dangers = dangers;
+        this.interests = interests;
     }
 
     public void addPosition(Position p){
