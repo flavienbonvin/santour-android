@@ -71,7 +71,7 @@ public class TestActivity extends AppCompatActivity {
         database.setPersistenceEnabled(true);
 
         // utilisation du seed
-        new Seed();
+        //new Seed();
     }
 
     // pour le retour de la selection de fichier

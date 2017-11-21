@@ -42,7 +42,7 @@ public class Seed {
                     pos.add(new Position(lat,lont,alt,time));
                 }
 
-                Track t = new Track("track1",0,true,2,u.id,pos);
+                /*Track t = new Track("track1",0,true,2,u.id,pos);
 
                 TrackDB.add(t, new DBCallback() {
                     @Override
@@ -50,7 +50,7 @@ public class Seed {
                         Track t = (Track) o;
                         Log.d("Maxtag",t.toString());
                     }
-                });
+                });*/
 
             }
         });
