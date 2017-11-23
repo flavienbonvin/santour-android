@@ -1,47 +1,24 @@
 package ch.hesso.santour;
 
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.location.LocationProvider;
-import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.List;
 
+import ch.hesso.santour.business.LocationManagement;
 import ch.hesso.santour.business.PictureManagement;
-import ch.hesso.santour.business.PermissionCheck;
+import ch.hesso.santour.business.PermissionManagement;
+import ch.hesso.santour.business.TrackingManagement;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
-import ch.hesso.santour.db.UserDB;
-import ch.hesso.santour.dev.Seed;
 import ch.hesso.santour.model.Track;
-import ch.hesso.santour.model.User;
-
-import static android.support.v4.app.ActivityCompat.startActivityForResult;
 
 public class TestActivity extends AppCompatActivity {
     private static final int SELECT_PICTURE = 1;
@@ -58,13 +35,22 @@ public class TestActivity extends AppCompatActivity {
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentGetMessage = new Intent(TestActivity.this, PictureManagement.class);
-                startActivityForResult(intentGetMessage, PictureManagement.REQUEST_IMAGE_CAPTURE);
+                TrackingManagement.startTracking(TestActivity.this);
+                //Intent intentGetMessage = new Intent(TestActivity.this, PictureManagement.class);
+                //startActivityForResult(intentGetMessage, PictureManagement.REQUEST_IMAGE_CAPTURE);
+
+            }
+        });
+
+        findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LocationManagement.stopTracking(TestActivity.this);
             }
         });
 
 
-        PermissionCheck.checkMandatoryPermission(this);
+        PermissionManagement.checkMandatoryPermission(this);
 
         /*
         // lors du click sur le button on ouvre les documents

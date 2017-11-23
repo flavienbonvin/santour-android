@@ -11,7 +11,7 @@ import android.widget.Toast;
  * Created by flavien on 11/23/17.
  */
 
-public class PermissionCheck extends ActivityCompat {
+public class PermissionManagement extends ActivityCompat {
 
     public static final int PERMISSION_ALL = 1;
 
