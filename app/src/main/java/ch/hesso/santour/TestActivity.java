@@ -2,6 +2,7 @@ package ch.hesso.santour;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -13,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -56,13 +58,13 @@ public class TestActivity extends AppCompatActivity {
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentGetMessage=new Intent(TestActivity.this,PictureManagement.class);
+                Intent intentGetMessage = new Intent(TestActivity.this, PictureManagement.class);
                 startActivityForResult(intentGetMessage, PictureManagement.REQUEST_IMAGE_CAPTURE);
             }
         });
 
 
-
+        PermissionCheck.checkMandatoryPermission(this);
 
         /*
         // lors du click sur le button on ouvre les documents
@@ -91,16 +93,14 @@ public class TestActivity extends AppCompatActivity {
 
         // utilisation du seed
         new Seed();
-
-        PermissionCheck.checkMandatoryPermission(this);
     }
 
     /*public void takePicture(){
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(this.getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, 111);
-        }
-    }*/
+        }*/
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -108,14 +108,14 @@ public class TestActivity extends AppCompatActivity {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("imageBitmap");
             final String imageEncoded = extras.getString("imageString");
-            ((ImageView)findViewById(R.id.mImageLabel)).setImageBitmap(imageBitmap);
+            ((ImageView) findViewById(R.id.mImageLabel)).setImageBitmap(imageBitmap);
 
             TrackDB.getAll(new DBCallback() {
                 @Override
                 public void resolve(Object o) {
-                    List<Track> list = (List<Track>)o;
+                    List<Track> list = (List<Track>) o;
                     Track mod = list.get(0);
-                    for(int i = 0;i<mod.pods.size();i++){
+                    for (int i = 0; i < mod.pods.size(); i++) {
                         mod.pods.get(i).setPicture(imageEncoded);
                     }
 
@@ -125,6 +125,7 @@ public class TestActivity extends AppCompatActivity {
 
         }
     }
+}
 
     /*
     // pour le retour de la selection de fichier
@@ -152,5 +153,4 @@ public class TestActivity extends AppCompatActivity {
             }
         }
     }
-
-}
+    */
