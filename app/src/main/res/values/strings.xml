@@ -17,10 +17,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="createTrack">Create a track</string>
-    <string name="listTrack">List of tracks</string>
-    <string name="listPOI">List of POI/POD</string>
-    <string name="about">About</string>
-    <string name="trackName">Track\'s name</string>
-    <string name="save">Save</string>
+
+    <!-- Strings related to track activity-->
+    <string name="poi">POI</string>
+    <string name="pod">POD</string>
+    <string name="my_track">My track</string>
+    <string name="pois_list">POIs list</string>
+    <string name="pods_list">PODs list</string>
 </resources>

@@ -1,0 +1,92 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ch.hesso.santour.view.TrackFragment">
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+
+    <LinearLayout
+        android:layout_width = "fill_parent"
+        android:layout_height = "wrap_content"
+        android:id="@+id/linear_layout_time_distance"
+        android:orientation="horizontal"
+        android:weightSum = "2"
+        android:layout_below="@id/mapView"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+            <Chronometer
+                android:id="@+id/track_chronometer"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="25dp"
+                android:textAlignment="center"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="10 km"
+                android:textAlignment="center"
+                android:textSize="25dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linear_layout_recording"
+        android:layout_below="@id/linear_layout_time_distance"
+        android:orientation="horizontal"
+        android:weightSum = "1">
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:padding="10dp"
+            android:id="@+id/track_play_button"
+            android:src="@drawable/ic_play_circle_outline_white_24dp"/>
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/colorRed"
+            android:padding="10dp"
+            android:id="@+id/track_stop_button"
+            android:src="@drawable/ic_stop_circle_outline_white_24dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/linear_layout_recording"
+        android:orientation="horizontal"
+        android:weightSum = "2">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:id="@+id/track_add_poi_button"
+            android:drawableLeft="@drawable/ic_add_location_white_24dp"
+            android:text="@string/poi"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:background="@null"
+            android:textColor="#FFFFFF"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:id="@+id/track_add_pod_button"
+            android:drawableRight="@drawable/ic_add_location_white_24dp"
+            android:text="@string/pod"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:background="@null"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
+</RelativeLayout>
