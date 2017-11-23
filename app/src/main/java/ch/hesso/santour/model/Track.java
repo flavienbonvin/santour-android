@@ -30,6 +30,10 @@ public class Track {
         this.pois = new ArrayList<>();
     }
 
+    public Track(String name){
+        this.name = name;
+    }
+
     public Track(String id, String name, int pauseDuration, boolean isForEveryone, int difficulty, String idUser, List<Position> positions, List<POD> pods, List<POI> pois, String typeTrackID) {
         this.id = id;
         this.name = name;
