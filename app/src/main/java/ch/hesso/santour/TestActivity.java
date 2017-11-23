@@ -30,11 +30,16 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.List;
 
+import ch.hesso.santour.business.PictureManagement;
 import ch.hesso.santour.business.PermissionCheck;
 import ch.hesso.santour.db.DBCallback;
+import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.db.UserDB;
 import ch.hesso.santour.dev.Seed;
+import ch.hesso.santour.model.Track;
 import ch.hesso.santour.model.User;
+
+import static android.support.v4.app.ActivityCompat.startActivityForResult;
 
 public class TestActivity extends AppCompatActivity {
     private static final int SELECT_PICTURE = 1;
@@ -47,6 +52,19 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
+
+        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentGetMessage=new Intent(TestActivity.this,PictureManagement.class);
+                startActivityForResult(intentGetMessage, PictureManagement.REQUEST_IMAGE_CAPTURE);
+            }
+        });
+
+
+
+
+        /*
         // lors du click sur le button on ouvre les documents
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
 
@@ -77,6 +95,38 @@ public class TestActivity extends AppCompatActivity {
         PermissionCheck.checkMandatoryPermission(this);
     }
 
+    /*public void takePicture(){
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(this.getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, 111);
+        }
+    }*/
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PictureManagement.REQUEST_IMAGE_CAPTURE) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("imageBitmap");
+            final String imageEncoded = extras.getString("imageString");
+            ((ImageView)findViewById(R.id.mImageLabel)).setImageBitmap(imageBitmap);
+
+            TrackDB.getAll(new DBCallback() {
+                @Override
+                public void resolve(Object o) {
+                    List<Track> list = (List<Track>)o;
+                    Track mod = list.get(0);
+                    for(int i = 0;i<mod.pods.size();i++){
+                        mod.pods.get(i).setPicture(imageEncoded);
+                    }
+
+                    TrackDB.update(mod);
+                }
+            });
+
+        }
+    }
+
+    /*
     // pour le retour de la selection de fichier
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
