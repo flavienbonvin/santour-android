@@ -11,7 +11,7 @@ public class POI {
 
     private String name;
     private String description;
-    private String picturePath;
+    private String picture;
     private Position position;
     private List<String> categoriesID;
 
@@ -20,10 +20,10 @@ public class POI {
         this.categoriesID = new ArrayList<>();
     }
 
-    public POI(String name, String description, String picturePath, Position position, List<String> categoriesID) {
+    public POI(String name, String description, String picture, Position position, List<String> categoriesID) {
         this.name = name;
         this.description = description;
-        this.picturePath = picturePath;
+        this.picture = picture;
         this.position = position;
         this.categoriesID = categoriesID;
     }
@@ -40,8 +40,8 @@ public class POI {
         return description;
     }
 
-    public String getPicturePath() {
-        return picturePath;
+    public String getPicture() {
+        return picture;
     }
 
     public Position getPosition() {
@@ -60,8 +60,8 @@ public class POI {
         this.description = description;
     }
 
-    public void setPicturePath(String picturePath) {
-        this.picturePath = picturePath;
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public void setPosition(Position position) {
@@ -77,7 +77,7 @@ public class POI {
         return "POI{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", picturePath='" + picturePath + '\'' +
+                ", picturePath='" + picture + '\'' +
                 ", position=" + position +
                 ", categoriesID=" + categoriesID +
                 '}';

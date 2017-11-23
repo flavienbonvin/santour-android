@@ -11,7 +11,7 @@ public class POD {
 
     private String name;
     private String description;
-    private String picturePath;
+    private String picture;
     private Position position;
     private List<RatePOD> categoriesID;
 
@@ -20,10 +20,10 @@ public class POD {
         this.categoriesID = new ArrayList<>();
     }
 
-    public POD(String name, String description, String picturePath, Position position, List<RatePOD> categoriesID) {
+    public POD(String name, String description, String picture, Position position, List<RatePOD> categoriesID) {
         this.name = name;
         this.description = description;
-        this.picturePath = picturePath;
+        this.picture = picture;
         this.position = position;
         this.categoriesID = categoriesID;
     }
@@ -40,8 +40,8 @@ public class POD {
         return description;
     }
 
-    public String getPicturePath() {
-        return picturePath;
+    public String getPicture() {
+        return picture;
     }
 
     public Position getPosition() {
@@ -60,8 +60,8 @@ public class POD {
         this.description = description;
     }
 
-    public void setPicturePath(String picturePath) {
-        this.picturePath = picturePath;
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public void setPosition(Position position) {
@@ -77,7 +77,7 @@ public class POD {
         return "POI{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", picturePath='" + picturePath + '\'' +
+                ", picturePath='" + picture + '\'' +
                 ", position=" + position +
                 ", categoriesID=" + categoriesID +
                 '}';
