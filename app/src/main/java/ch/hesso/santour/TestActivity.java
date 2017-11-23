@@ -30,6 +30,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.List;
 
+import ch.hesso.santour.business.PermissionCheck;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.UserDB;
 import ch.hesso.santour.dev.Seed;
@@ -72,6 +73,8 @@ public class TestActivity extends AppCompatActivity {
 
         // utilisation du seed
         new Seed();
+
+        PermissionCheck.checkMandatoryPermission(this);
     }
 
     // pour le retour de la selection de fichier
