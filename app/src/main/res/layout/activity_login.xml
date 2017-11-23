@@ -49,7 +49,7 @@
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="Username" />
+                    android:text="@string/username" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -68,7 +68,7 @@
                     android:inputType="textPassword"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="Password" />
+                    android:text="@string/password" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -78,7 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Login"
+                android:text="@string/login"
                 android:textStyle="bold" />
 
         </LinearLayout>
