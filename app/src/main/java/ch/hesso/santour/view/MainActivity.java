@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
+/*    @Override
     public void onBackPressed() {
         if(fragmentManager.getBackStackEntryCount() > 0)
         {
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             finish();
             super.onBackPressed();
         }
-    }
+    }*/
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
