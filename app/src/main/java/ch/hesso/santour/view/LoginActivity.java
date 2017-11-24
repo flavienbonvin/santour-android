@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.hesso.santour.R;
-import ch.hesso.santour.business.Test;
 
 import static android.Manifest.permission.READ_CONTACTS;
 

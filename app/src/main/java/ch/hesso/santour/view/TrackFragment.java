@@ -8,20 +8,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import ch.hesso.santour.R;
+import ch.hesso.santour.business.FragmentInterface;
 import ch.hesso.santour.business.LocationManagement;
 import ch.hesso.santour.business.TrackingManagement;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.Position;
 
-public class TrackFragment extends Fragment implements OnMapReadyCallback {
+public class TrackFragment extends Fragment implements OnMapReadyCallback, FragmentInterface {
 
     //Play & Stop button
     private ImageButton trackPlayButton;
@@ -77,8 +81,7 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-
-        LocationManagement.FragmentToWatch(TrackFragment.this);
+        LocationManagement.interfaceToWatch(TrackFragment.this);
 
         return  rootView;
     }
@@ -129,5 +132,15 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
         mapView.onLowMemory();
     }
 
+    @Override
+    public void setPolyLine(PolylineOptions polyLine) {
+        map.clear();
+        map.addPolyline(polyLine);
+    }
 
+    @Override
+    public void setTextDistance(String text) {
+        TextView textView = (TextView) getActivity().findViewById(R.id.tv_distance);
+        textView.setText(text);
+    }
 }

@@ -2,6 +2,7 @@ package ch.hesso.santour.business;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.graphics.Color;
 import android.location.Location;
 import android.util.Log;
 import android.widget.TextView;
@@ -12,10 +13,15 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import java.net.InterfaceAddress;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.db.DBCallback;
@@ -35,7 +41,7 @@ public class LocationManagement {
     private LocationRequest locationRequest;
     private LocationCallback locationCallback;
 
-    private static Fragment watchedFragment;
+    private static FragmentInterface fragmentInterface;
 
 
     /**
@@ -119,22 +125,17 @@ public class LocationManagement {
             public void onLocationResult(LocationResult locationResult) {
                 for (Location location : locationResult.getLocations()) {
                     cleanLocationData(location);
+                    drawLine();
                 }
                 MainActivity.track.setDistance(calculateTrackLength(positionsList));
-                TextView text = (TextView) watchedFragment.getActivity().findViewById(R.id.tv_distance);
 
                 if (MainActivity.track.getDistance() < 999) {
-                    text.setText(Math.floor(MainActivity.track.getDistance()*100)/100 + " m");
+                    fragmentInterface.setTextDistance(Math.floor(MainActivity.track.getDistance()*100)/100 + " m");
                 } else {
-                    text.setText(Math.floor(MainActivity.track.getDistance()/10)/100 + " km");
+                    fragmentInterface.setTextDistance(Math.floor(MainActivity.track.getDistance()*100)/100 + " km");
                 }
             }
         };
-    }
-
-
-    public static void FragmentToWatch(Fragment fragment){
-        watchedFragment = fragment;
     }
 
     private Position convertToPosition(Location location){
@@ -159,5 +160,20 @@ public class LocationManagement {
         } else {
             positionsList.add(newPosition);
         }
+    }
+
+    private void drawLine(){
+        LatLng latLng;
+        PolylineOptions polylineOptions = new PolylineOptions().width(5).color(Color.BLUE).geodesic(true);
+
+        for (Position position : positionsList) {
+            latLng = new LatLng(position.latitude, position.longitude);
+            polylineOptions.add(latLng);
+        }
+        fragmentInterface.setPolyLine(polylineOptions);
+    }
+
+    public static void interfaceToWatch(FragmentInterface fragmentInterface){
+        LocationManagement.fragmentInterface = fragmentInterface;
     }
 }
