@@ -1,4 +1,4 @@
-package ch.hesso.santour;
+package ch.hesso.santour.view;
 
 import android.app.FragmentManager;
 import android.content.Context;
@@ -8,6 +8,8 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import ch.hesso.santour.R;
 
 public class SettingsFragment extends Fragment {
 

@@ -5,21 +5,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    tools:context="ch.hesso.santour.view.TrackActivity"
-    android:background="@drawable/gradient_green">
+    tools:context="ch.hesso.santour.view.TrackActivity">
 
     <FrameLayout
         android:id="@+id/main_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/track_bottom_navigation"
-        android:layout_alignParentTop="true"></FrameLayout>
+        android:layout_alignParentTop="true"
+        android:background="@color/colorWhite">
+    </FrameLayout>
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/track_bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@null"
+        android:background="@color/colorPrimaryLight"
         android:foregroundTint="#FFFFFF"
         app:itemIconTint="#FFFFFF"
         app:itemTextColor="#FFFFFF"

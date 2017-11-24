@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //button login
-        Button btnLogin = findViewById(R.id.login);
+        Button btnLogin = findViewById(R.id.login_button_login);
         btnLogin.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
