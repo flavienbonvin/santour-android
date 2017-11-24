@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ch.hesso.santour.AddTrackFragment">
+    tools:context="ch.hesso.santour.view.AddTrackFragment">
 
 
     <EditText
@@ -42,7 +42,7 @@
 
 
     <Button
-        android:id="@+id/saveTrack"
+        android:id="@+id/add_track_save_button"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

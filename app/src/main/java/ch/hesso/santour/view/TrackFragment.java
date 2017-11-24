@@ -3,7 +3,6 @@ package ch.hesso.santour.view;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.SystemClock;
-import android.support.design.widget.BottomNavigationView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,26 +42,29 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_track, container, false);
-        mapView = rootView.findViewById(R.id.mapView);
+        mapView = rootView.findViewById(R.id.track_map);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
         trackPlayButton = rootView.findViewById(R.id.track_play_button);
+        trackStopButton = rootView.findViewById(R.id.track_stop_button);
+
         chrono = rootView.findViewById(R.id.track_chronometer);
         trackPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                trackPlayButton.setVisibility(View.GONE);
+                trackPlayButton.setEnabled(false);
+                trackStopButton.setEnabled(true);
                 chrono.setBase(SystemClock.elapsedRealtime());
                 chrono.start();
             }
         });
 
-        trackStopButton = rootView.findViewById(R.id.track_stop_button);
         trackStopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                trackPlayButton.setVisibility(View.VISIBLE);
+                trackPlayButton.setEnabled(true);
+                trackStopButton.setEnabled(false);
                 chrono.stop();
             }
         });

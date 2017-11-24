@@ -5,26 +5,26 @@
     tools:context="ch.hesso.santour.view.TrackFragment">
 
     <com.google.android.gms.maps.MapView
-        android:id="@+id/mapView"
+        android:id="@+id/track_map"
         android:layout_width="match_parent"
         android:layout_height="300dp" />
-
     <LinearLayout
         android:layout_width = "fill_parent"
         android:layout_height = "wrap_content"
         android:id="@+id/linear_layout_time_distance"
         android:orientation="horizontal"
         android:weightSum = "2"
-        android:layout_below="@id/mapView"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:layout_below="@id/track_map"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/shadow">
             <Chronometer
                 android:id="@+id/track_chronometer"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:textSize="25dp"
                 android:textAlignment="center"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -40,22 +40,24 @@
         android:id="@+id/linear_layout_recording"
         android:layout_below="@id/linear_layout_time_distance"
         android:orientation="horizontal"
-        android:weightSum = "1">
+        android:weightSum = "2">
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@null"
             android:padding="10dp"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:id="@+id/track_play_button"
+            android:backgroundTint="@color/colorPrimary"
             android:src="@drawable/ic_play_circle_outline_white_24dp"/>
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/colorRed"
             android:padding="10dp"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:id="@+id/track_stop_button"
+            android:backgroundTint="@color/colorPrimaryRed"
             android:src="@drawable/ic_stop_circle_outline_white_24dp"/>
     </LinearLayout>
     <LinearLayout
@@ -68,25 +70,19 @@
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:padding="10dp"
             android:id="@+id/track_add_poi_button"
-            android:drawableLeft="@drawable/ic_add_location_white_24dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:drawableTop="@drawable/ic_add_circle_outline_black_24dp"
             android:text="@string/poi"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            android:background="@null"
-            android:textColor="#FFFFFF"/>
+            android:textSize="20dp" />
         <Button
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1"
-            android:padding="10dp"
             android:id="@+id/track_add_pod_button"
-            android:drawableRight="@drawable/ic_add_location_white_24dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:drawableTop="@drawable/ic_add_circle_outline_black_24dp"
             android:text="@string/pod"
-            android:textSize="30dp"
-            android:textStyle="bold"
-            android:background="@null"
-            android:textColor="#FFFFFF"/>
+            android:textSize="20dp"/>
     </LinearLayout>
 </RelativeLayout>

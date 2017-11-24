@@ -1,15 +1,16 @@
-package ch.hesso.santour;
+package ch.hesso.santour.view;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import ch.hesso.santour.R;
+import ch.hesso.santour.view.AddTrackFragment;
 
 
 public class MenuFragment extends Fragment {

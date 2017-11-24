@@ -1,18 +1,22 @@
-package ch.hesso.santour;
+package ch.hesso.santour.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+
+import ch.hesso.santour.R;
 
 
 public class AddTrackFragment extends Fragment implements OnMapReadyCallback{
@@ -32,6 +36,20 @@ public class AddTrackFragment extends Fragment implements OnMapReadyCallback{
         mapView = rootView.findViewById(R.id.mapView2);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+
+
+        //button login
+        Button btnSave = rootView.findViewById(R.id.add_track_save_button);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                Intent intent = new Intent(rootView.getContext(), TrackActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         return rootView;
     }
 
