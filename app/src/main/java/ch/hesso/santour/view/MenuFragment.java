@@ -30,7 +30,7 @@ public class MenuFragment extends Fragment {
 
 
         //button create track
-        Button btnCreateTrack = rootView.findViewById(R.id.createTrack);
+        Button btnCreateTrack = rootView.findViewById(R.id.menu_button_createTrack);
         btnCreateTrack.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
