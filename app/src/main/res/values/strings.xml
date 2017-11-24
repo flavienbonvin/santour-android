@@ -17,4 +17,26 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Strings related to track activity-->
+    <string name="poi">POI</string>
+    <string name="pod">POD</string>
+    <string name="my_track">My track</string>
+    <string name="pois_list">POIs list</string>
+    <string name="pods_list">PODs list</string>
+    <string name="createTrack">Create a track</string>
+    <string name="listTrack">List of tracks</string>
+    <string name="listPOI">List of POI</string>
+    <string name="listPOD">List of POD</string>
+    <string name="about">About</string>
+    <string name="trackName">Track\'s name</string>
+    <string name="save">Save</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="settings">settings</string>
+    <string name="cloud">Cloud</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

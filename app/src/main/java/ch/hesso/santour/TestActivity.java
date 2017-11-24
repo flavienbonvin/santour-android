@@ -77,7 +77,7 @@ public class TestActivity extends AppCompatActivity {
         database.setPersistenceEnabled(true);
 
         // utilisation du seed
-        new Seed();
+        //new Seed();
     }
 
     /*public void takePicture(){
