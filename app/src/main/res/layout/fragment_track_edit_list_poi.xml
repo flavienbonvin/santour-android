@@ -1,0 +1,33 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ch.hesso.santour.view.TrackEditListPOIFragment">
+
+
+    <LinearLayout
+        android:id="@+id/linear_layout_list_poi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="2"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/inputSearchPOI"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/searchPOI"
+            android:inputType="textVisiblePassword"/>
+
+        <ListView
+            android:id="@+id/listViewEditPOI"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>
