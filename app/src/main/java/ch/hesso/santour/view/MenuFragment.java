@@ -28,7 +28,6 @@ public class MenuFragment extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_menu, container, false);
 
 
-
         //button create track
         Button btnCreateTrack = rootView.findViewById(R.id.menu_button_createTrack);
         btnCreateTrack.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +40,7 @@ public class MenuFragment extends Fragment {
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.main_container, fragment).commit();
+                getActivity().setTitle("Create a track");
             }
         });
         return  rootView;

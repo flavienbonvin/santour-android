@@ -33,6 +33,7 @@ public class AddTrackFragment extends Fragment implements OnMapReadyCallback{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_add_track, container, false);
 
+
         mapView = rootView.findViewById(R.id.add_track_map_mapView2);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);

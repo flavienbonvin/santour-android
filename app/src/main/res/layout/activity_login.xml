@@ -83,7 +83,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:background="@drawable/btn_perso"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:text="@string/login"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

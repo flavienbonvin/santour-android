@@ -99,6 +99,18 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
+        addPODButton = rootView.findViewById(R.id.track_add_pod_button);
+        addPODButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentManager  = getFragmentManager();
+                fragment  = new TrackAddPODFragment();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.main_container, fragment).commit();
+            }
+        });
+
 
         return  rootView;
     }
