@@ -11,8 +11,10 @@ import java.util.List;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.db.DBCallback;
+import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.Position;
 import ch.hesso.santour.model.Track;
+import ch.hesso.santour.view.MainActivity;
 
 /**
  * Created by flavien on 11/23/17.
@@ -36,6 +38,8 @@ public class TrackingManagement {
 
     public static void stopTracking(Activity activity){
         List<Position> positionList = locationManagement.stopTracking(activity);
+        MainActivity.track.setPositions(positionList);
+        TrackDB.add(MainActivity.track);
     }
 
     public static void addPOD(Activity activity){

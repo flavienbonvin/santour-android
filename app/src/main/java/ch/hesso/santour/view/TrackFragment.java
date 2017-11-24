@@ -13,7 +13,13 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import ch.hesso.santour.R;
+import ch.hesso.santour.business.LocationManagement;
+import ch.hesso.santour.business.TrackingManagement;
+import ch.hesso.santour.db.DBCallback;
+import ch.hesso.santour.model.Position;
 
 public class TrackFragment extends Fragment implements OnMapReadyCallback {
 
@@ -57,6 +63,7 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
                 trackStopButton.setEnabled(true);
                 chrono.setBase(SystemClock.elapsedRealtime());
                 chrono.start();
+                TrackingManagement.startTracking(TrackFragment.this.getActivity());
             }
         });
 
@@ -66,6 +73,7 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
                 trackPlayButton.setEnabled(true);
                 trackStopButton.setEnabled(false);
                 chrono.stop();
+                TrackingManagement.stopTracking(TrackFragment.this.getActivity());
             }
         });
         return  rootView;
@@ -77,6 +85,15 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
         map.getUiSettings().setMyLocationButtonEnabled(false);
         LatLng coordinate = new LatLng(86, 20);
         map.moveCamera(CameraUpdateFactory.newLatLng(coordinate));
+        LocationManagement.getCurrentPosition(TrackFragment.this.getActivity(), new DBCallback() {
+            @Override
+            public void resolve(Object o) {
+                Position p = (Position)o;
+                LatLng latlng =new LatLng(p.latitude,p.longitude);
+                map.addMarker(new MarkerOptions().position(latlng));
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng,18));
+            }
+        });
 
     }
 

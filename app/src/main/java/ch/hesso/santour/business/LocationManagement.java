@@ -2,8 +2,6 @@ package ch.hesso.santour.business;
 
 import android.app.Activity;
 import android.location.Location;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -56,6 +54,27 @@ public class LocationManagement {
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
 
         return positionsList;
+    }
+
+    public static void getCurrentPosition(Activity activity, final DBCallback callback){
+        FusedLocationProviderClient fusedTemp = LocationServices.getFusedLocationProviderClient(activity);
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setInterval(0).setFastestInterval(0).setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        PermissionManagement.checkMandatoryPermission(activity);
+        fusedTemp.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                Position position = new Position();
+
+                position.setAltitude(location.getAltitude());
+                position.setLatitude(location.getLatitude());
+                position.setLongitude(location.getLongitude());
+                position.setTime(System.currentTimeMillis()/1000);
+
+                callback.resolve(position);
+            }
+        });
     }
 
     private void callbackCreation(final Activity activity){

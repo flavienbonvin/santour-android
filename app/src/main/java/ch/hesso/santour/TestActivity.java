@@ -100,8 +100,8 @@ public class TestActivity extends AppCompatActivity {
                 public void resolve(Object o) {
                     List<Track> list = (List<Track>) o;
                     Track mod = list.get(0);
-                    for (int i = 0; i < mod.pods.size(); i++) {
-                        mod.pods.get(i).setPicture(imageEncoded);
+                    for (int i = 0; i < mod.getPods().size(); i++) {
+                        mod.getPods().get(i).setPicture(imageEncoded);
                     }
 
                     TrackDB.update(mod);
