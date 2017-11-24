@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.hesso.santour.R;
+import ch.hesso.santour.business.Test;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -48,6 +49,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         super.onCreate(savedInstanceState);
 
+        /*Test t = new Test();
+        t.launch();*/
         //button login
         Button btnLogin = findViewById(R.id.login);
         btnLogin.setOnClickListener(new View.OnClickListener() {

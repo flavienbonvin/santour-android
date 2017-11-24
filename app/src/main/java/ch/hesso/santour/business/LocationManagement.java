@@ -101,7 +101,13 @@ public class LocationManagement {
             locationTo.setLongitude(positions.get(i+1).longitude);
             locationTo.setAltitude(positions.get(i+1).altitude);
 
-            distance += locationFrom.distanceTo(locationTo);
+            double temp = locationFrom.distanceTo(locationTo);
+            Log.d("maxDeb", "distance temp "+temp);
+            if(temp>8){
+                distance += temp;
+            }
+
+            Log.d("maxDeb",distance+"");
         }
 
         return distance;
@@ -135,18 +141,22 @@ public class LocationManagement {
         Position position = new Position();
 
         position.setAltitude(location.getAltitude());
-        position.setLatitude(location.getLatitude()/100);
-        position.setLongitude(location.getLongitude()/100);
+        position.setLatitude(location.getLatitude());
+        position.setLongitude(location.getLongitude());
         position.setTime(System.currentTimeMillis()/1000);
 
         return position;
     }
 
     private void cleanLocationData(Location location){
-        Position lastPosition = positionsList.get(positionsList.size()-1);
         Position newPosition = convertToPosition(location);
+        if (positionsList.size() > 1) {
+            Position lastPosition = positionsList.get(positionsList.size() - 1);
 
-        if(!lastPosition.equals(newPosition)){
+            if (!lastPosition.equals(newPosition)) {
+                positionsList.add(newPosition);
+            }
+        } else {
             positionsList.add(newPosition);
         }
     }
