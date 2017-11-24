@@ -27,6 +27,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        if(fragmentManager.getBackStackEntryCount() > 0)
+        {
+            Fragment currentFragment = fragmentManager.findFragmentById(R.id.main_container);
+            finish();
+            super.onBackPressed();
+        }
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
