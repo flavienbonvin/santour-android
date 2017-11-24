@@ -1,11 +1,15 @@
 package ch.hesso.santour.view;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.SystemClock;
+import android.support.design.widget.BottomNavigationView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -21,12 +25,23 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
     private ImageButton trackPlayButton;
     private ImageButton trackStopButton;
 
+    //Add POI / POD button
+    private Button addPOIButton;
+    private Button addPODButton;
+
     //Chronometer
     private Chronometer chrono;
 
     //Google Map
     private MapView mapView;
     private GoogleMap map;
+
+    //Fragment
+    private Fragment fragment;
+    private FragmentManager fragmentManager;
+
+    //Bottom Navigation Bar
+    private BottomNavigationView navigation;
 
 
     public TrackFragment() {
@@ -45,6 +60,9 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
         mapView = rootView.findViewById(R.id.track_map);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
+
+        navigation = getActivity().findViewById(R.id.track_bottom_navigation);
+        navigation.setVisibility(View.VISIBLE);
 
         trackPlayButton = rootView.findViewById(R.id.track_play_button);
         trackStopButton = rootView.findViewById(R.id.track_stop_button);
@@ -68,6 +86,20 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
                 chrono.stop();
             }
         });
+
+        addPOIButton = rootView.findViewById(R.id.track_add_poi_button);
+        addPOIButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentManager  = getFragmentManager();
+                fragment  = new TrackAddPOIFragment();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.main_container, fragment).commit();
+            }
+        });
+
+
         return  rootView;
     }
 

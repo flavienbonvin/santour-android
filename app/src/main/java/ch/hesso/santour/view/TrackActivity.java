@@ -11,6 +11,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -33,13 +34,13 @@ public class TrackActivity extends AppCompatActivity {
         //Bottom navigation
         navigation = findViewById(R.id.track_bottom_navigation);
         navigation.inflateMenu(R.menu.track_bottom_navigation);
+        navigation.setVisibility(View.VISIBLE);
         navigation.getMenu().getItem(0).setChecked(true);
 
         fragmentManager = getFragmentManager();
         fragment = new TrackFragment();
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.addToBackStack(null);
         transaction.replace(R.id.main_container, fragment).commit();
 
     }

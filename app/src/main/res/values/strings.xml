@@ -36,4 +36,10 @@
     <string name="username">Username</string>
     <string name="settings">settings</string>
     <string name="cloud">Cloud</string>
+    <!-- Strings related to add poi/pod-->
+    <string name="latitude">Lat : 80.028</string>
+    <string name="longitude">Lng : 34.394</string>
+    <string name="pod_name">POD\'s name</string>
+    <string name="poi_name">POI\'s name</string>
+    <string name="poi_pod_description">Description</string>
 </resources>

@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         fragment = new MenuFragment();
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.addToBackStack(null);
         transaction.replace(R.id.main_container, fragment).commit();
 
     }
@@ -55,9 +54,8 @@ public class MainActivity extends AppCompatActivity {
         //On regarde quel item a été cliqué grâce à son id et on déclenche une action
         switch (item.getItemId()) {
             case R.id.navigation_setting:
-
+                fragmentManager  = this.getFragmentManager();
                 fragment  = new SettingsFragment();
-                fragmentManager  = getFragmentManager();
 
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);

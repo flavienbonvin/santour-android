@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/track_add_poi_picture_view"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:src="@drawable/ic_photo_camera_black_24dp" />
 
     <LinearLayout
@@ -31,5 +31,74 @@
             android:id="@+id/track_add_poi_add_picture"
             android:backgroundTint="@color/colorPrimary"
             android:src="@drawable/ic_add_a_photo_black_24dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width = "fill_parent"
+        android:layout_height = "wrap_content"
+        android:id="@+id/linear_layout_gps_data"
+        android:orientation="horizontal"
+        android:weightSum = "2"
+        android:layout_below="@id/linear_layout_take_picture"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/shadow">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/latitude"
+            android:textAlignment="center"
+            android:textSize="25dp"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/longitude"
+            android:textAlignment="center"
+            android:textSize="25dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width = "fill_parent"
+        android:layout_height = "wrap_content"
+        android:id="@+id/linear_layout_poi_name"
+        android:orientation="horizontal"
+        android:weightSum = "2"
+        android:layout_below="@id/linear_layout_gps_data"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/poi_name"
+            android:textAlignment="center"
+            android:textSize="25dp"/>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width = "fill_parent"
+        android:layout_height = "fill_parent"
+        android:id="@+id/linear_layout_poi_description"
+        android:orientation="horizontal"
+        android:weightSum = "2"
+        android:layout_below="@id/linear_layout_poi_name"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/poi_pod_description"
+            android:textAlignment="center"
+            android:textSize="25dp"/>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"/>
     </LinearLayout>
 </RelativeLayout>
