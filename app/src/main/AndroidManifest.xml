@@ -11,20 +11,29 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDpNPEhpXJTEZ10aIG9u38YRwNJ8oZBF6o" />
 
-        <activity android:name=".TestActivity"></activity>
-        <activity android:name=".view.TrackActivity">
-
+        <activity android:name=".TestActivity">
         </activity>
-        <activity android:name=".view.TrackEditActivity">
+        <activity android:name=".view.TrackActivity">
+        </activity>
+
+        <activity android:name=".view.MainActivity">
+        </activity>
+
+        <activity android:name=".view.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
