@@ -58,6 +58,26 @@ public class LocationManagement {
         return positionsList;
     }
 
+    protected double claculateTrackLength(List<Position> positions){
+        Location locationFrom = new Location("temp");
+        Location locationTo = new Location("temp");
+        double distance = 0;
+
+        for (int i=0; i < positions.size()-1; i++){
+            locationFrom.setLatitude(positions.get(i).latitude);
+            locationFrom.setLongitude(positions.get(i).longitude);
+            locationFrom.setAltitude(positions.get(i).altitude);
+
+            locationTo.setLatitude(positions.get(i+1).latitude);
+            locationTo.setLongitude(positions.get(i+1).longitude);
+            locationTo.setAltitude(positions.get(i+1).altitude);
+
+            distance += locationFrom.distanceTo(locationTo);
+        }
+
+        return distance;
+    }
+
     private void callbackCreation(final Activity activity){
         locationCallback = new LocationCallback(){
             @Override
@@ -66,6 +86,8 @@ public class LocationManagement {
                     positionsList.add(convertToPosition(location));
                 }
             }
+
+
         };
     }
 
