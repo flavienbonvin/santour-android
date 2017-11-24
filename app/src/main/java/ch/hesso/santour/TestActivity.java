@@ -45,7 +45,6 @@ public class TestActivity extends AppCompatActivity {
         findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LocationManagement.stopTracking(TestActivity.this);
             }
         });
 

@@ -11,7 +11,7 @@ public class Position {
     public double latitude;
     public double longitude;
     public double altitude;
-    public long time;
+    public double time;
 
     public Position() {
     }
@@ -20,6 +20,23 @@ public class Position {
         this.latitude = latitude;
         this.longitude = longitude;
         this.altitude = altitude;
+        this.time = time;
+    }
+
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setAltitude(double altitude) {
+        this.altitude = altitude;
+    }
+
+    public void setTime(long time) {
         this.time = time;
     }
 
