@@ -26,11 +26,14 @@
     <string name="pods_list">PODs list</string>
     <string name="createTrack">Create a track</string>
     <string name="listTrack">List of tracks</string>
-    <string name="listPOI">List of POI/POD</string>
+    <string name="listPOI">List of POI</string>
+    <string name="listPOD">List of POD</string>
     <string name="about">About</string>
     <string name="trackName">Track\'s name</string>
     <string name="save">Save</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="username">Username</string>
+    <string name="settings">settings</string>
+    <string name="cloud">Cloud</string>
 </resources>
