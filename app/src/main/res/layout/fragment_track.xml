@@ -25,13 +25,14 @@
                 android:textSize="25dp"
                 android:textAlignment="center"
                 android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="10 km"
-                android:textAlignment="center"
-                android:textSize="25dp"/>
+
+        <TextView
+            android:id="@+id/tv_distance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textSize="25dp" />
     </LinearLayout>
 
     <LinearLayout

@@ -29,6 +29,7 @@ public class Track {
         this.positions = new ArrayList<>();
         this.pods = new ArrayList<>();
         this.pois = new ArrayList<>();
+        this.distance = 0;
     }
 
     public Track(String id, String name, int pauseDuration, boolean isForEveryone, int difficulty, String idUser, List<Position> positions, List<POD> pods, List<POI> pois, String typeTrackID) {

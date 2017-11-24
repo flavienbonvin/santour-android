@@ -76,6 +76,10 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
                 TrackingManagement.stopTracking(TrackFragment.this.getActivity());
             }
         });
+
+
+        LocationManagement.FragmentToWatch(TrackFragment.this);
+
         return  rootView;
     }
 

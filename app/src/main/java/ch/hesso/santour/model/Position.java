@@ -3,6 +3,8 @@ package ch.hesso.santour.model;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import ch.hesso.santour.business.LocationManagement;
+
 /**
  * Created by Maxime on 18.11.2017.
  */
@@ -48,5 +50,18 @@ public class Position {
                 ", altitude=" + altitude +
                 ", time=" + time +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Position position = (Position) obj;
+
+        if (position.latitude != this.latitude){
+            return false;
+        }
+        if(position.longitude != this.longitude){
+            return false;
+        }
+        return true;
     }
 }

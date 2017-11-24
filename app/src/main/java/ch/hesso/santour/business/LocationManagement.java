@@ -1,8 +1,10 @@
 package ch.hesso.santour.business;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.location.Location;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -15,8 +17,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.hesso.santour.R;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.Position;
+import ch.hesso.santour.view.MainActivity;
+import ch.hesso.santour.view.TrackFragment;
 
 /**
  * Created by flavien on 11/23/17.
@@ -29,6 +34,9 @@ public class LocationManagement {
     private FusedLocationProviderClient fusedLocationProviderClient;
     private LocationRequest locationRequest;
     private LocationCallback locationCallback;
+
+    private static Fragment watchedFragment;
+
 
     /**
      *
@@ -79,7 +87,7 @@ public class LocationManagement {
         });
     }
 
-    protected double claculateTrackLength(List<Position> positions){
+    protected double calculateTrackLength(List<Position> positions){
         Location locationFrom = new Location("temp");
         Location locationTo = new Location("temp");
         double distance = 0;
@@ -104,23 +112,42 @@ public class LocationManagement {
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 for (Location location : locationResult.getLocations()) {
-                    positionsList.add(convertToPosition(location));
+                    cleanLocationData(location);
+                }
+                MainActivity.track.setDistance(calculateTrackLength(positionsList));
+                TextView text = (TextView) watchedFragment.getActivity().findViewById(R.id.tv_distance);
+
+                if (MainActivity.track.getDistance() < 999) {
+                    text.setText(Math.floor(MainActivity.track.getDistance()*100)/100 + " m");
+                } else {
+                    text.setText(Math.floor(MainActivity.track.getDistance()/10)/100 + " km");
                 }
             }
-
-
         };
     }
 
+
+    public static void FragmentToWatch(Fragment fragment){
+        watchedFragment = fragment;
+    }
 
     private Position convertToPosition(Location location){
         Position position = new Position();
 
         position.setAltitude(location.getAltitude());
-        position.setLatitude(location.getLatitude());
-        position.setLongitude(location.getLongitude());
+        position.setLatitude(location.getLatitude()/100);
+        position.setLongitude(location.getLongitude()/100);
         position.setTime(System.currentTimeMillis()/1000);
 
         return position;
+    }
+
+    private void cleanLocationData(Location location){
+        Position lastPosition = positionsList.get(positionsList.size()-1);
+        Position newPosition = convertToPosition(location);
+
+        if(!lastPosition.equals(newPosition)){
+            positionsList.add(newPosition);
+        }
     }
 }
