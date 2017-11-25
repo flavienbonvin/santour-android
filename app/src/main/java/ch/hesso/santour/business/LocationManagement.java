@@ -1,33 +1,25 @@
 package ch.hesso.santour.business;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.graphics.Color;
 import android.location.Location;
 import android.util.Log;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-import java.net.InterfaceAddress;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import ch.hesso.santour.R;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.Position;
 import ch.hesso.santour.view.MainActivity;
-import ch.hesso.santour.view.TrackFragment;
 
 /**
  * Created by flavien on 11/23/17.
@@ -45,7 +37,7 @@ public class LocationManagement {
 
 
     /**
-     *
+     * Start the location tracking,
      * @param activity
      */
     protected void startLocationTracking(Activity activity) {
@@ -61,11 +53,11 @@ public class LocationManagement {
         fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null);
     }
 
-    protected Position takePosition(Activity activity){
-        return positionsList.get(positionsList.size()-1);
-    }
-
-
+    /**
+     * Stop the tracking
+     * @param activity
+     * @return positions
+     */
     protected List<Position> stopTracking(Activity activity){
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
 
@@ -81,18 +73,30 @@ public class LocationManagement {
         fusedTemp.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                Position position = new Position();
+                if (location != null) {
+                    Position position = new Position();
 
-                position.setAltitude(location.getAltitude());
-                position.setLatitude(location.getLatitude());
-                position.setLongitude(location.getLongitude());
-                position.setTime(System.currentTimeMillis()/1000);
+                    position.setAltitude(location.getAltitude());
+                    position.setLatitude(location.getLatitude());
+                    position.setLongitude(location.getLongitude());
+                    position.setTime(System.currentTimeMillis() / 1000);
 
-                callback.resolve(position);
+                    callback.resolve(position);
+                }
             }
         });
     }
 
+    protected Position takePosition(Activity activity){
+        return positionsList.get(positionsList.size()-1);
+    }
+
+
+    /**
+     * Calculate the distance of the track
+     * @param positions
+     * @return distance
+     */
     protected double calculateTrackLength(List<Position> positions){
         Location locationFrom = new Location("temp");
         Location locationTo = new Location("temp");
@@ -119,6 +123,10 @@ public class LocationManagement {
         return distance;
     }
 
+    /**
+     * Callback needed by the requestLocationUpdates method of the FusedLocationProviderClient
+     * @param activity
+     */
     private void callbackCreation(final Activity activity){
         locationCallback = new LocationCallback(){
             @Override
@@ -138,17 +146,11 @@ public class LocationManagement {
         };
     }
 
-    private Position convertToPosition(Location location){
-        Position position = new Position();
 
-        position.setAltitude(location.getAltitude());
-        position.setLatitude(location.getLatitude());
-        position.setLongitude(location.getLongitude());
-        position.setTime(System.currentTimeMillis()/1000);
-
-        return position;
-    }
-
+    /**
+     * Method used to clean the data we get from our GPS (avoid duplicate data)
+     * @param location
+     */
     private void cleanLocationData(Location location){
         Position newPosition = convertToPosition(location);
         if (positionsList.size() > 1) {
@@ -162,6 +164,9 @@ public class LocationManagement {
         }
     }
 
+    /**
+     * Draw a line on the map with all the last position logged
+     */
     private void drawLine(){
         LatLng latLng;
         PolylineOptions polylineOptions = new PolylineOptions().width(5).color(Color.BLUE).geodesic(true);
@@ -173,6 +178,26 @@ public class LocationManagement {
         fragmentInterface.setPolyLine(polylineOptions);
     }
 
+    /**
+     * Convert a Location object to a Position object
+     * @param location
+     * @return position
+     */
+    private Position convertToPosition(Location location){
+        Position position = new Position();
+
+        position.setAltitude(location.getAltitude());
+        position.setLatitude(location.getLatitude());
+        position.setLongitude(location.getLongitude());
+        position.setTime(System.currentTimeMillis()/1000);
+
+        return position;
+    }
+
+    /**
+     * To be able to change items on the view we have to set an interface to access some methods
+     * @param fragmentInterface
+     */
     public static void interfaceToWatch(FragmentInterface fragmentInterface){
         LocationManagement.fragmentInterface = fragmentInterface;
     }

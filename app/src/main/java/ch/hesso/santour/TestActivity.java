@@ -2,8 +2,8 @@ package ch.hesso.santour;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -12,9 +12,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
-import ch.hesso.santour.business.LocationManagement;
 import ch.hesso.santour.business.PictureManagement;
-import ch.hesso.santour.business.PermissionManagement;
 import ch.hesso.santour.business.TrackingManagement;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
@@ -49,7 +47,6 @@ public class TestActivity extends AppCompatActivity {
         });
 
 
-        PermissionManagement.checkMandatoryPermission(this);
 
         /*
         // lors du click sur le button on ouvre les documents

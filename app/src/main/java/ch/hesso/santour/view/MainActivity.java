@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
 
-        PermissionManagement.checkMandatoryPermission(MainActivity.this);
+        PermissionManagement.initialCheck(MainActivity.this);
 
         //menu fragment
         fragmentManager = getFragmentManager();
