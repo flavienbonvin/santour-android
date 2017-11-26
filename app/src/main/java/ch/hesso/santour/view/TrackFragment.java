@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.os.SystemClock;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,6 +110,7 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
                 transaction.replace(R.id.yolo, fragment).commit();
             }
         });
+
 
 
         return  rootView;

@@ -4,6 +4,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toolbar;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.SectionsPageAdapter;
@@ -27,6 +28,7 @@ public class TrackActivity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.track_tabs);
         tabLayout.setupWithViewPager(viewPager);
+
     }
 
     private void setupViewPager(ViewPager viewPager)
