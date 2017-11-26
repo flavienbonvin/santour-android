@@ -1,12 +1,7 @@
 package ch.hesso.santour.view;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,9 +10,6 @@ import android.view.ViewGroup;
 import ch.hesso.santour.R;
 
 public class TrackAddPOIFragment extends Fragment {
-
-    //Bottom Navigation Bar
-    private BottomNavigationView navigation;
 
     public TrackAddPOIFragment() {
         // Required empty public constructor
@@ -34,7 +26,7 @@ public class TrackAddPOIFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_track_add_poi, container, false);
-
+        setHasOptionsMenu(true);
         return rootView;
     }
 }

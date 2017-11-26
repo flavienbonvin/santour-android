@@ -1,10 +1,7 @@
 package ch.hesso.santour.view;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.design.widget.BottomNavigationView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;

@@ -24,7 +24,9 @@ public class TrackActivity extends AppCompatActivity {
         sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
 
         viewPager = findViewById(R.id.track_container);
+        viewPager.setOffscreenPageLimit(3);
         setupViewPager(viewPager);
+
 
         TabLayout tabLayout = findViewById(R.id.track_tabs);
         tabLayout.setupWithViewPager(viewPager);

@@ -32,7 +32,7 @@
         <activity
             android:name=".view.TrackActivity"
             android:label="@string/title_activity_track2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
