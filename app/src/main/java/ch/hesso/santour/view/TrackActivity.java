@@ -1,47 +1,40 @@
 package ch.hesso.santour.view;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.content.ContextCompat;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
 import ch.hesso.santour.R;
+import ch.hesso.santour.adapter.SectionsPageAdapter;
 
 public class TrackActivity extends AppCompatActivity {
 
+    private static final String TAG = "TrackActivity";
 
-    //Bottom Navigation Bar
-    private BottomNavigationView navigation;
-
-    private Fragment fragment;
-    private FragmentManager fragmentManager;
+    private SectionsPageAdapter sectionsPageAdapter;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setStatusBarGradiant(this);
         setContentView(R.layout.activity_track);
-        //Bottom navigation
-        navigation = findViewById(R.id.track_bottom_navigation);
-        navigation.inflateMenu(R.menu.track_bottom_navigation);
-        navigation.setVisibility(View.VISIBLE);
-        navigation.getMenu().getItem(0).setChecked(true);
+        sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
 
-        fragmentManager = getFragmentManager();
-        fragment = new TrackFragment();
+        viewPager = findViewById(R.id.track_container);
+        setupViewPager(viewPager);
 
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.main_container, fragment).commit();
+        TabLayout tabLayout = findViewById(R.id.track_tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
+    }
+
+    private void setupViewPager(ViewPager viewPager)
+    {
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getFragmentManager());
+        adapter.addFragment(new TrackFragment(), getString(R.string.my_track));
+        adapter.addFragment(new TrackPOIsListFragment(), getString(R.string.pois_list));
+        adapter.addFragment(new TrackPODsListFragment(), getString(R.string.pods_list));
+        viewPager.setAdapter(adapter);
     }
 }

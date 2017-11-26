@@ -17,8 +17,6 @@ import ch.hesso.santour.R;
 
 
 public class TrackAddPODFragment extends Fragment {
-    //Bottom Navigation Bar
-    private BottomNavigationView navigation;
 
     public TrackAddPODFragment() {
         // Required empty public constructor
@@ -36,12 +34,6 @@ public class TrackAddPODFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_track_add_pod, container, false);
         setHasOptionsMenu(true);
-
-        // Inflate the layout for this fragment
-        //Bottom navigation
-        navigation = getActivity().findViewById(R.id.track_bottom_navigation);
-        navigation.setVisibility(View.GONE);
-
         return rootView;
     }
 }

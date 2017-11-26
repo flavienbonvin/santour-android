@@ -35,11 +35,6 @@ public class TrackAddPOIFragment extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_track_add_poi, container, false);
         setHasOptionsMenu(true);
 
-        // Inflate the layout for this fragment
-        //Bottom navigation
-        navigation = getActivity().findViewById(R.id.track_bottom_navigation);
-        navigation.setVisibility(View.GONE);
-
         return rootView;
     }
 }

@@ -61,9 +61,6 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
-        navigation = getActivity().findViewById(R.id.track_bottom_navigation);
-        navigation.setVisibility(View.VISIBLE);
-
         trackPlayButton = rootView.findViewById(R.id.track_play_button);
         trackStopButton = rootView.findViewById(R.id.track_stop_button);
 
@@ -95,7 +92,7 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
                 fragment  = new TrackAddPOIFragment();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);
-                transaction.replace(R.id.main_container, fragment).commit();
+                transaction.replace(R.id.main_content, fragment).commit();
             }
         });
 
@@ -107,7 +104,7 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
                 fragment  = new TrackAddPODFragment();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);
-                transaction.replace(R.id.main_container, fragment).commit();
+                transaction.replace(R.id.yolo, fragment).commit();
             }
         });
 
