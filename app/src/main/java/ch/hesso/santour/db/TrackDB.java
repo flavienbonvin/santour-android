@@ -36,14 +36,14 @@ public class TrackDB {
     }
 
     public static void update(Track track) {
-        tracksDB.child(track.id).setValue(track);
+        tracksDB.child(track.getId()).setValue(track);
     }
 
     public static void update(final Track track, final DBCallback callback) {
-        tracksDB.child(track.id).setValue(track).addOnSuccessListener(new OnSuccessListener<Void>() {
+        tracksDB.child(track.getId()).setValue(track).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                getById(track.id, callback);
+                getById(track.getId(), callback);
             }
         });
     }
@@ -56,7 +56,7 @@ public class TrackDB {
                 List<Track> users = new ArrayList<>();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Track track = postSnapshot.getValue(Track.class);
-                    track.id = postSnapshot.getKey();
+                    track.setId(postSnapshot.getKey());
                     users.add(track);
                 }
                 callback.resolve(users);
@@ -75,7 +75,7 @@ public class TrackDB {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Track track = dataSnapshot.getValue(Track.class);
-                track.id = dataSnapshot.getKey();
+                track.setId(dataSnapshot.getKey());
                 callback.resolve(track);
             }
             @Override

@@ -21,6 +21,10 @@ public class CategoryPOI {
         this.name = name;
     }
 
+    public CategoryPOI(String name) {
+        this.name = name;
+    }
+
     public String getId() {
         return id;
     }

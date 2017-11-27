@@ -7,15 +7,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import ch.hesso.santour.R;
+import ch.hesso.santour.business.LocationManagement;
+import ch.hesso.santour.db.DBCallback;
+import ch.hesso.santour.model.POI;
+import ch.hesso.santour.model.Position;
+import ch.hesso.santour.model.Track;
 
 
 public class AddTrackFragment extends Fragment implements OnMapReadyCallback{
@@ -43,7 +52,14 @@ public class AddTrackFragment extends Fragment implements OnMapReadyCallback{
         btnSave.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
+                EditText nameTrack  = (EditText)rootView.findViewById(R.id.nameTrack);
+                String name = nameTrack.getText().toString();
+                if(name.equals("")){
+                    return;
+                }
 
+                MainActivity.track = new Track();
+                MainActivity.track.setName(name);
                 Intent intent = new Intent(rootView.getContext(), TrackActivity.class);
                 startActivity(intent);
             }
@@ -53,11 +69,24 @@ public class AddTrackFragment extends Fragment implements OnMapReadyCallback{
 
     @Override
     public void onMapReady(GoogleMap googleMap) throws SecurityException {
-        googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getContext(), R.raw.map_json));
         map = googleMap;
-        map.getUiSettings().setMyLocationButtonEnabled(false);
+
+        UiSettings uiSettings = map.getUiSettings();
+        uiSettings.setAllGesturesEnabled(false);
+        uiSettings.setMyLocationButtonEnabled(false);
+
         LatLng coordinate = new LatLng(86, 20);
         map.moveCamera(CameraUpdateFactory.newLatLng(coordinate));
+        LocationManagement.getCurrentPosition(AddTrackFragment.this.getActivity(), new DBCallback() {
+            @Override
+            public void resolve(Object o) {
+                Position p = (Position)o;
+                LatLng latlng =new LatLng(p.latitude,p.longitude);
+                map.addMarker(new MarkerOptions().position(latlng));
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng,18));
+            }
+        });
+
     }
 
     @Override

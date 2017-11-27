@@ -11,8 +11,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import ch.hesso.santour.R;
+import ch.hesso.santour.business.PermissionManagement;
+import ch.hesso.santour.business.TrackingManagement;
+import ch.hesso.santour.model.Track;
 
 public class MainActivity extends AppCompatActivity {
+    public static TrackingManagement trackingManagement = new TrackingManagement();
+    public static Track track;
 
     private Fragment fragment;
     private FragmentManager fragmentManager;
@@ -41,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
 
+        PermissionManagement.initialCheck(MainActivity.this);
+
         //menu fragment
         fragmentManager = getFragmentManager();
         fragment = new MenuFragment();
@@ -68,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void test(){
+
+    }
 
 }
 
