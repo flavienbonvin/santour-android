@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.os.SystemClock;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,10 +28,11 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
     //Play & Stop button
     private ImageButton trackPlayButton;
     private ImageButton trackStopButton;
+    private CardView cardViewRecord;
 
     //Add POI / POD button
-    private Button addPOIButton;
-    private Button addPODButton;
+    private ImageButton addPOIButton;
+    private ImageButton addPODButton;
 
     //Chronometer
     private Chronometer chrono;
@@ -66,13 +69,15 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
 
         trackPlayButton = rootView.findViewById(R.id.track_play_button);
         trackStopButton = rootView.findViewById(R.id.track_stop_button);
+        cardViewRecord = rootView.findViewById(R.id.track_card_view_record);
 
         chrono = rootView.findViewById(R.id.track_chronometer);
         trackPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                trackPlayButton.setEnabled(false);
-                trackStopButton.setEnabled(true);
+                trackPlayButton.setVisibility(View.GONE);
+                trackStopButton.setVisibility(View.VISIBLE);
+                cardViewRecord.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimaryRed));
                 chrono.setBase(SystemClock.elapsedRealtime());
                 chrono.start();
             }
@@ -81,8 +86,9 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
         trackStopButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                trackPlayButton.setEnabled(true);
-                trackStopButton.setEnabled(false);
+                trackPlayButton.setVisibility(View.VISIBLE);
+                trackStopButton.setVisibility(View.GONE);
+                cardViewRecord.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
                 chrono.stop();
             }
         });
