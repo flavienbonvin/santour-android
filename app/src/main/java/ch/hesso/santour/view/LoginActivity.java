@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.activity_login);
+        setTitle("Login");
         super.onCreate(savedInstanceState);
 
         //button login

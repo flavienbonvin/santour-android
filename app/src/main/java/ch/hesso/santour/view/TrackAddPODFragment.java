@@ -7,11 +7,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import ch.hesso.santour.R;
 
-public class TrackAddPOIFragment extends Fragment {
 
-    public TrackAddPOIFragment() {
+
+
+public class TrackAddPODFragment extends Fragment {
+
+    public TrackAddPODFragment() {
         // Required empty public constructor
     }
 
@@ -25,7 +29,7 @@ public class TrackAddPOIFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_track_add_poi, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_track_add_pod, container, false);
         setHasOptionsMenu(true);
         return rootView;
     }
