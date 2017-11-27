@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/track_bottom_navigation_track"
+        android:enabled="true"
+        android:icon="@drawable/ic_directions_walk_white_24dp"
+        android:title="@string/details"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/track_bottom_navigation_poi"
+        android:enabled="true"
+        android:icon="@drawable/ic_map_white_24dp"
+        android:title="@string/pois_list"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/track_bottom_navigation_pod"
+        android:enabled="true"
+        android:icon="@drawable/ic_terrain_white_24dp"
+        android:title="@string/pods_list"
+        app:showAsAction="ifRoom"/>
+</menu>

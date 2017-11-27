@@ -1,6 +1,12 @@
 <resources>
+    <!--Strings related to titles-->
     <string name="app_name">SanTour</string>
     <string name="title_activity_login">Sign in</string>
+    <string name="title_edit_details">Edit details</string>
+    <string name="title_edit_list_pod">Edit list PODs</string>
+    <string name="title_edit_list_poi">Edit list POIs</string>
+    <string name="title_edit_pod">Edit POD</string>
+    <string name="title_edit_poi">Edit POI</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -35,6 +41,9 @@
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="username">Username</string>
+    <string name="searchPOI">Search POI</string>
+    <string name="details">Details</string>
+    <string name="check">Check</string>
     <string name="settings">settings</string>
     <string name="cloud">Cloud</string>
     <!-- Strings related to add poi/pod-->
@@ -49,4 +58,8 @@
     <string name="tab_text_3">Tab 3</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="searchPOD">Search POD</string>
+    <string name="track_difficulty">Difficulty</string>
+    <string name="track_accessforeveryone">Access for everyone</string>
+    <string name="track_pauseduration">Pause duration</string>
 </resources>

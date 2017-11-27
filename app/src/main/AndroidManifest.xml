@@ -23,6 +23,10 @@
         <activity android:name=".TestActivity"></activity>
         <activity android:name=".view.MainActivity"></activity>
         <activity android:name=".view.LoginActivity">
+
+        </activity>
+
+        <activity android:name=".view.TrackEditActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
