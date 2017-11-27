@@ -14,14 +14,14 @@
 
 
         <EditText
-            android:id="@+id/inputSearchPOI"
+            android:id="@+id/input_search_poi"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/searchPOI"
             android:inputType="textVisiblePassword"/>
 
         <ListView
-            android:id="@+id/listViewEditPOI"
+            android:id="@+id/list_view_edit_poi"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

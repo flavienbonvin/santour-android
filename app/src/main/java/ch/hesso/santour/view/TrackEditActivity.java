@@ -43,8 +43,8 @@ public class TrackEditActivity extends AppCompatActivity {
                 //fragment = new ExchangeFragment();
                 //fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.main_container, fragment).commit();
                 transaction.addToBackStack(null);
+                transaction.replace(R.id.main_container, fragment).commit();
 
                 return true;
         }
@@ -76,19 +76,22 @@ public class TrackEditActivity extends AppCompatActivity {
                 switch (item.getItemId())
                 {
                     case R.id.track_bottom_navigation_track:
-                        //fragment = new (); // new Fragment();
+                        fragment = new TrackEditDetailsFragment();
+                        setTitle(R.string.title_edit_details);
                         break;
                     case R.id.track_bottom_navigation_poi:
                         fragment = new TrackEditListPOIFragment();
+                        setTitle(R.string.title_edit_list_poi);
                         break;
                     case R.id.track_bottom_navigation_pod:
                         fragment = new TrackEditListPODFragment();
+                        setTitle(R.string.title_edit_list_pod);
                         break;
                 }
 
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.replace(R.id.track_edit_container, fragment).commit();
                 transaction.addToBackStack(null);
+                transaction.replace(R.id.track_edit_container, fragment).commit();
                 return true;
             }
         });
