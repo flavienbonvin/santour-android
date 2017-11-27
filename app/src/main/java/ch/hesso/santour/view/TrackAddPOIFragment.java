@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import ch.hesso.santour.R;
@@ -13,6 +14,21 @@ public class TrackAddPOIFragment extends Fragment {
 
     public TrackAddPOIFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.action_bar_close:
+                getActivity().getFragmentManager().popBackStack();
+                return true;
+            case R.id.action_bar_save:
+                getActivity().getFragmentManager().popBackStack();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

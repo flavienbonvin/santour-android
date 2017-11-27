@@ -21,6 +21,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
+
 import ch.hesso.santour.R;
 
 public class TrackFragment extends Fragment implements OnMapReadyCallback {
@@ -124,6 +126,7 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(GoogleMap googleMap) throws SecurityException {
+        googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getContext(), R.raw.map_json));
         map = googleMap;
         map.getUiSettings().setMyLocationButtonEnabled(false);
         LatLng coordinate = new LatLng(86, 20);

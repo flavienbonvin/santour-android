@@ -19,6 +19,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Strings related to track activity-->
+    <string name="track">Track</string>
     <string name="poi">POI</string>
     <string name="pod">POD</string>
     <string name="my_track">My track</string>

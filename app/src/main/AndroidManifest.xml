@@ -31,7 +31,7 @@
         </activity>
         <activity
             android:name=".view.TrackActivity"
-            android:label="@string/title_activity_track2"
+            android:label="@string/track"
             android:theme="@style/AppTheme"></activity>
     </application>
 
