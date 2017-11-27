@@ -1,5 +1,7 @@
 package ch.hesso.santour.view;
 
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.SystemClock;
@@ -14,9 +16,17 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Cap;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.maps.model.RoundCap;
+import com.google.android.gms.maps.model.SquareCap;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.business.FragmentInterface;
@@ -37,6 +47,8 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback, Fragm
     //Google Map
     private MapView mapView;
     private GoogleMap map;
+
+    private Marker marker;
 
 
     public TrackFragment() {
@@ -89,7 +101,11 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback, Fragm
     @Override
     public void onMapReady(GoogleMap googleMap) throws SecurityException {
         map = googleMap;
-        map.getUiSettings().setMyLocationButtonEnabled(false);
+
+        UiSettings uiSettings = map.getUiSettings();
+        uiSettings.setAllGesturesEnabled(false);
+        uiSettings.setMyLocationButtonEnabled(false);
+
         LatLng coordinate = new LatLng(86, 20);
         map.moveCamera(CameraUpdateFactory.newLatLng(coordinate));
         LocationManagement.getCurrentPosition(TrackFragment.this.getActivity(), new DBCallback() {
@@ -97,15 +113,12 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback, Fragm
             public void resolve(Object o) {
                 Position p = (Position)o;
                 LatLng latlng =new LatLng(p.latitude,p.longitude);
+
                 map.addMarker(new MarkerOptions().position(latlng));
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng,18));
             }
         });
-
     }
-
-
-
 
 
     @Override
@@ -133,9 +146,14 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback, Fragm
     }
 
     @Override
-    public void setPolyLine(PolylineOptions polyLine) {
+    public void updateMap(PolylineOptions polyLine, Position position) {
         map.clear();
         map.addPolyline(polyLine);
+
+        LatLng latLng = new LatLng(position.latitude, position.longitude);
+        float[] hsv = new float[3];
+        map.addMarker(new MarkerOptions().position(latLng));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,18));
     }
 
     @Override

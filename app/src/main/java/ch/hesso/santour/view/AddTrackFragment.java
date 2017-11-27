@@ -16,6 +16,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -71,7 +72,11 @@ public class AddTrackFragment extends Fragment implements OnMapReadyCallback{
     @Override
     public void onMapReady(GoogleMap googleMap) throws SecurityException {
         map = googleMap;
-        map.getUiSettings().setMyLocationButtonEnabled(false);
+
+        UiSettings uiSettings = map.getUiSettings();
+        uiSettings.setAllGesturesEnabled(false);
+        uiSettings.setMyLocationButtonEnabled(false);
+        
         LatLng coordinate = new LatLng(86, 20);
         map.moveCamera(CameraUpdateFactory.newLatLng(coordinate));
         LocationManagement.getCurrentPosition(AddTrackFragment.this.getActivity(), new DBCallback() {

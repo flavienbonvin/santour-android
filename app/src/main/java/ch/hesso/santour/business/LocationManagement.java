@@ -70,6 +70,7 @@ public class LocationManagement {
         locationRequest.setInterval(0).setFastestInterval(0).setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         PermissionManagement.checkMandatoryPermission(activity);
+        fusedTemp.flushLocations();
         fusedTemp.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
@@ -113,14 +114,27 @@ public class LocationManagement {
 
             double temp = locationFrom.distanceTo(locationTo);
             Log.d("maxDeb", "distance temp "+temp);
-            if(temp>8){
-                distance += temp;
-            }
+
+            distance += temp;
 
             Log.d("maxDeb",distance+"");
         }
 
         return distance;
+    }
+
+    /**
+     * Return distance between two position in meter
+     * @param from
+     * @param to
+     * @return double
+     */
+    private double calculateDistance2Points(Position from, Position to){
+        Location fromLocation = convertToLocation(from);
+        Location toLocation = convertToLocation(to);
+
+
+        return fromLocation.distanceTo(toLocation);
     }
 
     /**
@@ -133,14 +147,13 @@ public class LocationManagement {
             public void onLocationResult(LocationResult locationResult) {
                 for (Location location : locationResult.getLocations()) {
                     cleanLocationData(location);
-                    drawLine();
                 }
                 MainActivity.track.setDistance(calculateTrackLength(positionsList));
 
                 if (MainActivity.track.getDistance() < 999) {
                     fragmentInterface.setTextDistance(Math.floor(MainActivity.track.getDistance()*100)/100 + " m");
                 } else {
-                    fragmentInterface.setTextDistance(Math.floor(MainActivity.track.getDistance()*100)/100 + " km");
+                    fragmentInterface.setTextDistance(Math.floor(MainActivity.track.getDistance())/100 + " km");
                 }
             }
         };
@@ -156,26 +169,30 @@ public class LocationManagement {
         if (positionsList.size() > 1) {
             Position lastPosition = positionsList.get(positionsList.size() - 1);
 
-            if (!lastPosition.equals(newPosition)) {
+            double distance = calculateDistance2Points(newPosition, lastPosition);
+
+            if(distance < 200 && distance > 8){
                 positionsList.add(newPosition);
+                mapUpdate();
             }
         } else {
             positionsList.add(newPosition);
+            mapUpdate();
         }
     }
 
     /**
      * Draw a line on the map with all the last position logged
      */
-    private void drawLine(){
+    private void mapUpdate(){
         LatLng latLng;
-        PolylineOptions polylineOptions = new PolylineOptions().width(5).color(Color.BLUE).geodesic(true);
+        PolylineOptions polylineOptions = new PolylineOptions().width(7).color(Color.parseColor("#52c7b8")).geodesic(true);
 
         for (Position position : positionsList) {
             latLng = new LatLng(position.latitude, position.longitude);
             polylineOptions.add(latLng);
         }
-        fragmentInterface.setPolyLine(polylineOptions);
+        fragmentInterface.updateMap(polylineOptions, positionsList.get(positionsList.size()-1));
     }
 
     /**
@@ -192,6 +209,16 @@ public class LocationManagement {
         position.setTime(System.currentTimeMillis()/1000);
 
         return position;
+    }
+
+    private Location convertToLocation(Position position){
+        Location location = new Location("temp");
+
+        location.setLongitude(position.longitude);
+        location.setLatitude(position.latitude);
+        location.setAltitude(position.altitude);
+
+        return location;
     }
 
     /**
