@@ -110,6 +110,7 @@ public class TrackAddPOIFragment extends Fragment {
             }
         });
 
+
         LocationManagement.getCurrentPosition(getActivity(), new DBCallback() {
             @Override
             public void resolve(Object o) {
