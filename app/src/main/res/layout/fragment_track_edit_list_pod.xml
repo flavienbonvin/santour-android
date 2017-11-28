@@ -6,7 +6,7 @@
 
 
     <LinearLayout
-        android:id="@+id/linear_layout_list_pod"
+        android:id="@+id/linear_layout_edit_list_pod"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="2"
@@ -14,7 +14,7 @@
 
 
         <EditText
-            android:id="@+id/input_search_pod"
+            android:id="@+id/input_edit_search_pod"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/searchPOD"

@@ -6,7 +6,7 @@
 
 
     <LinearLayout
-        android:id="@+id/linear_layout_list_poi"
+        android:id="@+id/linear_layout_edit_list_poi"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="2"
@@ -14,7 +14,7 @@
 
 
         <EditText
-            android:id="@+id/input_search_poi"
+            android:id="@+id/input_edit_search_poi"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/searchPOI"

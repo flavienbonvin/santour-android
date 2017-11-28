@@ -11,10 +11,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import ch.hesso.santour.R;
-
-
+import ch.hesso.santour.business.LocationManagement;
+import ch.hesso.santour.db.DBCallback;
+import ch.hesso.santour.model.Position;
 
 
 public class TrackAddPODFragment extends Fragment {
@@ -67,6 +69,20 @@ public class TrackAddPODFragment extends Fragment {
                 transaction.replace(R.id.main_content, fragment).commit();
             }
         });
+
+        LocationManagement.getCurrentPosition(getActivity(), new DBCallback() {
+            @Override
+            public void resolve(Object o) {
+                Position position = (Position) o;
+
+                TextView textViewLat = (TextView) getActivity().findViewById(R.id.tv_lat_add_pod);
+                TextView textViewLng = (TextView) getActivity().findViewById(R.id.tv_lng_add_pod);
+
+                textViewLat.setText("Lat: " + Math.floor(position.latitude*100)/100);
+                textViewLng.setText("Lng: " + Math.floor(position.longitude*100)/100);
+            }
+        });
+
         return rootView;
     }
 }
