@@ -23,30 +23,35 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDpNPEhpXJTEZ10aIG9u38YRwNJ8oZBF6o" />
 
-        <activity android:name=".TestActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".TestActivity"
+            android:screenOrientation="portrait">
+        </activity>
 
-        <activity android:name=".view.TrackEditActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".view.TrackEditActivity"
+            android:screenOrientation="portrait">
+        </activity>
 
         <activity android:name=".view.MainActivity"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".view.LoginActivity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+
         <activity
             android:name=".view.TrackActivity"
             android:label="@string/track"
-            android:theme="@style/AppTheme" android:screenOrientation="portrait"></activity>
-        <activity android:name=".business.PictureManagement" android:screenOrientation="portrait">
-
+            android:theme="@style/AppTheme" android:screenOrientation="portrait">
         </activity>
-        <!-- <activity android:name=".LoginActivity" android:label="@string/title_activity_login"></activity> -->
-    </application>
 
+        <activity android:name=".business.PictureManagement"
+            android:screenOrientation="portrait">
+        </activity>
+
+    </application>
 </manifest>

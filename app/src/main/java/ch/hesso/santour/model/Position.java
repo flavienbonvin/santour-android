@@ -11,7 +11,7 @@ import ch.hesso.santour.business.LocationManagement;
  * Created by Maxime on 18.11.2017.
  */
 
-public class Position implements Serializable {
+public class Position implements Serializable{
     public double latitude;
     public double longitude;
     public double altitude;
