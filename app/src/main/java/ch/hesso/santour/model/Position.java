@@ -3,13 +3,15 @@ package ch.hesso.santour.model;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.io.Serializable;
+
 import ch.hesso.santour.business.LocationManagement;
 
 /**
  * Created by Maxime on 18.11.2017.
  */
 
-public class Position {
+public class Position implements Serializable {
     public double latitude;
     public double longitude;
     public double altitude;

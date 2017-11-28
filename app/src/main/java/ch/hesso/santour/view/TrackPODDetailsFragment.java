@@ -3,6 +3,7 @@ package ch.hesso.santour.view;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,12 +20,16 @@ import ch.hesso.santour.adapter.CategoryListAdapter;
 import ch.hesso.santour.db.CategoryPODDB;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.CategoryPOD;
+import ch.hesso.santour.model.POD;
+import ch.hesso.santour.model.Position;
+import ch.hesso.santour.model.RatePOD;
 
 public class TrackPODDetailsFragment extends Fragment {
 
     private ListView listView;
     private CategoryListAdapter adapter;
     private View rootView;
+    private POD pod;
 
     public TrackPODDetailsFragment() {
         // Required empty public constructor
@@ -38,13 +43,7 @@ public class TrackPODDetailsFragment extends Fragment {
                 getActivity().getFragmentManager().popBackStack();
                 return true;
             case R.id.action_bar_save:
-                FragmentManager manager = getActivity().getFragmentManager();
-                if (manager.getBackStackEntryCount() > 0) {
-                    FragmentManager.BackStackEntry first = manager
-                            .getBackStackEntryAt(manager.getBackStackEntryCount()-2);
-                    manager.popBackStack(first.getId(),
-                            FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                }
+                addPODAndBack();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -64,6 +63,9 @@ public class TrackPODDetailsFragment extends Fragment {
         rootView = inflater.inflate(R.layout.fragment_track_pod_details, container, false);
         setHasOptionsMenu(true);
 
+        pod = (POD)getArguments().getSerializable("pod");
+
+
         CategoryPODDB.getAll(new DBCallback() {
             @Override
             public void resolve(Object o) {
@@ -74,5 +76,24 @@ public class TrackPODDetailsFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    private void addPODAndBack(){
+
+        ListView list = rootView.findViewById(R.id.track_pod_details_categories_list);
+        CategoryListAdapter cat = (CategoryListAdapter) list.getAdapter();
+
+        pod.setCategoriesID(cat.getAllItems());
+
+        Log.e("maxDebug", pod.toString());
+        MainActivity.track.addPOD(pod);
+
+        FragmentManager manager = getActivity().getFragmentManager();
+        if (manager.getBackStackEntryCount() > 0) {
+            FragmentManager.BackStackEntry first = manager
+                    .getBackStackEntryAt(manager.getBackStackEntryCount()-2);
+            manager.popBackStack(first.getId(),
+                    FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
     }
 }
