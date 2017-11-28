@@ -153,7 +153,7 @@ public class LocationManagement {
                 if (MainActivity.track.getDistance() < 999) {
                     fragmentInterface.setTextDistance(Math.floor(MainActivity.track.getDistance()*100)/100 + " m");
                 } else {
-                    fragmentInterface.setTextDistance(Math.floor(MainActivity.track.getDistance())/100 + " km");
+                    fragmentInterface.setTextDistance(Math.floor(MainActivity.track.getDistance())/1000 + " km");
                 }
             }
         };
