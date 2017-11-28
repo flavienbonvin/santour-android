@@ -64,7 +64,7 @@ public class CategoryListAdapter extends BaseAdapter {
             }
 
         holder.label.setText(listData.get(position).getName());
-        holder.difficulty.setProgress(listData.get(position).getRating());
+        //holder.difficulty.setProgress(listData.get(position).getRating());
 
         return convertView;
     }

@@ -52,7 +52,7 @@ public class AddTrackFragment extends Fragment implements OnMapReadyCallback{
         btnSave.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                EditText nameTrack  = (EditText)rootView.findViewById(R.id.nameTrack);
+                EditText nameTrack  = (EditText)rootView.findViewById(R.id.add_track_textView_nameTrack);
                 String name = nameTrack.getText().toString();
                 if(name.equals("")){
                     return;
