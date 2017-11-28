@@ -27,6 +27,13 @@ public class POD {
         this.position = position;
         this.categoriesID = categoriesID;
     }
+    public POD(String name, String description, String picture, Position position) {
+        this.name = name;
+        this.description = description;
+        this.picture = picture;
+        this.position = position;
+        this.categoriesID = new ArrayList<>();
+    }
 
     public void addCategory(RatePOD categoryID){
         categoriesID.add(categoryID);

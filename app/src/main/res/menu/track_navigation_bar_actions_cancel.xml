@@ -9,11 +9,4 @@
         android:orderInCategory="-10"
         android:title="back"
         app:showAsAction="always" />
-    <item
-        android:id="@+id/action_bar_save"
-        android:enabled="true"
-        android:icon="@drawable/ic_save"
-        android:orderInCategory="-10"
-        android:title="save"
-        app:showAsAction="always" />
 </menu>
