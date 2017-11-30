@@ -35,6 +35,7 @@ public class TrackActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager)
     {
+
         SectionsPageAdapter adapter = new SectionsPageAdapter(getFragmentManager());
         adapter.addFragment(new TrackFragment(), getString(R.string.my_track));
         adapter.addFragment(new TrackPOIsListFragment(), getString(R.string.pois_list));
