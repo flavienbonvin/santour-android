@@ -1,15 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     tools:context="ch.hesso.santour.view.TrackFragment">
-
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/track_add_poi_picture_view"
@@ -131,6 +126,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_text_poi_desc" />
-    </android.support.constraint.ConstraintLayout>
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

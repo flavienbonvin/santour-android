@@ -87,6 +87,7 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback, Fragm
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_track, container, false);
         setHasOptionsMenu(true);
+
         mapView = rootView.findViewById(R.id.track_map);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
@@ -105,6 +106,8 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback, Fragm
                 chrono.setBase(SystemClock.elapsedRealtime());
                 chrono.start();
                 TrackingManagement.startTracking(TrackFragment.this.getActivity());
+                addPOIButton.setEnabled(true);
+                addPODButton.setEnabled(true);
             }
         });
 
@@ -116,13 +119,19 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback, Fragm
                 cardViewRecord.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
                 chrono.stop();
                 TrackingManagement.stopTracking(TrackFragment.this.getActivity());
+
+                //TODO change style of the button when disabled
+                addPOIButton.setEnabled(false);
+                addPODButton.setEnabled(false);
             }
         });
 
         LocationManagement.interfaceToWatch(TrackFragment.this);
 
 
+        //TODO change style of the button when disabled
         addPOIButton = rootView.findViewById(R.id.track_add_poi_button);
+        addPOIButton.setEnabled(false);
         addPOIButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,6 +144,7 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback, Fragm
         });
 
         addPODButton = rootView.findViewById(R.id.track_add_pod_button);
+        addPODButton.setEnabled(false);
         addPODButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,8 +155,6 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback, Fragm
                 transaction.replace(R.id.main_content, fragment).commit();
             }
         });
-
-
 
         return  rootView;
     }

@@ -36,6 +36,8 @@ import static android.app.Activity.RESULT_OK;
 public class TrackAddPOIFragment extends Fragment {
     private static final int SELECT_PICTURE = 1;
 
+    private Position position;
+
     private String imageEncoded = "";
 
     public TrackAddPOIFragment() {
@@ -49,9 +51,6 @@ public class TrackAddPOIFragment extends Fragment {
             case R.id.action_bar_close:
                 getActivity().getFragmentManager().popBackStack();
                 return true;
-            case R.id.action_bar_save:
-                getActivity().getFragmentManager().popBackStack();
-                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -60,7 +59,7 @@ public class TrackAddPOIFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
-        inflater.inflate(R.menu.track_navigation_bar_actions, menu);
+        inflater.inflate(R.menu.track_navigation_bar_actions_cancel, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -90,14 +89,14 @@ public class TrackAddPOIFragment extends Fragment {
                 String poiDesc = editTextDesc.getText().toString();
 
                 if(!poiName.equals("") && !poiDesc.equals("")  && !imageEncoded.equals("")){
-                    String[] parameters = new String[]{
-                        poiName,
-                        poiDesc,
-                        imageEncoded
-                    };
+                    POI poi = new POI();
+                    poi.setName(poiName);
+                    poi.setDescription(poiDesc);
+                    poi.setPicture(imageEncoded);
+                    poi.setPosition(position);
 
                     Bundle bundle = new Bundle();
-                    bundle.putStringArray("parameters", parameters);
+                    bundle.putSerializable("poi", poi);
 
                     Fragment fragment = new TrackPOIDetailsFragment();
                     fragment.setArguments(bundle);
@@ -114,7 +113,7 @@ public class TrackAddPOIFragment extends Fragment {
         LocationManagement.getCurrentPosition(getActivity(), new DBCallback() {
             @Override
             public void resolve(Object o) {
-                Position position = (Position) o;
+                position = (Position) o;
 
                 TextView textViewLat = (TextView) rootView.findViewById(R.id.tv_lat_add_poi);
                 TextView textViewLng = (TextView) rootView.findViewById(R.id.tv_lng_add_poi);
