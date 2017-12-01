@@ -2,11 +2,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ch.hesso.santour.view.TrackEditListPOIFragment">
+    tools:context="ch.hesso.santour.view.Edition.Fragment.TrackEditListPODFragment">
 
 
     <LinearLayout
-        android:id="@+id/linear_layout_edit_list_poi"
+        android:id="@+id/linear_layout_edit_list_pod"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="2"
@@ -14,14 +14,14 @@
 
 
         <EditText
-            android:id="@+id/input_edit_search_poi"
+            android:id="@+id/input_edit_search_pod"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/searchPOI"
+            android:hint="@string/searchPOD"
             android:inputType="textVisiblePassword"/>
 
         <ListView
-            android:id="@+id/list_view_edit_poi"
+            android:id="@+id/list_view_edit_pod"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

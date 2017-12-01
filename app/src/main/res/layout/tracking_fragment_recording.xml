@@ -4,7 +4,7 @@
     android:id="@+id/yolo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ch.hesso.santour.view.TrackFragment">
+    tools:context="ch.hesso.santour.view.Tracking.Fragment.FragmentRecording">
 
     <RelativeLayout
         android:layout_width="match_parent"

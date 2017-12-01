@@ -43,6 +43,22 @@ public class MenuFragment extends Fragment {
                 getActivity().setTitle("Create a track");
             }
         });
+
+        //button list track
+        Button btnListTrack = rootView.findViewById(R.id.menu_button_listTrack);
+        btnListTrack.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+
+                fragmentManager = getFragmentManager();
+                fragment = new TrackListFragment();
+
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.main_container, fragment).commit();
+                getActivity().setTitle("List of tracks");
+            }
+        });
         return  rootView;
     }
 }
