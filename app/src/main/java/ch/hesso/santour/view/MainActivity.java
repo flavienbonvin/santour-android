@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         //On regarde quel item a été cliqué grâce à son id et on déclenche une action
         switch (item.getItemId()) {
+
             case R.id.navigation_setting:
                 fragmentManager  = this.getFragmentManager();
                 fragment  = new SettingsFragment();
