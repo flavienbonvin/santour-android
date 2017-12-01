@@ -20,7 +20,7 @@ public class TrackPODDetailsFragment extends Fragment {
     private View rootView;
 
     public TrackPODDetailsFragment() {
-        // Required empty public constructor
+        // Required empty public constructor lol
     }
 
     @Override
