@@ -3,15 +3,19 @@ package ch.hesso.santour.model;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.io.Serializable;
+
+import ch.hesso.santour.business.LocationManagement;
+
 /**
  * Created by Maxime on 18.11.2017.
  */
 
-public class Position {
+public class Position implements Serializable{
     public double latitude;
     public double longitude;
     public double altitude;
-    public long time;
+    public double time;
 
     public Position() {
     }
@@ -23,6 +27,23 @@ public class Position {
         this.time = time;
     }
 
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public void setAltitude(double altitude) {
+        this.altitude = altitude;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
     @Override
     public String toString() {
         return "Position{" +
@@ -31,5 +52,18 @@ public class Position {
                 ", altitude=" + altitude +
                 ", time=" + time +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Position position = (Position) obj;
+
+        if (position.latitude != this.latitude){
+            return false;
+        }
+        if(position.longitude != this.longitude){
+            return false;
+        }
+        return true;
     }
 }
