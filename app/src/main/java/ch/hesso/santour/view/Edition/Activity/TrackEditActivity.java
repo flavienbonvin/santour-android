@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import ch.hesso.santour.R;
+import ch.hesso.santour.view.Edition.Fragment.TrackEditListPODFragment;
+import ch.hesso.santour.view.Edition.Fragment.TrackEditListPOIFragment;
 
 public class TrackEditActivity extends AppCompatActivity {
 
