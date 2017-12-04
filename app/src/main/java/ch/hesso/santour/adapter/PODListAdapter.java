@@ -54,7 +54,7 @@ public class PODListAdapter extends BaseAdapter {
         ViewHolder holder;
         if (convertView == null)
         {
-            convertView = layoutInflater.inflate(R.layout.list_pod, null);
+            convertView = layoutInflater.inflate(R.layout.item_list_pod, null);
             holder = new ViewHolder();
             holder.name = convertView.findViewById(R.id.creation_name_pod);
 

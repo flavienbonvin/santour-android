@@ -52,7 +52,7 @@ public class TrackListAdapter extends BaseAdapter{
         TrackListAdapter.ViewHolder holder;
         if (convertView == null)
         {
-            convertView = layoutInflater.inflate(R.layout.track_list, null);
+            convertView = layoutInflater.inflate(R.layout.item_list_track, null);
             holder = new TrackListAdapter.ViewHolder();
             holder.icon = convertView.findViewById(R.id.track_list_icon);
             holder.label = convertView.findViewById(R.id.track_list_label);
