@@ -11,7 +11,7 @@ import android.widget.ListView;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.PODListAdapter;
-import ch.hesso.santour.view.MainActivity;
+import ch.hesso.santour.view.Main.MainActivity;
 
 public class FragmentListPOD extends Fragment {
 

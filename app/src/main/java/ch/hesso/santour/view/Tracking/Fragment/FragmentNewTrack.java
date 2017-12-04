@@ -25,7 +25,7 @@ import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.POI;
 import ch.hesso.santour.model.Position;
 import ch.hesso.santour.model.Track;
-import ch.hesso.santour.view.MainActivity;
+import ch.hesso.santour.view.Main.MainActivity;
 
 
 public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
