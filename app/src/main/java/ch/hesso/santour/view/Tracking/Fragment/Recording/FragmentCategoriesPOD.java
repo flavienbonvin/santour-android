@@ -58,7 +58,7 @@ public class FragmentCategoriesPOD extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        rootView = inflater.inflate(R.layout.fragment_track_pod_details, container, false);
+        rootView = inflater.inflate(R.layout.tracking_fragment_recording_list_categories_pod_rating, container, false);
         setHasOptionsMenu(true);
 
         pod = (POD)getArguments().getSerializable("pod");

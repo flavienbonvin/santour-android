@@ -13,8 +13,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import ch.hesso.santour.R;
-import ch.hesso.santour.view.Edition.Fragment.TrackEditListPODFragment;
-import ch.hesso.santour.view.Edition.Fragment.TrackEditListPOIFragment;
+import ch.hesso.santour.view.Edition.Fragment.FragmentDetailsTrack;
+import ch.hesso.santour.view.Edition.Fragment.FragmentListPOD;
+import ch.hesso.santour.view.Edition.Fragment.FragmentListPOI;
+import ch.hesso.santour.view.Edition.Fragment.FragmentListTracks;
 
 public class TrackEditActivity extends AppCompatActivity {
 
@@ -64,7 +66,7 @@ public class TrackEditActivity extends AppCompatActivity {
         navigation.getMenu().getItem(0).setChecked(true);
 
         fragmentManager = getFragmentManager();
-        fragment = new TrackEditListPOIFragment();
+        fragment = new FragmentListTracks();
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.addToBackStack(null);
@@ -78,15 +80,15 @@ public class TrackEditActivity extends AppCompatActivity {
                 switch (item.getItemId())
                 {
                     case R.id.track_bottom_navigation_track:
-                        fragment = new TrackEditDetailsFragment();
+                        fragment = new FragmentDetailsTrack();
                         setTitle(R.string.title_edit_details);
                         break;
                     case R.id.track_bottom_navigation_poi:
-                        fragment = new TrackEditListPOIFragment();
+                        fragment = new FragmentListPOI();
                         setTitle(R.string.title_edit_list_poi);
                         break;
                     case R.id.track_bottom_navigation_pod:
-                        fragment = new TrackEditListPODFragment();
+                        fragment = new FragmentListPOD();
                         setTitle(R.string.title_edit_list_pod);
                         break;
                 }

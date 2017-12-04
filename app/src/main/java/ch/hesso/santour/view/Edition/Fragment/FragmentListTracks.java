@@ -1,7 +1,5 @@
 package ch.hesso.santour.view.Edition.Fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -18,11 +16,11 @@ import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.Track;
 
 
-public class TrackListFragment extends Fragment {
+public class FragmentListTracks extends Fragment {
 
     private View rootView;
 
-    public TrackListFragment() {
+    public FragmentListTracks() {
         // Required empty public constructor
     }
 
@@ -30,13 +28,13 @@ public class TrackListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_track_list, container, false);
+        rootView = inflater.inflate(R.layout.edition_fragment_list_tracks, container, false);
         TrackDB.getAll(new DBCallback() {
             @Override
             public void resolve(Object o) {
                 ArrayList<Track> listTrack = (ArrayList<Track>)o;
                 ListView list = rootView.findViewById(R.id.list_view_track);
-                list.setAdapter(new TrackListAdapter(TrackListFragment.this.getContext(), listTrack));
+                list.setAdapter(new TrackListAdapter(FragmentListTracks.this.getContext(), listTrack));
             }
         });
         return rootView;
