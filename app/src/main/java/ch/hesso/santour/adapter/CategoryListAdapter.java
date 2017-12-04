@@ -61,7 +61,7 @@ public class CategoryListAdapter extends BaseAdapter {
         CategoryListAdapter.ViewHolder holder;
         if (convertView == null)
             {
-                convertView = layoutInflater.inflate(R.layout.pod_category, null);
+                convertView = layoutInflater.inflate(R.layout.item_list_pod_category, null);
                 holder = new CategoryListAdapter.ViewHolder();
                 holder.label = convertView.findViewById(R.id.pod_category_label);
                 holder.difficulty = convertView.findViewById(R.id.pod_category_difficulty);

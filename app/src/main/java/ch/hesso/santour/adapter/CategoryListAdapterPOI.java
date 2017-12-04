@@ -63,7 +63,7 @@ public class CategoryListAdapterPOI extends BaseAdapter {
         CategoryListAdapterPOI.ViewHolder holder;
         if (convertView == null)
             {
-                convertView = layoutInflater.inflate(R.layout.poi_category, null);
+                convertView = layoutInflater.inflate(R.layout.item_list_poi_category, null);
                 holder = new CategoryListAdapterPOI.ViewHolder();
                 holder.checkBox = convertView.findViewById(R.id.poi_list_label);
                 holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
