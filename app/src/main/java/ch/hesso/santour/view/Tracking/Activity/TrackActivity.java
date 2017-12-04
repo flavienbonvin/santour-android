@@ -23,7 +23,7 @@ public class TrackActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_track);
+        setContentView(R.layout.tracking_activity);
         sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
 
         viewPager = findViewById(R.id.track_container);

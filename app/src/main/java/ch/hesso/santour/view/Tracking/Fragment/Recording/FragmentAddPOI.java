@@ -66,7 +66,7 @@ public class FragmentAddPOI extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_track_add_poi, container, false);
+        final View rootView = inflater.inflate(R.layout.tracking_fragment_recording_add_poi, container, false);
         setHasOptionsMenu(true);
 
         final ImageButton imageButton = (ImageButton) rootView.findViewById(R.id.track_add_poi_add_picture);

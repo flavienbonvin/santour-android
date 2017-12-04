@@ -64,7 +64,7 @@ public class FragmentAddPOD extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_track_add_pod, container, false);
+        rootView = inflater.inflate(R.layout.tracking_fragment_recording_add_pod, container, false);
         setHasOptionsMenu(true);
 
         pod = new POD();

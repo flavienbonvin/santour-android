@@ -30,7 +30,7 @@ public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_track_edit_details, container, false);
+        final View rootView = inflater.inflate(R.layout.tracking_fragment_end_track, container, false);
 
         mapView = rootView.findViewById(R.id.edit_track_map_mapView2);
         mapView.onCreate(savedInstanceState);

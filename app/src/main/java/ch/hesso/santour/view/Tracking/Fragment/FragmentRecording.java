@@ -76,7 +76,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_track, container, false);
+        final View rootView = inflater.inflate(R.layout.tracking_fragment_recording, container, false);
         setHasOptionsMenu(true);
 
         mapView = rootView.findViewById(R.id.track_map);
