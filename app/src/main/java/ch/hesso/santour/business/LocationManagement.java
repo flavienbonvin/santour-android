@@ -19,7 +19,7 @@ import java.util.List;
 
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.Position;
-import ch.hesso.santour.view.MainActivity;
+import ch.hesso.santour.view.Main.MainActivity;
 
 /**
  * Created by flavien on 11/23/17.
@@ -153,7 +153,7 @@ public class LocationManagement {
                 if (MainActivity.track.getDistance() < 999) {
                     fragmentInterface.setTextDistance(Math.floor(MainActivity.track.getDistance()*100)/100 + " m");
                 } else {
-                    fragmentInterface.setTextDistance(Math.floor(MainActivity.track.getDistance())/100 + " km");
+                    fragmentInterface.setTextDistance(Math.floor(MainActivity.track.getDistance())/1000 + " km");
                 }
             }
         };

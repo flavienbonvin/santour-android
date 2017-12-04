@@ -1,5 +1,6 @@
 package ch.hesso.santour.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by flavien on 11/21/17.
  */
 
-public class POI {
+public class POI implements Serializable{
 
     private String name;
     private String description;
