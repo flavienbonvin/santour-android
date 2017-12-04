@@ -26,6 +26,7 @@ import ch.hesso.santour.model.POI;
 import ch.hesso.santour.model.Position;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Main.MainActivity;
+import ch.hesso.santour.view.Tracking.Activity.TrackActivity;
 
 
 public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
@@ -61,7 +62,7 @@ public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
 
                 MainActivity.track = new Track();
                 MainActivity.track.setName(name);
-                Intent intent = new Intent(rootView.getContext(), FragmentNewTrack.class);
+                Intent intent = new Intent(rootView.getContext(), TrackActivity.class);
                 startActivity(intent);
             }
         });
