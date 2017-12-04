@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Edition.Activity;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -13,6 +13,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import ch.hesso.santour.R;
+import ch.hesso.santour.view.Edition.Fragment.FragmentDetailsTrack;
+import ch.hesso.santour.view.Edition.Fragment.FragmentListPOD;
+import ch.hesso.santour.view.Edition.Fragment.FragmentListPOI;
+import ch.hesso.santour.view.Edition.Fragment.FragmentListTracks;
 
 public class TrackEditActivity extends AppCompatActivity {
 
@@ -55,14 +59,14 @@ public class TrackEditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_track_edit);
+        setContentView(R.layout.edition_activity);
         //Bottom navigation
         navigation = findViewById(R.id.track_edit_bottom_navigation);
         navigation.inflateMenu(R.menu.track_edit_bottom_navigation);
         navigation.getMenu().getItem(0).setChecked(true);
 
         fragmentManager = getFragmentManager();
-        fragment = new TrackEditListPOIFragment();
+        fragment = new FragmentListTracks();
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.addToBackStack(null);
@@ -76,15 +80,15 @@ public class TrackEditActivity extends AppCompatActivity {
                 switch (item.getItemId())
                 {
                     case R.id.track_bottom_navigation_track:
-                        fragment = new TrackEditDetailsFragment();
+                        fragment = new FragmentDetailsTrack();
                         setTitle(R.string.title_edit_details);
                         break;
                     case R.id.track_bottom_navigation_poi:
-                        fragment = new TrackEditListPOIFragment();
+                        fragment = new FragmentListPOI();
                         setTitle(R.string.title_edit_list_poi);
                         break;
                     case R.id.track_bottom_navigation_pod:
-                        fragment = new TrackEditListPODFragment();
+                        fragment = new FragmentListPOD();
                         setTitle(R.string.title_edit_list_pod);
                         break;
                 }

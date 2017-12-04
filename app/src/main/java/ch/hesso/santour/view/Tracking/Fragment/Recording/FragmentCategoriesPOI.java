@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Tracking.Fragment.Recording;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -20,8 +20,9 @@ import ch.hesso.santour.db.CategoryPOIDB;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.CategoryPOI;
 import ch.hesso.santour.model.POI;
+import ch.hesso.santour.view.Main.MainActivity;
 
-public class TrackPOIDetailsFragment extends Fragment {
+public class FragmentCategoriesPOI extends Fragment {
 
     private ListView listView;
     private CategoryListAdapter adapter;
@@ -29,7 +30,7 @@ public class TrackPOIDetailsFragment extends Fragment {
 
     private  POI poi;
 
-    public TrackPOIDetailsFragment() {
+    public FragmentCategoriesPOI() {
         // Required empty public constructor
     }
 
@@ -58,7 +59,7 @@ public class TrackPOIDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_track_poi_details, container, false);
+        rootView = inflater.inflate(R.layout.tracking_fragment_recording_list_categories_poi_rating, container, false);
         setHasOptionsMenu(true);
         setHasOptionsMenu(true);
 
@@ -69,7 +70,7 @@ public class TrackPOIDetailsFragment extends Fragment {
             public void resolve(Object o) {
                 ArrayList<CategoryPOI> categories = (ArrayList<CategoryPOI>) o;
                 ListView listView = rootView.findViewById(R.id.track_poi_details_categories_list);
-                listView.setAdapter(new CategoryListAdapterPOI(TrackPOIDetailsFragment.this.getContext(), categories));
+                listView.setAdapter(new CategoryListAdapterPOI(FragmentCategoriesPOI.this.getContext(), categories));
             }
         });
 

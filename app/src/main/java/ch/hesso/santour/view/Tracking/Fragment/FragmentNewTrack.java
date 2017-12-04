@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Tracking.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,21 +25,23 @@ import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.POI;
 import ch.hesso.santour.model.Position;
 import ch.hesso.santour.model.Track;
+import ch.hesso.santour.view.Main.MainActivity;
+import ch.hesso.santour.view.Tracking.Activity.TrackActivity;
 
 
-public class AddTrackFragment extends Fragment implements OnMapReadyCallback{
+public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
 
     //Google Map
     private MapView mapView;
     private GoogleMap map;
 
-    public AddTrackFragment() {
+    public FragmentNewTrack() {
         // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_add_track, container, false);
+        final View rootView = inflater.inflate(R.layout.tracking_fragment_fragment_newtrack, container, false);
 
 
         mapView = rootView.findViewById(R.id.add_track_map_mapView2);
@@ -77,7 +79,7 @@ public class AddTrackFragment extends Fragment implements OnMapReadyCallback{
 
         LatLng coordinate = new LatLng(86, 20);
         map.moveCamera(CameraUpdateFactory.newLatLng(coordinate));
-        LocationManagement.getCurrentPosition(AddTrackFragment.this.getActivity(), new DBCallback() {
+        LocationManagement.getCurrentPosition(FragmentNewTrack.this.getActivity(), new DBCallback() {
             @Override
             public void resolve(Object o) {
                 Position p = (Position)o;

@@ -1,21 +1,16 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Tracking.Fragment;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.SystemClock;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -25,16 +20,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
-import com.google.android.gms.maps.model.BitmapDescriptor;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.Cap;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.google.android.gms.maps.model.RoundCap;
-import com.google.android.gms.maps.model.SquareCap;
 
 import com.google.android.gms.maps.model.MapStyleOptions;
 
@@ -44,8 +33,10 @@ import ch.hesso.santour.business.LocationManagement;
 import ch.hesso.santour.business.TrackingManagement;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.Position;
+import ch.hesso.santour.view.Tracking.Fragment.Recording.FragmentAddPOD;
+import ch.hesso.santour.view.Tracking.Fragment.Recording.FragmentAddPOI;
 
-public class TrackFragment extends Fragment implements OnMapReadyCallback, FragmentInterface {
+public class FragmentRecording extends Fragment implements OnMapReadyCallback, FragmentInterface {
 
     //Play & Stop button
     private ImageButton trackPlayButton;
@@ -73,7 +64,7 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback, Fragm
     private Marker marker;
 
 
-    public TrackFragment() {
+    public FragmentRecording() {
         // Required empty public constructor
     }
 
@@ -85,7 +76,7 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback, Fragm
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_track, container, false);
+        final View rootView = inflater.inflate(R.layout.tracking_fragment_recording, container, false);
         setHasOptionsMenu(true);
 
         mapView = rootView.findViewById(R.id.track_map);
@@ -105,7 +96,7 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback, Fragm
                 cardViewRecord.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimaryRed));
                 chrono.setBase(SystemClock.elapsedRealtime());
                 chrono.start();
-                TrackingManagement.startTracking(TrackFragment.this.getActivity());
+                TrackingManagement.startTracking(FragmentRecording.this.getActivity());
                 addPOIButton.setEnabled(true);
                 addPODButton.setEnabled(true);
             }
@@ -118,7 +109,7 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback, Fragm
                 trackStopButton.setVisibility(View.GONE);
                 cardViewRecord.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
                 chrono.stop();
-                TrackingManagement.stopTracking(TrackFragment.this.getActivity());
+                TrackingManagement.stopTracking(FragmentRecording.this.getActivity());
 
                 //TODO change style of the button when disabled
                 addPOIButton.setEnabled(false);
@@ -126,7 +117,7 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback, Fragm
             }
         });
 
-        LocationManagement.interfaceToWatch(TrackFragment.this);
+        LocationManagement.interfaceToWatch(FragmentRecording.this);
 
 
         //TODO change style of the button when disabled
@@ -136,7 +127,7 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback, Fragm
             @Override
             public void onClick(View v) {
                 fragmentManager  = getFragmentManager();
-                fragment  = new TrackAddPOIFragment();
+                fragment  = new FragmentAddPOI();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.main_content, fragment).commit();
@@ -149,7 +140,7 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback, Fragm
             @Override
             public void onClick(View v) {
                 fragmentManager  = getFragmentManager();
-                fragment  = new TrackAddPODFragment();
+                fragment  = new FragmentAddPOD();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.main_content, fragment).commit();
@@ -170,7 +161,7 @@ public class TrackFragment extends Fragment implements OnMapReadyCallback, Fragm
 
         LatLng coordinate = new LatLng(86, 20);
         map.moveCamera(CameraUpdateFactory.newLatLng(coordinate));
-        LocationManagement.getCurrentPosition(TrackFragment.this.getActivity(), new DBCallback() {
+        LocationManagement.getCurrentPosition(FragmentRecording.this.getActivity(), new DBCallback() {
             @Override
             public void resolve(Object o) {
                 Position p = (Position)o;

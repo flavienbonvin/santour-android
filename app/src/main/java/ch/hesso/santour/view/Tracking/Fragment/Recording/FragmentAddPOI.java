@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Tracking.Fragment.Recording;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -33,14 +33,14 @@ import ch.hesso.santour.model.Position;
 
 import static android.app.Activity.RESULT_OK;
 
-public class TrackAddPOIFragment extends Fragment {
+public class FragmentAddPOI extends Fragment {
     private static final int SELECT_PICTURE = 1;
 
     private Position position;
 
     private String imageEncoded = "";
 
-    public TrackAddPOIFragment() {
+    public FragmentAddPOI() {
         // Required empty public constructor
     }
 
@@ -66,7 +66,7 @@ public class TrackAddPOIFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_track_add_poi, container, false);
+        final View rootView = inflater.inflate(R.layout.tracking_fragment_recording_add_poi, container, false);
         setHasOptionsMenu(true);
 
         final ImageButton imageButton = (ImageButton) rootView.findViewById(R.id.track_add_poi_add_picture);
@@ -98,7 +98,7 @@ public class TrackAddPOIFragment extends Fragment {
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("poi", poi);
 
-                    Fragment fragment = new TrackPOIDetailsFragment();
+                    Fragment fragment = new FragmentCategoriesPOI();
                     fragment.setArguments(bundle);
 
                     FragmentManager fragmentManager = getFragmentManager();

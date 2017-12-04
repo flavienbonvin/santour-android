@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Edition.Fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 
 import ch.hesso.santour.R;
 
-public class TrackEditListPODFragment extends Fragment {
+public class FragmentListPOD extends Fragment {
 
-    public TrackEditListPODFragment() {
+    public FragmentListPOD() {
         // Required empty public constructor
     }
 
@@ -20,6 +20,6 @@ public class TrackEditListPODFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_track_edit_list_pod, container, false);
+        return inflater.inflate(R.layout.edition_fragment_list_pod, container, false);
     }
 }

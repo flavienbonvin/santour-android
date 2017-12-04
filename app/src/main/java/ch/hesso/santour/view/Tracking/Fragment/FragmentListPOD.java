@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Tracking.Fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -11,12 +11,13 @@ import android.widget.ListView;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.PODListAdapter;
+import ch.hesso.santour.view.Main.MainActivity;
 
-public class TrackPODsListFragment extends Fragment {
+public class FragmentListPOD extends Fragment {
 
     private View rootView;
 
-    public TrackPODsListFragment() {
+    public FragmentListPOD() {
         // Required empty public constructor
     }
 
@@ -25,10 +26,10 @@ public class TrackPODsListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_track_pods_list, container, false);
+        rootView = inflater.inflate(R.layout.tracking_fragment_list_pod, container, false);
 
         ListView list = rootView.findViewById(R.id.list_view_pod);
-        list.setAdapter(new PODListAdapter(TrackPODsListFragment.this.getContext(),MainActivity.track.getPods()));
+        list.setAdapter(new PODListAdapter(FragmentListPOD.this.getContext(), MainActivity.track.getPods()));
 
 
         return rootView;

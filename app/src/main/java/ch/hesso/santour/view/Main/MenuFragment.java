@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Main;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -10,7 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import ch.hesso.santour.R;
-import ch.hesso.santour.view.AddTrackFragment;
+import ch.hesso.santour.view.Edition.Fragment.FragmentListTracks;
+import ch.hesso.santour.view.Tracking.Fragment.FragmentNewTrack;
 
 
 public class MenuFragment extends Fragment {
@@ -25,7 +26,7 @@ public class MenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_menu, container, false);
+        final View rootView = inflater.inflate(R.layout.main_menu_fragment, container, false);
 
 
         //button create track
@@ -35,7 +36,7 @@ public class MenuFragment extends Fragment {
             public void onClick(View v) {
 
                 fragmentManager = getFragmentManager();
-                fragment = new AddTrackFragment();
+                fragment = new FragmentNewTrack();
 
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);
@@ -51,7 +52,7 @@ public class MenuFragment extends Fragment {
             public void onClick(View v) {
 
                 fragmentManager = getFragmentManager();
-                fragment = new TrackListFragment();
+                fragment = new FragmentListTracks();
 
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);

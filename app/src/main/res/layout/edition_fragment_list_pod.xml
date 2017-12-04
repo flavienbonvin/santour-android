@@ -2,11 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ch.hesso.santour.view.TrackListFragment">
-
+    tools:context="ch.hesso.santour.view.Tracking.Fragment.FragmentListPOD">
 
     <LinearLayout
-        android:id="@+id/linear_layout_list_track"
+        android:id="@+id/linear_layout_list_pod"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="2"
@@ -14,16 +13,18 @@
 
 
         <EditText
-            android:id="@+id/input_search_track"
+            android:id="@+id/input_search_pod"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/searchTrack"
+            android:hint="@string/searchPOD"
             android:inputType="textVisiblePassword"/>
 
         <ListView
-            android:id="@+id/list_view_track"
+            android:id="@+id/list_view_pod"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
     </LinearLayout>
+
+
 </RelativeLayout>
