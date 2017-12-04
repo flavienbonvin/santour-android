@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Tracking.Fragment;
 
 import android.os.Bundle;
 import android.app.Fragment;
@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 
 import ch.hesso.santour.R;
 
-public class TrackPOIsListFragment extends Fragment {
+public class FragmentListPOI extends Fragment {
 
-    public TrackPOIsListFragment() {
+    public FragmentListPOI() {
         // Required empty public constructor
     }
 

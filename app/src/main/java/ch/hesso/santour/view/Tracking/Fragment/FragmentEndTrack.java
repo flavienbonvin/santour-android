@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Tracking.Fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,13 +17,13 @@ import com.google.android.gms.maps.model.LatLng;
 
 import ch.hesso.santour.R;
 
-public class TrackEditDetailsFragment extends Fragment implements OnMapReadyCallback {
+public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
 
     //Google Map
     private MapView mapView;
     private GoogleMap map;
 
-    public TrackEditDetailsFragment() {
+    public FragmentEndTrack() {
         // Required empty public constructor
     }
 

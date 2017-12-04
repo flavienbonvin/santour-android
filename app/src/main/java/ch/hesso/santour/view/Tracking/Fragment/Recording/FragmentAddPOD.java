@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Tracking.Fragment.Recording;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -26,7 +26,7 @@ import ch.hesso.santour.model.POD;
 import ch.hesso.santour.model.Position;
 
 
-public class TrackAddPODFragment extends Fragment {
+public class FragmentAddPOD extends Fragment {
 
     private Button nextButton;
     private String imageEncoded = "";
@@ -38,7 +38,7 @@ public class TrackAddPODFragment extends Fragment {
     private POD pod;
     private Position pos;
 
-    public TrackAddPODFragment() {
+    public FragmentAddPOD() {
         // Required empty public constructor
     }
 
@@ -89,7 +89,7 @@ public class TrackAddPODFragment extends Fragment {
                     bundle.putSerializable("pod",pod);
 
                     fragmentManager  = getFragmentManager();
-                    fragment  = new TrackPODDetailsFragment();
+                    fragment  = new FragmentCategoriesPOD();
                     fragment.setArguments(bundle);
                     FragmentTransaction transaction = fragmentManager.beginTransaction();
                     transaction.addToBackStack(null);
@@ -103,7 +103,7 @@ public class TrackAddPODFragment extends Fragment {
 
             @Override
             public void onClick(View view) {
-                Intent intentGetMessage = new Intent(TrackAddPODFragment.this.getActivity(), PictureManagement.class);
+                Intent intentGetMessage = new Intent(FragmentAddPOD.this.getActivity(), PictureManagement.class);
                 startActivityForResult(intentGetMessage, PictureManagement.REQUEST_IMAGE_CAPTURE);
             }
         });

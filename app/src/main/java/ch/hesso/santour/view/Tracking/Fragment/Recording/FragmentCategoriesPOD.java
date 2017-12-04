@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Tracking.Fragment.Recording;
 
 import android.app.FragmentManager;
 import android.os.Bundle;
@@ -13,9 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import java.util.ArrayList;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.CategoryListAdapter;
@@ -23,20 +20,16 @@ import ch.hesso.santour.db.CategoryPODDB;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.CategoryPOD;
 import ch.hesso.santour.model.POD;
-import ch.hesso.santour.model.Position;
-import ch.hesso.santour.model.RatePOD;
-import ch.hesso.santour.db.CategoryPODDB;
-import ch.hesso.santour.db.DBCallback;
-import ch.hesso.santour.model.CategoryPOD;
+import ch.hesso.santour.view.MainActivity;
 
-public class TrackPODDetailsFragment extends Fragment {
+public class FragmentCategoriesPOD extends Fragment {
 
     private ListView listView;
     private CategoryListAdapter adapter;
     private POD pod;
     private View rootView;
 
-    public TrackPODDetailsFragment() {
+    public FragmentCategoriesPOD() {
         // Required empty public constructor lol
     }
 
@@ -76,7 +69,7 @@ public class TrackPODDetailsFragment extends Fragment {
             public void resolve(Object o) {
                 ArrayList<CategoryPOD> categories = (ArrayList<CategoryPOD>) o;
                 ListView list = rootView.findViewById(R.id.track_pod_details_categories_list);
-                list.setAdapter(new CategoryListAdapter(TrackPODDetailsFragment.this.getContext(),categories));
+                list.setAdapter(new CategoryListAdapter(FragmentCategoriesPOD.this.getContext(),categories));
             }
         });
 

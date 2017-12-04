@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Tracking.Activity;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -8,6 +8,9 @@ import android.widget.Toolbar;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.SectionsPageAdapter;
+import ch.hesso.santour.view.Tracking.Fragment.FragmentListPOD;
+import ch.hesso.santour.view.Tracking.Fragment.FragmentListPOI;
+import ch.hesso.santour.view.Tracking.Fragment.FragmentRecording;
 
 public class TrackActivity extends AppCompatActivity {
 
@@ -37,9 +40,9 @@ public class TrackActivity extends AppCompatActivity {
     {
 
         SectionsPageAdapter adapter = new SectionsPageAdapter(getFragmentManager());
-        adapter.addFragment(new TrackFragment(), getString(R.string.my_track));
-        adapter.addFragment(new TrackPOIsListFragment(), getString(R.string.pois_list));
-        adapter.addFragment(new TrackPODsListFragment(), getString(R.string.pods_list));
+        adapter.addFragment(new FragmentRecording(), getString(R.string.my_track));
+        adapter.addFragment(new FragmentListPOI(), getString(R.string.pois_list));
+        adapter.addFragment(new FragmentListPOD(), getString(R.string.pods_list));
         viewPager.setAdapter(adapter);
     }
 }
