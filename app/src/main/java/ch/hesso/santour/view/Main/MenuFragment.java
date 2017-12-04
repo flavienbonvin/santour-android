@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import ch.hesso.santour.R;
-import ch.hesso.santour.view.AddTrackFragment;
 import ch.hesso.santour.view.Edition.Fragment.TrackListFragment;
+import ch.hesso.santour.view.Tracking.Fragment.FragmentNewTrack;
 
 
 public class MenuFragment extends Fragment {
@@ -36,7 +36,7 @@ public class MenuFragment extends Fragment {
             public void onClick(View v) {
 
                 fragmentManager = getFragmentManager();
-                fragment = new AddTrackFragment();
+                fragment = new FragmentNewTrack();
 
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);

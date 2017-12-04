@@ -20,7 +20,7 @@ import ch.hesso.santour.db.CategoryPOIDB;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.CategoryPOI;
 import ch.hesso.santour.model.POI;
-import ch.hesso.santour.view.MainActivity;
+import ch.hesso.santour.view.Main.MainActivity;
 
 public class FragmentCategoriesPOI extends Fragment {
 
