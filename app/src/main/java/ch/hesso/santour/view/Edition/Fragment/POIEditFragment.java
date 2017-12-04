@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Edition.Fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -65,7 +65,7 @@ public class POIEditFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_poiedit, container, false);
+        return inflater.inflate(R.layout.edition_fragment_poi, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

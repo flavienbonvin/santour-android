@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Main;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -11,6 +11,7 @@ import android.widget.Button;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.view.AddTrackFragment;
+import ch.hesso.santour.view.Edition.Fragment.TrackListFragment;
 
 
 public class MenuFragment extends Fragment {
@@ -25,7 +26,7 @@ public class MenuFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_menu, container, false);
+        final View rootView = inflater.inflate(R.layout.main_menu_fragment, container, false);
 
 
         //button create track

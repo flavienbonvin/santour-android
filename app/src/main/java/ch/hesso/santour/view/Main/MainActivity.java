@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Main;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
         super.onCreate(savedInstanceState);
 
         PermissionManagement.initialCheck(MainActivity.this);
