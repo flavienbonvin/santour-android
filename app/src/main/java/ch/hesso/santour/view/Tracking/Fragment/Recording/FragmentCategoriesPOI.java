@@ -59,7 +59,7 @@ public class FragmentCategoriesPOI extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.fragment_track_poi_details, container, false);
+        rootView = inflater.inflate(R.layout.tracking_fragment_recording_list_categories_poi_rating, container, false);
         setHasOptionsMenu(true);
         setHasOptionsMenu(true);
 

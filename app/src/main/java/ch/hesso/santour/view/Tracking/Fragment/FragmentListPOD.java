@@ -26,7 +26,7 @@ public class FragmentListPOD extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        rootView = inflater.inflate(R.layout.tracking_fragment_recording_list_pod, container, false);
+        rootView = inflater.inflate(R.layout.tracking_fragment_list_pod, container, false);
 
         ListView list = rootView.findViewById(R.id.list_view_pod);
         list.setAdapter(new PODListAdapter(FragmentListPOD.this.getContext(), MainActivity.track.getPods()));
