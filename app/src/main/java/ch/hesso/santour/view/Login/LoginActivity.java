@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import ch.hesso.santour.R;
+import ch.hesso.santour.view.Main.MainActivity;
 
 /**
  * A login screen that offers login via email/password.
@@ -16,7 +17,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login_activity);
         setTitle("Login");
         super.onCreate(savedInstanceState);
 

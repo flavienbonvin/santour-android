@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Edition.Fragment;
 
 import android.os.Bundle;
 import android.app.Fragment;

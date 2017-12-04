@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Edition.Activity;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -55,7 +55,7 @@ public class TrackEditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_track_edit);
+        setContentView(R.layout.edition_activity);
         //Bottom navigation
         navigation = findViewById(R.id.track_edit_bottom_navigation);
         navigation.inflateMenu(R.menu.track_edit_bottom_navigation);

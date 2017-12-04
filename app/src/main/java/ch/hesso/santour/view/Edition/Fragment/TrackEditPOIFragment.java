@@ -1,4 +1,4 @@
-package ch.hesso.santour.view;
+package ch.hesso.santour.view.Edition.Fragment;
 
 import android.content.Context;
 import android.net.Uri;
@@ -21,7 +21,7 @@ public class TrackEditPOIFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_track_edit_poi, container, false);
+        return inflater.inflate(R.layout.edition_fragment_track_poi, container, false);
     }
 
 }
