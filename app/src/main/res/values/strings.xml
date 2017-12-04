@@ -64,4 +64,10 @@
     <string name="track_pauseduration">Pause duration</string>
     <string name="searchTrack">Search Track</string>
 
+    <string name="title_activity_main_full_screen_image">MainFullScreenImage</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_main_full_screen_picture">MainFullScreenPictureActivity</string>
+
 </resources>
