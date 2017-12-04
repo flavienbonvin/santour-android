@@ -1,13 +1,10 @@
 package ch.hesso.santour.view.Tracking.Fragment;
 
 import android.app.AlertDialog;
-import android.content.Context;
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.provider.Settings;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -16,20 +13,16 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.PODListAdapter;
-import ch.hesso.santour.adapter.POIListAdapter;
 import ch.hesso.santour.db.CategoryPODDB;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.CategoryPOD;
 import ch.hesso.santour.model.POD;
-import ch.hesso.santour.model.POI;
-import ch.hesso.santour.model.RatePOD;
 import ch.hesso.santour.view.Main.MainActivity;
 import ch.hesso.santour.view.Main.MainFullScreenPictureActivity;
 import ch.hesso.santour.view.Tracking.Activity.TrackActivity;

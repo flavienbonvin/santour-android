@@ -139,7 +139,6 @@ public class FragmentListPOI extends Fragment {
         });
     }
 
-
     public void updateList() {
         ListView list = rootView.findViewById(R.id.list_view_edit_poi);
         list.setAdapter(new POIListAdapter(this.getContext(), MainActivity.track.getPois()));

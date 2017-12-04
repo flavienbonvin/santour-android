@@ -49,11 +49,6 @@
             android:name=".business.PictureManagement"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.Main.MainFullScreenImage"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_main_full_screen_image"
-            android:theme="@style/FullscreenTheme" />
-        <activity
             android:name=".view.Main.MainFullScreenPictureActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_main_full_screen_picture"
