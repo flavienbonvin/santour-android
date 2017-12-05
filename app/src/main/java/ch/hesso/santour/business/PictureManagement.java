@@ -27,7 +27,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import ch.hesso.santour.TestActivity;
 import ch.hesso.santour.view.Main.MainActivity;
 
 
@@ -36,6 +35,7 @@ import ch.hesso.santour.view.Main.MainActivity;
  */
 
 public class PictureManagement extends Activity{
+
     public static final int REQUEST_IMAGE_CAPTURE = 111;
     private String mCurrentPhotoPath;
     private StorageReference storage;

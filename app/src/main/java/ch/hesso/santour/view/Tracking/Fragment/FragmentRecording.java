@@ -2,6 +2,8 @@ package ch.hesso.santour.view.Tracking.Fragment;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.SystemClock;
@@ -97,6 +99,8 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 chrono.setBase(SystemClock.elapsedRealtime());
                 chrono.start();
                 TrackingManagement.startTracking(FragmentRecording.this.getActivity());
+
+                //TODO change style of the button when disabled
                 addPOIButton.setEnabled(true);
                 addPODButton.setEnabled(true);
             }
@@ -114,13 +118,17 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 //TODO change style of the button when disabled
                 addPOIButton.setEnabled(false);
                 addPODButton.setEnabled(false);
+
+                fragmentManager = getFragmentManager();
+                fragment = new FragmentEndTrack();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.main_content, fragment).commit();
             }
         });
 
         LocationManagement.interfaceToWatch(FragmentRecording.this);
 
-
-        //TODO change style of the button when disabled
         addPOIButton = rootView.findViewById(R.id.track_add_poi_button);
         addPOIButton.setEnabled(false);
         addPOIButton.setOnClickListener(new View.OnClickListener() {

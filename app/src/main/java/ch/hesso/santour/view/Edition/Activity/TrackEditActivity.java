@@ -3,12 +3,10 @@ package ch.hesso.santour.view.Edition.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,14 +17,8 @@ import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Fragment.FragmentDetailsTrack;
 import ch.hesso.santour.view.Edition.Fragment.FragmentListPOD;
 import ch.hesso.santour.view.Edition.Fragment.FragmentListPOI;
-import ch.hesso.santour.view.Edition.Fragment.FragmentListTracks;
-import ch.hesso.santour.view.Main.MainActivity;
-import ch.hesso.santour.view.Tracking.Fragment.FragmentRecording;
 
 public class TrackEditActivity extends AppCompatActivity {
-
-    //Activity tag
-    private static final String TAG = "TrackEditActivity";
 
     //Tabs layout adapter for fragment
     private SectionsPageAdapter sectionsPageAdapter;
@@ -74,6 +66,10 @@ public class TrackEditActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
+    /**
+     * Create the tabs used by the fragments
+     * @param viewPager
+     */
     private void setupViewPager(ViewPager viewPager)
     {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getFragmentManager());

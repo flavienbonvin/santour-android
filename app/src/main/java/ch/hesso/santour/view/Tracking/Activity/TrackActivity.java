@@ -17,7 +17,8 @@ public class TrackActivity extends AppCompatActivity {
     //Activity tag
     private static final String TAG = "TrackActivity";
 
-    //Tabs layout adapter for fragment
+    //Tabs layout adapter for fragment, need to be here for the update of the list
+    // once a POI or POD is created
     public static FragmentListPOI fragmentListPOI;
     public static FragmentListPOD fragmentListPOD;
 
@@ -40,9 +41,7 @@ public class TrackActivity extends AppCompatActivity {
 
     }
 
-    private void setupViewPager(ViewPager viewPager)
-    {
-
+    private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getFragmentManager());
         adapter.addFragment(new FragmentRecording(), getString(R.string.my_track));
         adapter.addFragment(fragmentListPOI = new FragmentListPOI(), getString(R.string.pois_list));

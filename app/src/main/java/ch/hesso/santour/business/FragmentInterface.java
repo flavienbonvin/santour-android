@@ -1,6 +1,5 @@
 package ch.hesso.santour.business;
 
-import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import ch.hesso.santour.model.Position;

@@ -1,21 +1,18 @@
 package ch.hesso.santour.view.Edition.Fragment;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.POIListAdapter;
 import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
-import ch.hesso.santour.view.Main.MainActivity;
 
 
 public class FragmentListPOI extends Fragment {
@@ -40,13 +37,15 @@ public class FragmentListPOI extends Fragment {
 
         final ListView list = rootView.findViewById(R.id.list_view_edit_poi);
 
-        if(TrackEditActivity.trackDetails.getPois().size() != 0) {
+        //Add a list of POI if there is any on the track
+        if (TrackEditActivity.trackDetails.getPois().size() != 0) {
             list.setAdapter(adapter = new POIListAdapter(FragmentListPOI.this.getContext(), TrackEditActivity.trackDetails.getPois()));
 
+            //Open a new fragment once a POI is clicked
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    fragmentManager  = getFragmentManager();
+                    fragmentManager = getFragmentManager();
                     fragment = new FragmentEditDetailsPOI();
                     FragmentTransaction transaction = fragmentManager.beginTransaction();
                     transaction.addToBackStack(null);
@@ -54,7 +53,6 @@ public class FragmentListPOI extends Fragment {
                 }
             });
         }
-
         return rootView;
     }
 

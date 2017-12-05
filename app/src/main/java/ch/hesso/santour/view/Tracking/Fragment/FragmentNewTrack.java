@@ -61,6 +61,7 @@ public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
                     return;
                 }
 
+                //Create a new track in the Mainactivity (where there is a track in static)
                 String newId = TrackDB.getNewId();
                 MainActivity.track = new Track();
                 MainActivity.track.setName(name);

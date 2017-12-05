@@ -1,22 +1,16 @@
 package ch.hesso.santour.adapter;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
 
-import java.io.FilterReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 import ch.hesso.santour.R;
-import ch.hesso.santour.model.POD;
 import ch.hesso.santour.model.POI;
 
 /**
