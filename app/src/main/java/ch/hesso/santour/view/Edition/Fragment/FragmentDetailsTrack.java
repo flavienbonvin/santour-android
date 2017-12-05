@@ -24,6 +24,8 @@ import ch.hesso.santour.business.LocationManagement;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.Position;
 import ch.hesso.santour.model.Track;
+import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
+import ch.hesso.santour.view.Main.MainActivity;
 import ch.hesso.santour.view.Tracking.Fragment.FragmentRecording;
 
 /**
@@ -50,7 +52,10 @@ public class FragmentDetailsTrack extends Fragment implements OnMapReadyCallback
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.edition_fragment_details_track, container, false);
 
-        detailedTrack = (Track)getArguments().getSerializable("track");
+        //detailedTrack = (Track)getArguments().getSerializable("track");
+        //detailedTrack = (Track)getActivity().getIntent().getSerializableExtra("track");
+
+        detailedTrack = TrackEditActivity.trackDetails;
 
         mapView = rootView.findViewById(R.id.edit_track_map_mapView2);
         mapView.onCreate(savedInstanceState);

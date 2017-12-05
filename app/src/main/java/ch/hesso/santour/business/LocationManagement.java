@@ -60,14 +60,13 @@ public class LocationManagement {
      */
     protected List<Position> stopTracking(Activity activity){
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
-
         return positionsList;
     }
 
     public static void getCurrentPosition(Activity activity, final DBCallback callback){
         FusedLocationProviderClient fusedTemp = LocationServices.getFusedLocationProviderClient(activity);
         LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setInterval(0).setFastestInterval(0).setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        locationRequest.setInterval(7000).setFastestInterval(2000).setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         PermissionManagement.checkMandatoryPermission(activity);
         fusedTemp.flushLocations();
@@ -171,7 +170,7 @@ public class LocationManagement {
 
             double distance = calculateDistance2Points(newPosition, lastPosition);
 
-            if(distance < 200 && distance > 8){
+            if(distance < 100 && distance > 8){
                 positionsList.add(newPosition);
                 mapUpdate();
             }
