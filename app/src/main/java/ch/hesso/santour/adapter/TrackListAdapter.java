@@ -36,8 +36,8 @@ public class TrackListAdapter extends BaseAdapter{
     }
 
     @Override
-    public Object getItem(int i) {
-        return listData.get(i);
+    public Track getItem(int position){
+        return listData.get(position);
     }
 
     @Override
@@ -73,4 +73,10 @@ public class TrackListAdapter extends BaseAdapter{
         TextView label;
         ImageView icon;
     }
+
+
+
+
+
+
 }
