@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ch.hesso.santour.view.Edition.Fragment.FragmentEditDetailsPOI">
+    tools:context="ch.hesso.santour.view.Edition.Fragment.FragmentEditDetailsPOD">
 
     <EditText
-        android:id="@+id/edit_track_textView_namePOI"
+        android:id="@+id/edit_pod_textView_namePOD"
         style="@style/Widget.AppCompat.EditText"
         android:layout_width="match_parent"
         android:layout_height="71dp"
@@ -16,7 +16,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="@string/poi_name"
+        android:hint="@string/pod_name"
         android:inputType="text"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:visibility="visible"
@@ -25,6 +25,72 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.66" />
+
+    <ImageView
+        android:id="@+id/edit_pod_imageView_imagePOD"
+        android:layout_width="173dp"
+        android:layout_height="202dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@android:drawable/ic_menu_gallery"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_pod_textView_namePOD" />
+
+    <TextView
+        android:id="@+id/edit_pod_textView_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/pod_rating"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_pod_imageView_imagePOD" />
+
+    <TextView
+        android:id="@+id/edit_pod_textView_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/pod_description"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_pod_textView_rating" />
+
+    <TextView
+        android:id="@+id/edit_pod_textView_descriptionContent"
+        android:layout_width="244dp"
+        android:layout_height="111dp"
+        android:layout_marginBottom="104dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edit_pod_textView_description" />
+
+    <RatingBar
+        android:id="@+id/edit_pod_ratingBar_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/edit_pod_textView_descriptionContent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.642"
+        app:layout_constraintStart_toEndOf="@+id/edit_pod_textView_rating"
+        app:layout_constraintTop_toBottomOf="@+id/edit_pod_imageView_imagePOD" />
 
 
 </android.support.constraint.ConstraintLayout>
