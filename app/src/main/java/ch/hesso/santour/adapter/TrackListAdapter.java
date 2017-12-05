@@ -74,6 +74,10 @@ public class TrackListAdapter extends BaseAdapter{
         ImageView icon;
     }
 
+    public ArrayList<Track> getListData() {
+        return listData;
+    }
+
 
 
 

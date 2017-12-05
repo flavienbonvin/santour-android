@@ -62,6 +62,7 @@
 
         <EditText
             android:id="@+id/edit_text_poi_name"
+            android:labelFor="@id/edit_text_poi_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"

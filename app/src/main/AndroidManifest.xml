@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -23,35 +22,37 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDpNPEhpXJTEZ10aIG9u38YRwNJ8oZBF6o" />
 
-        <activity android:name=".TestActivity"
-            android:screenOrientation="portrait">
-        </activity>
-
-        <activity android:name=".view.Edition.Activity.TrackEditActivity"
-            android:screenOrientation="portrait">
-        </activity>
-
-        <activity android:name=".view.Main.MainActivity"
+        <activity
+            android:name=".TestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.Edition.Activity.TrackEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.Main.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".view.Login.LoginActivity"
-            android:screenOrientation="portrait">
-        </activity>
-
+        <activity
+            android:name=".view.Login.LoginActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.Tracking.Activity.TrackActivity"
             android:label="@string/track"
-            android:theme="@style/AppTheme" android:screenOrientation="portrait">
-        </activity>
-
-        <activity android:name=".business.PictureManagement"
-            android:screenOrientation="portrait">
-        </activity>
-
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".business.PictureManagement"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.Main.MainFullScreenPictureActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_main_full_screen_picture"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
+
 </manifest>

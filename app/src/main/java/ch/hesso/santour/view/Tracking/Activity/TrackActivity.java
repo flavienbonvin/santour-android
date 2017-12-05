@@ -16,6 +16,9 @@ public class TrackActivity extends AppCompatActivity {
 
     private static final String TAG = "TrackActivity";
 
+    public static FragmentListPOI fragmentListPOI;
+    public static FragmentListPOD fragmentListPOD;
+
     private SectionsPageAdapter sectionsPageAdapter;
     private ViewPager viewPager;
 
@@ -41,8 +44,8 @@ public class TrackActivity extends AppCompatActivity {
 
         SectionsPageAdapter adapter = new SectionsPageAdapter(getFragmentManager());
         adapter.addFragment(new FragmentRecording(), getString(R.string.my_track));
-        adapter.addFragment(new FragmentListPOI(), getString(R.string.pois_list));
-        adapter.addFragment(new FragmentListPOD(), getString(R.string.pods_list));
+        adapter.addFragment(fragmentListPOI = new FragmentListPOI(), getString(R.string.pois_list));
+        adapter.addFragment(fragmentListPOD = new FragmentListPOD(), getString(R.string.pods_list));
         viewPager.setAdapter(adapter);
     }
 }

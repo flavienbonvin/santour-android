@@ -21,6 +21,7 @@ import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.CategoryPOI;
 import ch.hesso.santour.model.POI;
 import ch.hesso.santour.view.Main.MainActivity;
+import ch.hesso.santour.view.Tracking.Activity.TrackActivity;
 
 public class FragmentCategoriesPOI extends Fragment {
 
@@ -82,8 +83,15 @@ public class FragmentCategoriesPOI extends Fragment {
         ListView list = rootView.findViewById(R.id.track_poi_details_categories_list);
         CategoryListAdapterPOI cat = (CategoryListAdapterPOI) list.getAdapter();
 
-        poi.setCategoriesID(cat.getAll());
+        if(cat.getAll() != null)
+            poi.setCategoriesID(cat.getAll());
+        else
+            poi.setCategoriesID(null);
+
+        
         MainActivity.track.addPOI(poi);
+
+        TrackActivity.fragmentListPOI.updateList();
 
         FragmentManager manager = getActivity().getFragmentManager();
 
