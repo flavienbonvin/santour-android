@@ -14,8 +14,10 @@ import ch.hesso.santour.view.Tracking.Fragment.FragmentRecording;
 
 public class TrackActivity extends AppCompatActivity {
 
+    //Activity tag
     private static final String TAG = "TrackActivity";
 
+    //Tabs layout adapter for fragment
     private SectionsPageAdapter sectionsPageAdapter;
     private ViewPager viewPager;
 
@@ -29,7 +31,6 @@ public class TrackActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.track_container);
         viewPager.setOffscreenPageLimit(3);
         setupViewPager(viewPager);
-
 
         TabLayout tabLayout = findViewById(R.id.track_tabs);
         tabLayout.setupWithViewPager(viewPager);

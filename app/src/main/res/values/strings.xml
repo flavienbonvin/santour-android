@@ -66,5 +66,13 @@
     <string name="pod_category">Category</string>
     <string name="pod_description">Description</string>
     <string name="pod_rating">Rating</string>
+    <!-- Strings related to edition-->
+    <string name="edition_tab_text_1">Details</string>
+    <string name="edition_tab_text_2">POIs list</string>
+    <string name="edition_tab_text_3">PODs list</string>
+    <string name="edition_details_track">Details</string>
+    <string name="edition_details_list_poi">POIs list</string>
+    <string name="edition_details_list_pod">PODs list</string>
+
 
 </resources>

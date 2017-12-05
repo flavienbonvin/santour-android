@@ -5,23 +5,30 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import ch.hesso.santour.R;
+import ch.hesso.santour.adapter.SectionsPageAdapter;
 import ch.hesso.santour.view.Edition.Fragment.FragmentDetailsTrack;
 import ch.hesso.santour.view.Edition.Fragment.FragmentListPOD;
 import ch.hesso.santour.view.Edition.Fragment.FragmentListPOI;
 import ch.hesso.santour.view.Edition.Fragment.FragmentListTracks;
+import ch.hesso.santour.view.Tracking.Fragment.FragmentRecording;
 
 public class TrackEditActivity extends AppCompatActivity {
 
-    //Bottom Navigation Bar
-    private BottomNavigationView navigation;
+    //Activity tag
+    private static final String TAG = "TrackEditActivity";
+
+    //Tabs layout adapter for fragment
+    private SectionsPageAdapter sectionsPageAdapter;
+    private ViewPager viewPager;
 
     private Fragment fragment;
     private FragmentManager fragmentManager;
@@ -60,47 +67,24 @@ public class TrackEditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edition_activity);
-        //Bottom navigation
-        navigation = findViewById(R.id.track_edit_bottom_navigation);
-        navigation.inflateMenu(R.menu.track_edit_bottom_navigation);
-        navigation.getMenu().getItem(0).setChecked(true);
+        sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
 
-        fragmentManager = getFragmentManager();
-        fragment = new FragmentListTracks();
+        viewPager = findViewById(R.id.track_container);
+        viewPager.setOffscreenPageLimit(3);
+        setupViewPager(viewPager);
 
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.addToBackStack(null);
-        transaction.replace(R.id.track_edit_container, fragment).commit();
+        TabLayout tabLayout = findViewById(R.id.track_tabs);
+        tabLayout.setupWithViewPager(viewPager);
+    }
 
-        //Gestion BottomNavBar
-        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item)
-            {
-                switch (item.getItemId())
-                {
-                    case R.id.track_bottom_navigation_track:
-                        fragment = new FragmentDetailsTrack();
-                        setTitle(R.string.title_edit_details);
-                        break;
-                    case R.id.track_bottom_navigation_poi:
-                        fragment = new FragmentListPOI();
-                        setTitle(R.string.title_edit_list_poi);
-                        break;
-                    case R.id.track_bottom_navigation_pod:
-                        fragment = new FragmentListPOD();
-                        setTitle(R.string.title_edit_list_pod);
-                        break;
-                }
+    private void setupViewPager(ViewPager viewPager)
+    {
 
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.addToBackStack(null);
-                transaction.replace(R.id.track_edit_container, fragment).commit();
-                return true;
-            }
-        });
-
-
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getFragmentManager());
+        adapter.addFragment(new FragmentDetailsTrack(), getString(R.string.edition_details_track));
+        adapter.addFragment(new ch.hesso.santour.view.Edition.Fragment.FragmentListPOI(), getString(R.string.edition_details_list_poi));
+        adapter.addFragment(new ch.hesso.santour.view.Edition.Fragment.FragmentListPOD(), getString(R.string.edition_details_list_pod));
+        viewPager.setAdapter(adapter);
     }
 
 }
