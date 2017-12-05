@@ -45,7 +45,7 @@ public class FragmentListTracks extends Fragment {
             @Override
             public void resolve(Object o) {
                 ArrayList<Track> listTrack = (ArrayList<Track>)o;
-                ListView list = rootView.findViewById(R.id.list_view_track);
+                final ListView list = rootView.findViewById(R.id.list_view_track);
                 list.setAdapter(new TrackListAdapter(FragmentListTracks.this.getContext(), listTrack));
 
                 list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -65,18 +65,15 @@ public class FragmentListTracks extends Fragment {
                         transaction.replace(R.id.list_track_fragment, fragment).commit();
                     }
                 });
-                ArrayList<Track> listTrack = (ArrayList<Track>) o;
-                final ListView list = rootView.findViewById(R.id.list_view_track);
 
-                final TrackListAdapter adapter = new TrackListAdapter(FragmentListTracks.this.getContext(), listTrack);
-                list.setAdapter(adapter);
 
                 EditText editText = (EditText) rootView.findViewById(R.id.input_search_track);
                 editText.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
                         ArrayList<Track> tracks = new ArrayList<>();
-                        ArrayList<Track> trackAdapter = adapter.getListData();
+                        TrackListAdapter adapt = (TrackListAdapter)list.getAdapter();
+                        ArrayList<Track> trackAdapter = adapt.getListData();
 
                         for (Track track : trackAdapter) {
                             if (track.getName().contains(s.toString())) {
