@@ -4,6 +4,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.LocationManager;
 import android.media.Image;
 import android.net.Uri;
@@ -130,10 +131,9 @@ public class FragmentAddPOI extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == PictureManagement.REQUEST_IMAGE_CAPTURE){
-            Bundle extra = data.getExtras();
-            Bitmap imageBitmap = (Bitmap)extra.get("imageBitmap");
-            imageEncoded = extra.getString("imageString");
-            ((ImageView) getActivity().findViewById(R.id.track_add_poi_picture_view)).setImageBitmap(imageBitmap);
+            Bundle extras = data.getExtras();
+            imageEncoded = extras.getString("imageString");
+            ((ImageView) getActivity().findViewById(R.id.track_add_poi_picture_view)).setImageBitmap(PictureManagement.decodeBitmapBase64(imageEncoded));
         }
     }
 }

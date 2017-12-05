@@ -4,8 +4,10 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -129,9 +131,10 @@ public class FragmentAddPOD extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PictureManagement.REQUEST_IMAGE_CAPTURE) {
             Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("imageBitmap");
-            imageEncoded = extras.getString("imageString");
-            ((ImageView) rootView.findViewById(R.id.track_add_pod_picture_view)).setImageBitmap(imageBitmap);
+            String imageUrl = extras.getString("imageString");
+
+            Log.d("maxDebug", "url :"+imageUrl);
+            ((ImageView) rootView.findViewById(R.id.track_add_pod_picture_view)).setImageBitmap(BitmapFactory.decodeFile(imageUrl));
 
 
         }
