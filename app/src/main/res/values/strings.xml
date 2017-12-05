@@ -63,5 +63,8 @@
     <string name="track_accessforeveryone">Access for everyone</string>
     <string name="track_pauseduration">Pause duration</string>
     <string name="searchTrack">Search Track</string>
+    <string name="pod_category">Category</string>
+    <string name="pod_description">Description</string>
+    <string name="pod_rating">Rating</string>
 
 </resources>
