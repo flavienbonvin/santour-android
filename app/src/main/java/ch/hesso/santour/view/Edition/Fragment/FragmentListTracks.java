@@ -55,7 +55,7 @@ public class FragmentListTracks extends Fragment {
 
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    MainActivity.track = (Track)adapterView.getItemAtPosition(i);
+                    TrackEditActivity.trackDetails = (Track)adapterView.getItemAtPosition(i);
 
                     Intent intent = new Intent(rootView.getContext(), TrackEditActivity.class);
                     startActivity(intent);

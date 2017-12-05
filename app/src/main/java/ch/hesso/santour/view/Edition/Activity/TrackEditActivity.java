@@ -15,10 +15,12 @@ import android.view.MenuItem;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.SectionsPageAdapter;
+import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Fragment.FragmentDetailsTrack;
 import ch.hesso.santour.view.Edition.Fragment.FragmentListPOD;
 import ch.hesso.santour.view.Edition.Fragment.FragmentListPOI;
 import ch.hesso.santour.view.Edition.Fragment.FragmentListTracks;
+import ch.hesso.santour.view.Main.MainActivity;
 import ch.hesso.santour.view.Tracking.Fragment.FragmentRecording;
 
 public class TrackEditActivity extends AppCompatActivity {
@@ -33,6 +35,8 @@ public class TrackEditActivity extends AppCompatActivity {
     private Fragment fragment;
     private FragmentManager fragmentManager;
 
+
+    public  static Track trackDetails;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -72,12 +76,10 @@ public class TrackEditActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager)
     {
-
         SectionsPageAdapter adapter = new SectionsPageAdapter(getFragmentManager());
         adapter.addFragment(new FragmentDetailsTrack(), getString(R.string.edition_details_track));
-        adapter.addFragment(new ch.hesso.santour.view.Edition.Fragment.FragmentListPOI(), getString(R.string.edition_details_list_poi));
-        adapter.addFragment(new ch.hesso.santour.view.Edition.Fragment.FragmentListPOD(), getString(R.string.edition_details_list_pod));
+        adapter.addFragment(new FragmentListPOI(), getString(R.string.edition_details_list_poi));
+        adapter.addFragment(new FragmentListPOD(), getString(R.string.edition_details_list_pod));
         viewPager.setAdapter(adapter);
     }
-
 }
