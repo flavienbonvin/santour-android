@@ -48,19 +48,12 @@ public class TrackEditActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.button_navigation_check:
-                //Here save the datas modified
-
-                //Toast.makeText(getContext(), this.getString(R.string.newcomicsaved), Toast.LENGTH_SHORT).show();
-                //fragment = new ExchangeFragment();
-                //fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.main_container, fragment).commit();
-
-                return true;
+            return true;
         }
         return false;
-        //return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -69,11 +62,11 @@ public class TrackEditActivity extends AppCompatActivity {
         setContentView(R.layout.edition_activity);
         sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
 
-        viewPager = findViewById(R.id.track_container);
+        viewPager = findViewById(R.id.track_edit_container);
         viewPager.setOffscreenPageLimit(3);
         setupViewPager(viewPager);
 
-        TabLayout tabLayout = findViewById(R.id.track_tabs);
+        TabLayout tabLayout = findViewById(R.id.edition_tabs);
         tabLayout.setupWithViewPager(viewPager);
     }
 

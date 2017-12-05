@@ -24,6 +24,9 @@ import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.POI;
 import ch.hesso.santour.model.Track;
+import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
+import ch.hesso.santour.view.Main.MainActivity;
+import ch.hesso.santour.view.Tracking.Activity.TrackActivity;
 import ch.hesso.santour.view.Tracking.Fragment.Recording.FragmentAddPOD;
 import ch.hesso.santour.view.Tracking.Fragment.*;
 
@@ -52,17 +55,10 @@ public class FragmentListTracks extends Fragment {
 
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Track t = (Track)adapterView.getItemAtPosition(i);
+                    MainActivity.track = (Track)adapterView.getItemAtPosition(i);
 
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("track",t);
-
-                        FragmentManager fragmentManager  = getFragmentManager();
-                        Fragment fragment  = new FragmentDetailsTrack();
-                        fragment.setArguments(bundle);
-                        FragmentTransaction transaction = fragmentManager.beginTransaction();
-                        transaction.addToBackStack(null);
-                        transaction.replace(R.id.list_track_fragment, fragment).commit();
+                    Intent intent = new Intent(rootView.getContext(), TrackEditActivity.class);
+                    startActivity(intent);
                     }
                 });
 
