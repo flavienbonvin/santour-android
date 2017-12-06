@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.business.PermissionManagement;
@@ -21,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
 
     private Fragment fragment;
     private FragmentManager fragmentManager;
+
+    private String[] drawerItemsList;
+    private ListView myDrawer;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -45,6 +50,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.main_activity);
         super.onCreate(savedInstanceState);
+
+        drawerItemsList = getResources().getStringArray(R.array.items);
+        myDrawer = (ListView) findViewById(R.id.my_drawer);
+        myDrawer.setAdapter(new ArrayAdapter<String>(this, R.layout.item_list_menu_navside, drawerItemsList));
 
         PermissionManagement.initialCheck(MainActivity.this);
 
