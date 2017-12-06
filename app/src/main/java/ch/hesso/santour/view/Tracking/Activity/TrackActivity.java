@@ -14,7 +14,13 @@ import ch.hesso.santour.view.Tracking.Fragment.FragmentRecording;
 
 public class TrackActivity extends AppCompatActivity {
 
+    //Activity tag
     private static final String TAG = "TrackActivity";
+
+    //Tabs layout adapter for fragment, need to be here for the update of the list
+    // once a POI or POD is created
+    public static FragmentListPOI fragmentListPOI;
+    public static FragmentListPOD fragmentListPOD;
 
     private SectionsPageAdapter sectionsPageAdapter;
     private ViewPager viewPager;
@@ -30,19 +36,16 @@ public class TrackActivity extends AppCompatActivity {
         viewPager.setOffscreenPageLimit(3);
         setupViewPager(viewPager);
 
-
         TabLayout tabLayout = findViewById(R.id.track_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
     }
 
-    private void setupViewPager(ViewPager viewPager)
-    {
-
+    private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getFragmentManager());
         adapter.addFragment(new FragmentRecording(), getString(R.string.my_track));
-        adapter.addFragment(new FragmentListPOI(), getString(R.string.pois_list));
-        adapter.addFragment(new FragmentListPOD(), getString(R.string.pods_list));
+        adapter.addFragment(fragmentListPOI = new FragmentListPOI(), getString(R.string.pois_list));
+        adapter.addFragment(fragmentListPOD = new FragmentListPOD(), getString(R.string.pods_list));
         viewPager.setAdapter(adapter);
     }
 }

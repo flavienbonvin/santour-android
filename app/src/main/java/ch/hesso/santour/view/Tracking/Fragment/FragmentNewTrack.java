@@ -22,6 +22,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import ch.hesso.santour.R;
 import ch.hesso.santour.business.LocationManagement;
 import ch.hesso.santour.db.DBCallback;
+import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.POI;
 import ch.hesso.santour.model.Position;
 import ch.hesso.santour.model.Track;
@@ -60,8 +61,11 @@ public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
                     return;
                 }
 
+                //Create a new track in the Mainactivity (where there is a track in static)
+                String newId = TrackDB.getNewId();
                 MainActivity.track = new Track();
                 MainActivity.track.setName(name);
+                MainActivity.track.setId(newId);
                 Intent intent = new Intent(rootView.getContext(), TrackActivity.class);
                 startActivity(intent);
             }

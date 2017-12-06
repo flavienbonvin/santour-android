@@ -10,4 +10,6 @@
     <color name="colorTransparent">#00FFFFFF</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorPrimaryGreen">#ff2d9a59</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

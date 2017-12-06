@@ -21,6 +21,7 @@ import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.CategoryPOI;
 import ch.hesso.santour.model.POI;
 import ch.hesso.santour.view.Main.MainActivity;
+import ch.hesso.santour.view.Tracking.Activity.TrackActivity;
 
 public class FragmentCategoriesPOI extends Fragment {
 
@@ -28,7 +29,7 @@ public class FragmentCategoriesPOI extends Fragment {
     private CategoryListAdapter adapter;
     private View rootView;
 
-    private  POI poi;
+    private POI poi;
 
     public FragmentCategoriesPOI() {
         // Required empty public constructor
@@ -36,8 +37,7 @@ public class FragmentCategoriesPOI extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.action_bar_close:
                 getActivity().getFragmentManager().popBackStack();
                 return true;
@@ -48,6 +48,7 @@ public class FragmentCategoriesPOI extends Fragment {
                 return super.onOptionsItemSelected(item);
         }
     }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
@@ -74,22 +75,29 @@ public class FragmentCategoriesPOI extends Fragment {
             }
         });
 
-        return  rootView;
+        return rootView;
     }
 
-    private void addPOIandBack(){
+    private void addPOIandBack() {
 
         ListView list = rootView.findViewById(R.id.track_poi_details_categories_list);
         CategoryListAdapterPOI cat = (CategoryListAdapterPOI) list.getAdapter();
 
-        poi.setCategoriesID(cat.getAll());
+        if (cat.getAll() != null)
+            poi.setCategoriesID(cat.getAll());
+        else
+            poi.setCategoriesID(null);
+
         MainActivity.track.addPOI(poi);
+
+        //Update the list of POI
+        TrackActivity.fragmentListPOI.updateList();
 
         FragmentManager manager = getActivity().getFragmentManager();
 
         if (manager.getBackStackEntryCount() > 0) {
             FragmentManager.BackStackEntry first = manager
-                    .getBackStackEntryAt(manager.getBackStackEntryCount()-2);
+                    .getBackStackEntryAt(manager.getBackStackEntryCount() - 2);
             manager.popBackStack(first.getId(),
                     FragmentManager.POP_BACK_STACK_INCLUSIVE);
         }

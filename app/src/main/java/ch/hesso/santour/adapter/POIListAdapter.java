@@ -11,19 +11,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.hesso.santour.R;
-import ch.hesso.santour.model.POD;
+import ch.hesso.santour.model.POI;
 
 /**
  * Created by maxim on 28.11.2017.
  */
 
-public class PODListAdapter extends BaseAdapter {
-    private ArrayList<POD> listData;
+public class POIListAdapter extends BaseAdapter{
+    private ArrayList<POI> listData;
     private LayoutInflater layoutInflater;
 
 
-    public PODListAdapter(Context aContext, List<POD> listData) {
-        this.listData = (ArrayList<POD>)listData;
+    public POIListAdapter(Context aContext, List<POI> listData) {
+        this.listData = (ArrayList<POI>)listData;
         layoutInflater = LayoutInflater.from(aContext);
     }
 
@@ -45,7 +45,6 @@ public class PODListAdapter extends BaseAdapter {
 
 
     public View getView(final int position, View convertView, ViewGroup parent) {
-
 
         ViewHolder holder;
         if (convertView == null)
@@ -71,7 +70,8 @@ public class PODListAdapter extends BaseAdapter {
         TextView name;
     }
 
-    public ArrayList<POD> getListData() {
+
+    public ArrayList<POI> getListData(){
         return listData;
     }
 }

@@ -36,16 +36,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-/*    @Override
-    public void onBackPressed() {
-        if(fragmentManager.getBackStackEntryCount() > 0)
-        {
-            Fragment currentFragment = fragmentManager.findFragmentById(R.id.main_container);
-            finish();
-            super.onBackPressed();
-        }
-    }*/
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setContentView(R.layout.main_activity);
@@ -72,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.navigation_setting:
-                fragmentManager  = this.getFragmentManager();
-                fragment  = new SettingsFragment();
+                fragmentManager = this.getFragmentManager();
+                fragment = new SettingsFragment();
 
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);
@@ -84,11 +74,6 @@ public class MainActivity extends AppCompatActivity {
         return false;
 
     }
-
-    public void test(){
-
-    }
-
 }
 
 

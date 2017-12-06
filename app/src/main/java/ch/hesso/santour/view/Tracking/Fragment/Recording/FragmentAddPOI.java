@@ -4,6 +4,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.LocationManager;
 import android.media.Image;
 import android.net.Uri;
@@ -46,8 +47,7 @@ public class FragmentAddPOI extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.action_bar_close:
                 getActivity().getFragmentManager().popBackStack();
                 return true;
@@ -88,7 +88,9 @@ public class FragmentAddPOI extends Fragment {
                 String poiName = editTextName.getText().toString();
                 String poiDesc = editTextDesc.getText().toString();
 
-                if(!poiName.equals("") && !poiDesc.equals("")  && !imageEncoded.equals("")){
+                //Go to the category choice ince all the fileds are completed
+                //TODO show the unfilled filed with a red line (error below the textedit)
+                if (!poiName.equals("") && !poiDesc.equals("") && !imageEncoded.equals("")) {
                     POI poi = new POI();
                     poi.setName(poiName);
                     poi.setDescription(poiDesc);
@@ -109,7 +111,6 @@ public class FragmentAddPOI extends Fragment {
             }
         });
 
-
         LocationManagement.getCurrentPosition(getActivity(), new DBCallback() {
             @Override
             public void resolve(Object o) {
@@ -118,22 +119,20 @@ public class FragmentAddPOI extends Fragment {
                 TextView textViewLat = (TextView) rootView.findViewById(R.id.tv_lat_add_poi);
                 TextView textViewLng = (TextView) rootView.findViewById(R.id.tv_lng_add_poi);
 
-                textViewLat.setText("Lat: " + Math.floor(position.latitude*100)/100);
-                textViewLng.setText("Lng: " + Math.floor(position.longitude*100)/100);
+                //Update the text of where the latitude and longitude are displayed
+                textViewLat.setText("Lat: " + Math.floor(position.latitude * 100) / 100);
+                textViewLng.setText("Lng: " + Math.floor(position.longitude * 100) / 100);
             }
         });
-
-
         return rootView;
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == PictureManagement.REQUEST_IMAGE_CAPTURE){
-            Bundle extra = data.getExtras();
-            Bitmap imageBitmap = (Bitmap)extra.get("imageBitmap");
-            imageEncoded = extra.getString("imageString");
-            ((ImageView) getActivity().findViewById(R.id.track_add_poi_picture_view)).setImageBitmap(imageBitmap);
+        if (requestCode == PictureManagement.REQUEST_IMAGE_CAPTURE) {
+            Bundle extras = data.getExtras();
+            imageEncoded = extras.getString("imageString");
+            ((ImageView) getActivity().findViewById(R.id.track_add_poi_picture_view)).setImageBitmap(PictureManagement.decodeBitmapBase64(imageEncoded));
         }
     }
 }
