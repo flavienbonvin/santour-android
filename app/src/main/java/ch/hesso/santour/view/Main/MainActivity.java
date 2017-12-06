@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_activity);
         super.onCreate(savedInstanceState);
 
+        //ici Raf
         drawerItemsList = getResources().getStringArray(R.array.items);
         myDrawer = (ListView) findViewById(R.id.my_drawer);
         myDrawer.setAdapter(new ArrayAdapter<String>(this, R.layout.item_list_menu_navside, drawerItemsList));
