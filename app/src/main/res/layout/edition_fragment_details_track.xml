@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    tools:context="ch.hesso.santour.view.Edition.Fragment.FragmentDetailsTrack"
-    android:clickable="true">
+    android:clickable="true"
+    tools:context="ch.hesso.santour.view.Edition.Fragment.FragmentDetailsTrack">
 
     <EditText
         android:id="@+id/edit_track_textView_nameTrack"

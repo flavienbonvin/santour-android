@@ -81,6 +81,8 @@ public class FragmentAddPOI extends Fragment {
                 String poiName = editTextName.getText().toString();
                 String poiDesc = editTextDesc.getText().toString();
 
+                //Go to the category choice ince all the fileds are completed
+                //TODO show the unfilled filed with a red line (error below the textedit)
                 if(!poiName.equals("") && !poiDesc.equals("")  && !imageName.equals("")){
                 //Go to the category choice ince all the fileds are completed
                 //TODO show the unfilled filed with a red line (error below the textedit)

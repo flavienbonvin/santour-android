@@ -8,6 +8,8 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -16,6 +18,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 
 import ch.hesso.santour.R;
+import ch.hesso.santour.view.Main.MainActivity;
 
 public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
 
@@ -31,6 +34,8 @@ public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.tracking_fragment_end_track, container, false);
+
+        ((EditText)rootView.findViewById(R.id.edit_track_textView_nameTrack)).setText(MainActivity.track.getName());
 
         mapView = rootView.findViewById(R.id.edit_track_map_mapView2);
         mapView.onCreate(savedInstanceState);
