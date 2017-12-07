@@ -39,7 +39,8 @@ public class FragmentAddPOI extends Fragment {
 
     private Position position;
 
-    private String imageEncoded = "";
+    private String imageName = "";
+    private View rootView;
 
     public FragmentAddPOI() {
         // Required empty public constructor
@@ -67,7 +68,7 @@ public class FragmentAddPOI extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.tracking_fragment_recording_add_poi, container, false);
+        rootView = inflater.inflate(R.layout.tracking_fragment_recording_add_poi, container, false);
         setHasOptionsMenu(true);
 
         final ImageButton imageButton = (ImageButton) rootView.findViewById(R.id.track_add_poi_add_picture);
@@ -89,11 +90,11 @@ public class FragmentAddPOI extends Fragment {
                 String poiName = editTextName.getText().toString();
                 String poiDesc = editTextDesc.getText().toString();
 
-                if(!poiName.equals("") && !poiDesc.equals("")  && !imageEncoded.equals("")){
+                if(!poiName.equals("") && !poiDesc.equals("")  && !imageName.equals("")){
                     POI poi = new POI();
                     poi.setName(poiName);
                     poi.setDescription(poiDesc);
-                    poi.setPicture(imageEncoded);
+                    poi.setPicture(imageName);
                     poi.setPosition(position);
 
                     Bundle bundle = new Bundle();
@@ -132,8 +133,9 @@ public class FragmentAddPOI extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == PictureManagement.REQUEST_IMAGE_CAPTURE){
             Bundle extras = data.getExtras();
-            imageEncoded = extras.getString("imageString");
-            ((ImageView) getActivity().findViewById(R.id.track_add_poi_picture_view)).setImageBitmap(PictureManagement.decodeBitmapBase64(imageEncoded));
+            imageName = extras.getString("imageName");
+            Bitmap loaded = BitmapFactory.decodeFile(PictureManagement.localStoragePath+imageName);
+            ((ImageView) rootView.findViewById(R.id.track_add_poi_picture_view)).setImageBitmap(PictureManagement.rotatePicture(loaded));
         }
     }
 }
