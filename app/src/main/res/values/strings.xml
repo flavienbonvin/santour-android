@@ -87,5 +87,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
     <string name="title_activity_main_full_screen_picture">MainFullScreenPictureActivity</string>
+    <string name="minutes">minutes</string>
 
 </resources>

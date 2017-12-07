@@ -77,39 +77,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_track_textView_accessforeveryone" />
 
-    <Spinner
-        android:id="@+id/edit_track_spinner_difficulty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <SeekBar
+        android:id="@+id/edit_track_seekBar_difficulty"
+        android:layout_width="161dp"
+        android:layout_height="23dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.626"
+        app:layout_constraintHorizontal_bias="0.736"
         app:layout_constraintStart_toEndOf="@+id/edit_track_textView_difficulty"
         app:layout_constraintTop_toBottomOf="@+id/edit_track_map_mapView2" />
 
-    <Spinner
-        android:id="@+id/edit_track_spinner_accessforeveryone"
+    <CheckBox
+        android:id="@+id/edit_track_checkBox_accessForEveryone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/edit_track_textView_accessforeveryone"
-        app:layout_constraintTop_toBottomOf="@+id/edit_track_spinner_difficulty" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_track_seekBar_difficulty" />
 
-    <Spinner
-        android:id="@+id/edit_track_spinner_pauseduration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <EditText
+        android:id="@+id/edit_track_editText_pauseDuration"
+        android:layout_width="80dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="@string/minutes"
+        android:textSize="12sp"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.582"
         app:layout_constraintStart_toEndOf="@+id/edit_track_textView_pauseduration"
-        app:layout_constraintTop_toBottomOf="@+id/edit_track_spinner_accessforeveryone" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_track_checkBox_accessForEveryone"
+        app:layout_constraintVertical_bias="0.043" />
 
 
 </android.support.constraint.ConstraintLayout>
