@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         drawerItemsList = getResources().getStringArray(R.array.items);
         drawerLayout = findViewById(R.id.main_drawer_layout);
 
+
         PermissionManagement.initialCheck(MainActivity.this);
 
         //menu fragment
@@ -74,10 +76,17 @@ public class MainActivity extends AppCompatActivity {
                 transaction.replace(R.id.main_container, fragment).commit();
                 setTitle("Settings");
                 return true;
+            case android.R.id.home:
+                if(drawerLayout.isDrawerOpen(Gravity.START))
+                    drawerLayout.closeDrawer(Gravity.LEFT);
+                else
+                    drawerLayout.openDrawer(Gravity.START);
+                return true;
         }
         return false;
 
     }
+
 }
 
 
