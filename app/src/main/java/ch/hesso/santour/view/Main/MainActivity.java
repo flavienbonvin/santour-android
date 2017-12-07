@@ -5,12 +5,12 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.business.PermissionManagement;
@@ -25,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
 
     private String[] drawerItemsList;
-    private ListView myDrawer;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -38,13 +39,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         setContentView(R.layout.main_activity);
         super.onCreate(savedInstanceState);
 
         //ici Raf
         drawerItemsList = getResources().getStringArray(R.array.items);
-        myDrawer = (ListView) findViewById(R.id.my_drawer);
-        myDrawer.setAdapter(new ArrayAdapter<String>(this, R.layout.item_list_menu_navside, drawerItemsList));
+        drawerLayout = findViewById(R.id.main_drawer_layout);
 
         PermissionManagement.initialCheck(MainActivity.this);
 

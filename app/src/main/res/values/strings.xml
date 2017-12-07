@@ -73,6 +73,13 @@
     <string name="edition_details_track">Details</string>
     <string name="edition_details_list_poi">POIs list</string>
     <string name="edition_details_list_pod">PODs list</string>
+    <!-- Strings related to main navigation-->
+    <string name="main_navigation_item1">Create a track</string>
+    <string name="main_navigation_item2">List of tracks</string>
+    <string name="main_navigation_item3">List of poi</string>
+    <string name="main_navigation_item4">List of pod</string>
+    <string name="main_navigation_item5">Settings</string>
+    <string name="main_navigation_item6">About</string>
 
 
     <string name="title_activity_main_full_screen_image">MainFullScreenImage</string>
