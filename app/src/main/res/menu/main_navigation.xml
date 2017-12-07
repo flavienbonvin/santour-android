@@ -23,14 +23,4 @@
         android:enabled="true"
         android:title="@string/main_navigation_item4"
         app:showAsAction="ifRoom"/>
-    <item
-        android:id="@+id/main_navigation_item5"
-        android:enabled="true"
-        android:title="@string/main_navigation_item5"
-        app:showAsAction="ifRoom"/>
-    <item
-        android:id="@+id/main_navigation_item6"
-        android:enabled="true"
-        android:title="@string/main_navigation_item6"
-        app:showAsAction="ifRoom"/>
 </menu>

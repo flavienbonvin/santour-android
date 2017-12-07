@@ -17,8 +17,10 @@ import ch.hesso.santour.R;
 import ch.hesso.santour.business.PermissionManagement;
 import ch.hesso.santour.business.TrackingManagement;
 import ch.hesso.santour.model.Track;
+import ch.hesso.santour.view.Edition.Fragment.FragmentListTracks;
+import ch.hesso.santour.view.Tracking.Fragment.FragmentNewTrack;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static TrackingManagement trackingManagement = new TrackingManagement();
     public static Track track;
 
@@ -46,9 +48,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.main_activity);
         super.onCreate(savedInstanceState);
 
-        //ici Raf
+        //Navigation Drawer
         drawerItemsList = getResources().getStringArray(R.array.items);
         drawerLayout = findViewById(R.id.main_drawer_layout);
+        navigationView = findViewById(R.id.main_navigation);
 
 
         PermissionManagement.initialCheck(MainActivity.this);
@@ -60,6 +63,10 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.main_container, fragment).commit();
         setTitle("Menu");
+
+        //Navigation Listener
+        navigationView.setNavigationItemSelectedListener(this);
+
 
     }
 
@@ -77,14 +84,46 @@ public class MainActivity extends AppCompatActivity {
                 setTitle("Settings");
                 return true;
             case android.R.id.home:
-                if(drawerLayout.isDrawerOpen(Gravity.START))
-                    drawerLayout.closeDrawer(Gravity.LEFT);
-                else
-                    drawerLayout.openDrawer(Gravity.START);
+                handleNavigation();
                 return true;
         }
         return false;
 
+    }
+
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+
+        switch (item.getItemId()) {
+            case R.id.main_navigation_item1:
+                fragment = new FragmentNewTrack();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.main_container, fragment).commit();
+                setTitle("Create a track");
+                handleNavigation();
+                return true;
+            case R.id.main_navigation_item2:
+                fragment = new FragmentListTracks();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.main_container, fragment).commit();
+                setTitle("List of tracks");
+                handleNavigation();
+                return true;
+
+        }
+        return false;
+
+    }
+
+    public void handleNavigation()
+    {
+        if(drawerLayout.isDrawerOpen(Gravity.START))
+            drawerLayout.closeDrawer(Gravity.LEFT);
+        else
+            drawerLayout.openDrawer(Gravity.START);
     }
 
 }
