@@ -2,8 +2,6 @@ package ch.hesso.santour.view.Tracking.Fragment;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.os.SystemClock;
@@ -169,7 +167,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
 
         LatLng coordinate = new LatLng(86, 20);
         map.moveCamera(CameraUpdateFactory.newLatLng(coordinate));
-        LocationManagement.getCurrentPosition(FragmentRecording.this.getActivity(), new DBCallback() {
+        LocationManagement.getLastKnownPosition(FragmentRecording.this.getActivity(), new DBCallback() {
             @Override
             public void resolve(Object o) {
                 Position p = (Position)o;

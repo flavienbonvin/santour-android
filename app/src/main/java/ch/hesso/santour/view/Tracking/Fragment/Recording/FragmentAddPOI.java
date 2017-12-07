@@ -3,14 +3,8 @@ package ch.hesso.santour.view.Tracking.Fragment.Recording;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.location.LocationManager;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,15 +18,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import ch.hesso.santour.R;
-import ch.hesso.santour.TestActivity;
 import ch.hesso.santour.business.LocationManagement;
 import ch.hesso.santour.business.PictureManagement;
-import ch.hesso.santour.business.TrackingManagement;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.POI;
 import ch.hesso.santour.model.Position;
-
-import static android.app.Activity.RESULT_OK;
 
 public class FragmentAddPOI extends Fragment {
     private static final int SELECT_PICTURE = 1;
@@ -111,7 +101,7 @@ public class FragmentAddPOI extends Fragment {
             }
         });
 
-        LocationManagement.getCurrentPosition(getActivity(), new DBCallback() {
+        LocationManagement.getLastKnownPosition(getActivity(), new DBCallback() {
             @Override
             public void resolve(Object o) {
                 position = (Position) o;

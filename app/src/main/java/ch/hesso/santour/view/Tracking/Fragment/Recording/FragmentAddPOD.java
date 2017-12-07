@@ -3,7 +3,6 @@ package ch.hesso.santour.view.Tracking.Fragment.Recording;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -111,7 +110,7 @@ public class FragmentAddPOD extends Fragment {
             }
         });
 
-        LocationManagement.getCurrentPosition(getActivity(), new DBCallback() {
+        LocationManagement.getLastKnownPosition(getActivity(), new DBCallback() {
             @Override
             public void resolve(Object o) {
                 pos = (Position) o;
