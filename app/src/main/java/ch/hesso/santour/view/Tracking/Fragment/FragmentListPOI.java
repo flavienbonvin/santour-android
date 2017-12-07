@@ -55,12 +55,19 @@ public class FragmentListPOI extends Fragment {
         final ListView list = rootView.findViewById(R.id.list_view_edit_poi);
         list.setAdapter(adapter = new POIListAdapter(FragmentListPOI.this.getContext(), MainActivity.track.getPois()));
 
+        //Search in the list
         search(list);
+
+        //Click listener on the POI
         onClickDialog(list);
 
         return rootView;
     }
 
+    /**
+     * Listener that show a dialog once a POI is clicked
+     * @param list
+     */
     private void onClickDialog(ListView list) {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -84,12 +91,14 @@ public class FragmentListPOI extends Fragment {
                         final AlertDialog.Builder builder = new AlertDialog.Builder(FragmentListPOI.this.getActivity());
                         builder.setTitle("Details of the POD:")
                                 .setMessage(message)
+                                //Close the dialog
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.cancel();
                                     }
                                 })
+                                //Show the picture un full screen
                                 .setNeutralButton("Show picture", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -98,6 +107,7 @@ public class FragmentListPOI extends Fragment {
                                         FragmentListPOI.this.startActivity(intent);
                                     }
                                 })
+                                //Delete the POI
                                 .setNegativeButton("Delete", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -112,6 +122,10 @@ public class FragmentListPOI extends Fragment {
         });
     }
 
+    /**
+     * Search in the listView
+     * @param list
+     */
     private void search(final ListView list) {
         EditText editText = (EditText) rootView.findViewById(R.id.input_edit_search_poi);
         editText.addTextChangedListener(new TextWatcher() {
@@ -139,6 +153,9 @@ public class FragmentListPOI extends Fragment {
         });
     }
 
+    /**
+     * Update hte list with the new POI (called once a POI is created)
+     */
     public void updateList() {
         ListView list = rootView.findViewById(R.id.list_view_edit_poi);
         list.setAdapter(new POIListAdapter(this.getContext(), MainActivity.track.getPois()));

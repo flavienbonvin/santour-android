@@ -38,8 +38,7 @@ public class FragmentCategoriesPOD extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.action_bar_close:
                 getActivity().getFragmentManager().popBackStack();
                 return true;
@@ -50,6 +49,7 @@ public class FragmentCategoriesPOD extends Fragment {
                 return super.onOptionsItemSelected(item);
         }
     }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         menu.clear();
@@ -64,22 +64,21 @@ public class FragmentCategoriesPOD extends Fragment {
         rootView = inflater.inflate(R.layout.tracking_fragment_recording_list_categories_pod_rating, container, false);
         setHasOptionsMenu(true);
 
-        pod = (POD)getArguments().getSerializable("pod");
-
+        pod = (POD) getArguments().getSerializable("pod");
 
         CategoryPODDB.getAll(new DBCallback() {
             @Override
             public void resolve(Object o) {
                 ArrayList<CategoryPOD> categories = (ArrayList<CategoryPOD>) o;
                 ListView list = rootView.findViewById(R.id.track_pod_details_categories_list);
-                list.setAdapter(new CategoryListAdapter(FragmentCategoriesPOD.this.getContext(),categories));
+                list.setAdapter(new CategoryListAdapter(FragmentCategoriesPOD.this.getContext(), categories));
             }
         });
 
         return rootView;
     }
 
-    private void addPODAndBack(){
+    private void addPODAndBack() {
 
         ListView list = rootView.findViewById(R.id.track_pod_details_categories_list);
         CategoryListAdapter cat = (CategoryListAdapter) list.getAdapter();
@@ -89,12 +88,13 @@ public class FragmentCategoriesPOD extends Fragment {
         Log.e("maxDebug", pod.toString());
         MainActivity.track.addPOD(pod);
 
+        //Update the list of POD
         TrackActivity.fragmentListPOD.updateList();
 
         FragmentManager manager = getActivity().getFragmentManager();
         if (manager.getBackStackEntryCount() > 0) {
             FragmentManager.BackStackEntry first = manager
-                    .getBackStackEntryAt(manager.getBackStackEntryCount()-2);
+                    .getBackStackEntryAt(manager.getBackStackEntryCount() - 2);
             manager.popBackStack(first.getId(),
                     FragmentManager.POP_BACK_STACK_INCLUSIVE);
         }

@@ -19,8 +19,6 @@ public class PermissionManagement extends ActivityCompat {
     public static final int PERMISSION_ALL = 1;
 
     //TODO Improve permission request, explain why we need them
-
-
     //TODO MIGHT NEED TO REMOVE THE WRITE_EXTERNAL_STORAGE
     public static String[] MANDATORY_PERMISSIONS = {
             Manifest.permission.ACCESS_FINE_LOCATION,

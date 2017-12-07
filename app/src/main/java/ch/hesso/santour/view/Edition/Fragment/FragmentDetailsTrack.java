@@ -15,18 +15,12 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import ch.hesso.santour.R;
-import ch.hesso.santour.business.FragmentInterface;
-import ch.hesso.santour.business.LocationManagement;
-import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.Position;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
-import ch.hesso.santour.view.Main.MainActivity;
-import ch.hesso.santour.view.Tracking.Fragment.FragmentRecording;
 
 /**
  * Created by flavien on 12/4/17.
@@ -61,13 +55,17 @@ public class FragmentDetailsTrack extends Fragment implements OnMapReadyCallback
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
-        EditText editText = (EditText)rootView.findViewById(R.id.edit_track_textView_nameTrack);
+        EditText editText = (EditText) rootView.findViewById(R.id.edit_track_textView_nameTrack);
         editText.setText(detailedTrack.getName());
-
 
         return rootView;
     }
 
+    /**
+     * Draw the line of the track on the map
+     * @param googleMap
+     * @throws SecurityException
+     */
     @Override
     public void onMapReady(GoogleMap googleMap) throws SecurityException {
         googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getContext(), R.raw.map_json));
@@ -77,10 +75,10 @@ public class FragmentDetailsTrack extends Fragment implements OnMapReadyCallback
         uiSettings.setAllGesturesEnabled(true);
         uiSettings.setMyLocationButtonEnabled(false);
 
-       PolylineOptions polylineOptions = new PolylineOptions().width(7).color(Color.parseColor("#52c7b8")).geodesic(true);
+        PolylineOptions polylineOptions = new PolylineOptions().width(7).color(Color.parseColor("#52c7b8")).geodesic(true);
 
-        LatLng coordinate = new LatLng(detailedTrack.getPositions().get(0).latitude,detailedTrack.getPositions().get(0).longitude);
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinate,18));
+        LatLng coordinate = new LatLng(detailedTrack.getPositions().get(0).latitude, detailedTrack.getPositions().get(0).longitude);
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 18));
 
         for (Position position : detailedTrack.getPositions()) {
             LatLng latLng = new LatLng(position.latitude, position.longitude);
@@ -90,6 +88,7 @@ public class FragmentDetailsTrack extends Fragment implements OnMapReadyCallback
         map.clear();
         map.addPolyline(polylineOptions);
     }
+
     @Override
     public void onResume() {
         super.onResume();

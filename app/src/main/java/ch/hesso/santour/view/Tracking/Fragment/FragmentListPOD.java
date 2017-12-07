@@ -46,13 +46,19 @@ public class FragmentListPOD extends Fragment {
         final ListView list = rootView.findViewById(R.id.list_view_pod);
         list.setAdapter(adapter = new PODListAdapter(FragmentListPOD.this.getContext(), MainActivity.track.getPods()));
 
+        //Search inside the list of POD
         search(list);
 
+        //Dialog with the details of the POD
         onClickDialog(list);
 
         return rootView;
     }
 
+    /**
+     * Dialog that pop once a POD is clicked, shows details and picture
+     * @param list
+     */
     private void onClickDialog(ListView list) {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -77,12 +83,14 @@ public class FragmentListPOD extends Fragment {
                         AlertDialog.Builder builder = new AlertDialog.Builder(FragmentListPOD.this.getActivity());
                         builder.setTitle("Details of the POD:")
                                 .setMessage(message)
+                                //Close the dialog
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.cancel();
                                     }
                                 })
+                                //Show the picture
                                 .setNeutralButton("Show picture", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -91,6 +99,7 @@ public class FragmentListPOD extends Fragment {
                                         FragmentListPOD.this.startActivity(intent);
                                     }
                                 })
+                                //Delete the POD
                                 .setNegativeButton("Delete", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -105,6 +114,10 @@ public class FragmentListPOD extends Fragment {
         });
     }
 
+    /**
+     * Search inside the listview
+     * @param list
+     */
     private void search(final ListView list) {
         EditText editText = (EditText) rootView.findViewById(R.id.input_search_pod);
         editText.addTextChangedListener(new TextWatcher() {
@@ -129,6 +142,10 @@ public class FragmentListPOD extends Fragment {
         });
     }
 
+
+    /**
+     * Update hte list with the new POD (called once a POD is created)
+     */
     public void updateList(){
         ListView list = rootView.findViewById(R.id.list_view_pod);
         list.setAdapter(new PODListAdapter(this.getContext(), MainActivity.track.getPods()));

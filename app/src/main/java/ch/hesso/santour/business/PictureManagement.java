@@ -34,7 +34,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import ch.hesso.santour.TestActivity;
 import ch.hesso.santour.view.Main.MainActivity;
 
 
@@ -43,6 +42,7 @@ import ch.hesso.santour.view.Main.MainActivity;
  */
 
 public class PictureManagement extends Activity{
+
     public static final int REQUEST_IMAGE_CAPTURE = 111;
     public static final String localStoragePath = "/storage/emulated/0/Android/data/ch.hesso.santour/files/Pictures/";
 

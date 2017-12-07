@@ -55,12 +55,13 @@
                 app:cardCornerRadius="40dp"
                 android:id="@+id/track_card_view_poi"
                 >
+
                 <ImageButton
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
                     android:id="@+id/track_add_poi_button"
                     style="@style/Widget.AppCompat.Button.Borderless"
-                    android:src="@drawable/ic_remove_red_eye_black_24dp"/>
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:src="@drawable/ic_remove_red_eye_black_24dp" />
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
                 android:layout_width="100dp"

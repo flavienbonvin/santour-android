@@ -97,6 +97,8 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 chrono.setBase(SystemClock.elapsedRealtime());
                 chrono.start();
                 TrackingManagement.startTracking(FragmentRecording.this.getActivity());
+
+                //TODO change style of the button when disabled
                 addPOIButton.setEnabled(true);
                 addPODButton.setEnabled(true);
             }
@@ -114,13 +116,17 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 //TODO change style of the button when disabled
                 addPOIButton.setEnabled(false);
                 addPODButton.setEnabled(false);
+
+                fragmentManager = getFragmentManager();
+                fragment = new FragmentEndTrack();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.main_content, fragment).commit();
             }
         });
 
         LocationManagement.interfaceToWatch(FragmentRecording.this);
 
-
-        //TODO change style of the button when disabled
         addPOIButton = rootView.findViewById(R.id.track_add_poi_button);
         addPOIButton.setEnabled(false);
         addPOIButton.setOnClickListener(new View.OnClickListener() {
@@ -161,7 +167,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
 
         LatLng coordinate = new LatLng(86, 20);
         map.moveCamera(CameraUpdateFactory.newLatLng(coordinate));
-        LocationManagement.getCurrentPosition(FragmentRecording.this.getActivity(), new DBCallback() {
+        LocationManagement.getLastKnownPosition(FragmentRecording.this.getActivity(), new DBCallback() {
             @Override
             public void resolve(Object o) {
                 Position p = (Position)o;
