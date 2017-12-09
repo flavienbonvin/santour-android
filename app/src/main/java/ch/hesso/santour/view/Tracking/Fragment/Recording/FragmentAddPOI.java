@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -127,6 +128,7 @@ public class FragmentAddPOI extends Fragment {
         if (requestCode == PictureManagement.REQUEST_IMAGE_CAPTURE) {
             Bundle extras = data.getExtras();
             imageName = extras.getString("imageName");
+            Log.d("test", imageName);
             Bitmap loaded = BitmapFactory.decodeFile(PictureManagement.localStoragePath+imageName);
             ((ImageView) rootView.findViewById(R.id.track_add_poi_picture_view)).setImageBitmap(PictureManagement.rotatePicture(loaded));
         }

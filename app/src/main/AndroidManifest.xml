@@ -18,15 +18,13 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDpNPEhpXJTEZ10aIG9u38YRwNJ8oZBF6o" />
 
         <activity
             android:name=".TestActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".view.Edition.Activity.TrackEditActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Main.MainActivity"
@@ -37,17 +35,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".view.Login.LoginActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"></activity>
+
         <activity
             android:name=".view.Tracking.Activity.TrackActivity"
             android:label="@string/track"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity
+            android:name=".view.Edition.Activity.TrackEditActivity"
+            android:label="Edit track"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"></activity>
+
         <activity
             android:name=".business.PictureManagement"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"></activity>
+
         <activity
             android:name=".view.Main.MainFullScreenPictureActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

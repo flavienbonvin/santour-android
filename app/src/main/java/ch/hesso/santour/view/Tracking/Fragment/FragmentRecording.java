@@ -20,6 +20,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -111,11 +112,12 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 trackStopButton.setVisibility(View.GONE);
                 cardViewRecord.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
                 chrono.stop();
-                TrackingManagement.stopTracking(FragmentRecording.this.getActivity());
 
                 //TODO change style of the button when disabled
                 addPOIButton.setEnabled(false);
                 addPODButton.setEnabled(false);
+
+                TrackingManagement.stopTracking(FragmentRecording.this.getActivity());
 
                 fragmentManager = getFragmentManager();
                 fragment = new FragmentEndTrack();
@@ -148,7 +150,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 fragmentManager  = getFragmentManager();
                 fragment  = new FragmentAddPOD();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.addToBackStack(null);
+                transaction.addToBackStack("NoReturn");
                 transaction.replace(R.id.main_content, fragment).commit();
             }
         });
@@ -173,11 +175,15 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 Position p = (Position)o;
                 LatLng latlng =new LatLng(p.latitude,p.longitude);
 
-                map.addMarker(new MarkerOptions().position(latlng));
+                MarkerOptions markerOptions = new MarkerOptions();
+                markerOptions.position(latlng);
+
+                map.addMarker(markerOptions);
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng,18));
             }
         });
     }
+
 
 
     @Override

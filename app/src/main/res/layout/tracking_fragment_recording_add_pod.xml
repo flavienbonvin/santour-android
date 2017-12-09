@@ -36,85 +36,80 @@
 
     <TextView
         android:id="@+id/tv_lat_add_pod"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
+        android:layout_marginTop="16dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
         android:text="@string/latitude"
-        android:textAlignment="center"
-        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/track_add_pod_add_picture" />
+        app:layout_constraintTop_toBottomOf="@id/track_add_pod_add_picture" />
 
     <TextView
-        android:id="@+id/tv_lng_add_pod"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:text="@string/longitude"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/track_add_pod_add_picture" />
-
-    <EditText
-        android:id="@+id/edit_text_pod_name"
-        android:labelFor="@id/edit_text_pod_desc"
+        android:id="@+id/tv_add_pod_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:inputType="text"
-        android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/tv_lng_add_pod" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_weight="1"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
         android:text="@string/pod_name"
-        android:textAlignment="center"
-        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/edit_text_pod_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_lat_add_pod" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tv_add_pod_desc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
-        android:layout_weight="1"
-        android:text="@string/poi_pod_description"
-        android:textAlignment="center"
-        android:textSize="24sp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="@string/pod_description"
+        app:layout_constraintBottom_toTopOf="@+id/track_add_pod_next"
+        app:layout_constraintEnd_toStartOf="@+id/edit_text_pod_desc"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@id/tv_add_pod_name" />
+
+
+    <TextView
+        android:id="@+id/tv_lng_add_pod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="@string/longitude"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/track_add_pod_add_picture" />
+
+
+    <EditText
+        android:id="@+id/edit_text_pod_name"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:hint="name"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lng_add_pod" />
 
     <EditText
         android:id="@+id/edit_text_pod_desc"
-        android:labelFor="@id/edit_text_pod_name"
-        android:layout_width="0dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
+        android:hint="name"
         android:inputType="text"
-        android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/edit_text_pod_name" />
+
 
     <Button
         android:id="@+id/track_add_pod_next"

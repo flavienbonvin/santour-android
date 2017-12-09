@@ -60,7 +60,7 @@ public class POIListAdapter extends BaseAdapter{
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.name.setText(listData.get(position).getName());
+        holder.name.setText("POI name : " + listData.get(position).getName());
 
         return convertView;
     }
