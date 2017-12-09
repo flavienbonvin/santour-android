@@ -29,7 +29,7 @@ public class TrackEditActivity extends AppCompatActivity {
     private ViewPager viewPager;
 
 
-    public  static Track trackDetails;
+    public static Track trackDetails;
 
     private FragmentDetailsTrack fragmentDetailsTrack;
 

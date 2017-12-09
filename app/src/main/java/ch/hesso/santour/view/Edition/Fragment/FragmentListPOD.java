@@ -3,6 +3,7 @@ package ch.hesso.santour.view.Edition.Fragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +13,9 @@ import android.widget.ListView;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.PODListAdapter;
+import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
+import ch.hesso.santour.view.Edition.Activity.TrackEditPODActivity;
 
 public class FragmentListPOD extends Fragment {
 
@@ -41,12 +44,19 @@ public class FragmentListPOD extends Fragment {
             //Open a new fragment once a POD is clicked
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    //A changer pour cast POI
+                    TrackEditPODActivity.podDetails = (Track) adapterView.getItemAtPosition(i);
+
+                    Intent intent = new Intent(rootView.getContext(), TrackEditPODActivity.class);
+                    startActivity(intent);
+                    /*
                     fragmentManager  = getFragmentManager();
                     fragment = new FragmentEditDetailsPOD();
                     FragmentTransaction transaction = fragmentManager.beginTransaction();
                     transaction.addToBackStack(null);
                     transaction.replace(R.id.edition_content, fragment).commit();
+                    */
                 }
             });
         }
