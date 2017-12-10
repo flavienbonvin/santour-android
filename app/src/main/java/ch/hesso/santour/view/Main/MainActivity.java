@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         fragmentManager = getFragmentManager();
