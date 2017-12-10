@@ -61,6 +61,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //On regarde quel item a été cliqué grâce à son id et on déclenche une action
+        switch (item.getItemId()) {
+
+            case R.id.navigation_setting:
+                fragmentManager = this.getFragmentManager();
+                fragment = new SettingsFragment();
+
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.main_container, fragment).commit();
+                setTitle("Settings");
+                return true;
+            case android.R.id.home:
+                handleNavigation();
+                return true;
+        }
+        return false;
+
+    }
+
 
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
