@@ -28,6 +28,7 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.main_menu_fragment, container, false);
 
+
         //button create track
         Button btnCreateTrack = rootView.findViewById(R.id.menu_button_createTrack);
         btnCreateTrack.setOnClickListener(new View.OnClickListener() {

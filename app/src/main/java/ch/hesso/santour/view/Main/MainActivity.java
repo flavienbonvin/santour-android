@@ -3,6 +3,7 @@ package ch.hesso.santour.view.Main;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -18,6 +19,7 @@ import ch.hesso.santour.business.PermissionManagement;
 import ch.hesso.santour.business.TrackingManagement;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Fragment.FragmentListTracks;
+import ch.hesso.santour.view.Tracking.Activity.TrackActivity;
 import ch.hesso.santour.view.Tracking.Fragment.FragmentNewTrack;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,15 +32,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private String[] drawerItemsList;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        menu.clear();
-        inflater.inflate(R.menu.navigation_settings, menu);
-
-        return super.onCreateOptionsMenu(menu);
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,37 +51,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //menu fragment
         fragmentManager = getFragmentManager();
-        fragment = new MenuFragment();
+        fragment = new FragmentListTracks();
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.main_container, fragment).commit();
-        setTitle("Menu");
+        setTitle("List of trackss");
 
         //Navigation Listener
         navigationView.setNavigationItemSelectedListener(this);
-
-
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        //On regarde quel item a été cliqué grâce à son id et on déclenche une action
-        switch (item.getItemId()) {
-
-            case R.id.navigation_setting:
-                fragmentManager = this.getFragmentManager();
-                fragment = new SettingsFragment();
-
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.addToBackStack(null);
-                transaction.replace(R.id.main_container, fragment).commit();
-                setTitle("Settings");
-                return true;
-            case android.R.id.home:
-                handleNavigation();
-                return true;
-        }
-        return false;
-
     }
 
 
@@ -105,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 transaction.replace(R.id.main_container, fragment).commit();
                 setTitle("Create a track");
                 handleNavigation();
+                track = new Track();
                 return true;
             case R.id.main_navigation_item2:
                 fragment = new FragmentListTracks();
@@ -113,7 +84,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 setTitle("List of tracks");
                 handleNavigation();
                 return true;
-
+            case R.id.main_navigation_item3:
+                fragment = new SettingsFragment();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.main_container, fragment).commit();
+                setTitle("Settings");
+                handleNavigation();
+                return true;
         }
         return false;
 

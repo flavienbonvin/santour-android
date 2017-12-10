@@ -37,7 +37,6 @@ public class TrackingManagement {
     public static void stopTracking(Activity activity){
         List<Position> positionList = locationManagement.stopTracking(activity);
         MainActivity.track.setPositions(positionList);
-        TrackDB.add(MainActivity.track);
     }
 
     public static void addPOD(Activity activity){

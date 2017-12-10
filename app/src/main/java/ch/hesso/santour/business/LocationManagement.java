@@ -3,7 +3,9 @@ package ch.hesso.santour.business;
 import android.app.Activity;
 import android.graphics.Color;
 import android.location.Location;
+import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -12,6 +14,7 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.ArrayList;
@@ -70,26 +73,42 @@ public class LocationManagement {
      * @param activity
      * @param callback
      */
-    public static void getCurrentPosition(Activity activity, final DBCallback callback){
-        FusedLocationProviderClient fusedTemp = LocationServices.getFusedLocationProviderClient(activity);
+    public static void getLastKnownPosition(final Activity activity, final DBCallback callback){
+        final FusedLocationProviderClient fusedTemp = LocationServices.getFusedLocationProviderClient(activity);
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setInterval(0).setFastestInterval(0).setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         PermissionManagement.checkMandatoryPermission(activity);
         fusedTemp.flushLocations();
-        fusedTemp.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+
+        fusedTemp.requestLocationUpdates(locationRequest, null).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
-            public void onSuccess(Location location) {
-            if (location != null) {
-                Position position = new Position();
+            public void onSuccess(Void aVoid) {
 
-                position.setAltitude(location.getAltitude());
-                position.setLatitude(location.getLatitude());
-                position.setLongitude(location.getLongitude());
-                position.setTime(System.currentTimeMillis() / 1000);
+                PermissionManagement.checkMandatoryPermission(activity);
+                fusedTemp.getLastLocation()
+                .addOnSuccessListener(new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        Toast.makeText(activity, "Location updated", Toast.LENGTH_SHORT).show();
 
-                callback.resolve(position);
-            }
+                        if (location != null) {
+                            Position position = new Position();
+
+                            position.setAltitude(location.getAltitude());
+                            position.setLatitude(location.getLatitude());
+                            position.setLongitude(location.getLongitude());
+                            position.setTime(System.currentTimeMillis() / 1000);
+                            callback.resolve(position);
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(activity, "Porblem with the location update", Toast.LENGTH_SHORT).show();
+                        Log.e(this.getClass().getCanonicalName(), e.getMessage());
+                    }
+                });
             }
         });
     }

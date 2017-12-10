@@ -31,7 +31,7 @@ import ch.hesso.santour.model.Position;
 public class FragmentAddPOD extends Fragment {
 
     private Button nextButton;
-    private String imageEncoded = "";
+    private String imageName = "";
 
     private FragmentManager fragmentManager;
     private Fragment fragment;
@@ -81,12 +81,12 @@ public class FragmentAddPOD extends Fragment {
 
                 //Go to the category choice ince all the fileds are completed
                 //TODO show the unfilled filed with a red line (error below the textedit)
-                if (!podName.equals("") && !podDesc.equals("") && !imageEncoded.equals("")) {
+                if(!podName.equals("") && !podDesc.equals("")  && !imageName.equals("")){
                     Bundle bundle = new Bundle();
                     POD pod = new POD();
                     pod.setName(podName);
                     pod.setDescription(podDesc);
-                    pod.setPicture(imageEncoded);
+                    pod.setPicture(imageName);
                     pod.setPosition(pos);
 
                     bundle.putSerializable("pod", pod);
@@ -111,7 +111,7 @@ public class FragmentAddPOD extends Fragment {
             }
         });
 
-        LocationManagement.getCurrentPosition(getActivity(), new DBCallback() {
+        LocationManagement.getLastKnownPosition(getActivity(), new DBCallback() {
             @Override
             public void resolve(Object o) {
                 pos = (Position) o;
@@ -131,12 +131,9 @@ public class FragmentAddPOD extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PictureManagement.REQUEST_IMAGE_CAPTURE) {
             Bundle extras = data.getExtras();
-            String imageUrl = extras.getString("imageString");
-
-            Log.d("maxDebug", "url :" + imageUrl);
-            ((ImageView) rootView.findViewById(R.id.track_add_pod_picture_view)).setImageBitmap(BitmapFactory.decodeFile(imageUrl));
-
-
+            imageName = extras.getString("imageName");
+            Bitmap loaded = BitmapFactory.decodeFile(PictureManagement.localStoragePath+imageName);
+            ((ImageView) rootView.findViewById(R.id.track_add_pod_picture_view)).setImageBitmap(PictureManagement.rotatePicture(loaded));
         }
     }
 }

@@ -5,12 +5,9 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.location.LocationManager;
-import android.media.Image;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,22 +21,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import ch.hesso.santour.R;
-import ch.hesso.santour.TestActivity;
 import ch.hesso.santour.business.LocationManagement;
 import ch.hesso.santour.business.PictureManagement;
-import ch.hesso.santour.business.TrackingManagement;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.POI;
 import ch.hesso.santour.model.Position;
-
-import static android.app.Activity.RESULT_OK;
 
 public class FragmentAddPOI extends Fragment {
     private static final int SELECT_PICTURE = 1;
 
     private Position position;
 
-    private String imageEncoded = "";
+    private String imageName = "";
+    private View rootView;
 
     public FragmentAddPOI() {
         // Required empty public constructor
@@ -66,7 +60,7 @@ public class FragmentAddPOI extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.tracking_fragment_recording_add_poi, container, false);
+        rootView = inflater.inflate(R.layout.tracking_fragment_recording_add_poi, container, false);
         setHasOptionsMenu(true);
 
         final ImageButton imageButton = (ImageButton) rootView.findViewById(R.id.track_add_poi_add_picture);
@@ -90,11 +84,13 @@ public class FragmentAddPOI extends Fragment {
 
                 //Go to the category choice ince all the fileds are completed
                 //TODO show the unfilled filed with a red line (error below the textedit)
-                if (!poiName.equals("") && !poiDesc.equals("") && !imageEncoded.equals("")) {
+                if(!poiName.equals("") && !poiDesc.equals("")  && !imageName.equals("")){
+                //Go to the category choice ince all the fileds are completed
+                //TODO show the unfilled filed with a red line (error below the textedit)
                     POI poi = new POI();
                     poi.setName(poiName);
                     poi.setDescription(poiDesc);
-                    poi.setPicture(imageEncoded);
+                    poi.setPicture(imageName);
                     poi.setPosition(position);
 
                     Bundle bundle = new Bundle();
@@ -111,7 +107,7 @@ public class FragmentAddPOI extends Fragment {
             }
         });
 
-        LocationManagement.getCurrentPosition(getActivity(), new DBCallback() {
+        LocationManagement.getLastKnownPosition(getActivity(), new DBCallback() {
             @Override
             public void resolve(Object o) {
                 position = (Position) o;
@@ -131,8 +127,10 @@ public class FragmentAddPOI extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PictureManagement.REQUEST_IMAGE_CAPTURE) {
             Bundle extras = data.getExtras();
-            imageEncoded = extras.getString("imageString");
-            ((ImageView) getActivity().findViewById(R.id.track_add_poi_picture_view)).setImageBitmap(PictureManagement.decodeBitmapBase64(imageEncoded));
+            imageName = extras.getString("imageName");
+            Log.d("test", imageName);
+            Bitmap loaded = BitmapFactory.decodeFile(PictureManagement.localStoragePath+imageName);
+            ((ImageView) rootView.findViewById(R.id.track_add_poi_picture_view)).setImageBitmap(PictureManagement.rotatePicture(loaded));
         }
     }
 }

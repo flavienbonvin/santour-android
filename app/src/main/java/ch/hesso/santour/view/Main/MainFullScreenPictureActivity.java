@@ -1,6 +1,11 @@
 package ch.hesso.santour.view.Main;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
@@ -94,7 +99,10 @@ public class MainFullScreenPictureActivity extends AppCompatActivity {
         });
 
         ImageView imageView = (ImageView) findViewById(R.id.image_full_screen);
-        imageView.setImageBitmap(PictureManagement.decodeBitmapBase64(getIntent().getStringExtra("image")));
+
+        Bitmap loaded = BitmapFactory.decodeFile(PictureManagement.localStoragePath+getIntent().getStringExtra("image"));
+
+        imageView.setImageBitmap(PictureManagement.rotatePicture(loaded));
     }
 
     @Override
