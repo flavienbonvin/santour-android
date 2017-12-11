@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.PODListAdapter;
+import ch.hesso.santour.model.POD;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
 import ch.hesso.santour.view.Edition.Activity.TrackEditPODActivity;
@@ -46,7 +47,7 @@ public class FragmentListPOD extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     //A changer pour cast POI
-                    TrackEditPODActivity.podDetails = (Track) adapterView.getItemAtPosition(i);
+                    TrackEditPODActivity.podDetails = (POD) adapterView.getItemAtPosition(i);
 
                     Intent intent = new Intent(rootView.getContext(), TrackEditPODActivity.class);
                     startActivity(intent);

@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.SectionsPageAdapter;
 import ch.hesso.santour.db.TrackDB;
+import ch.hesso.santour.model.POD;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Fragment.FragmentEditDetailsPOD;
 import ch.hesso.santour.view.Edition.Fragment.FragmentEditPODListCategories;
@@ -21,7 +22,7 @@ public class TrackEditPODActivity extends AppCompatActivity {
     private SectionsPageAdapter sectionsPageAdapter;
     private ViewPager viewPager;
 
-    public static Track podDetails;
+    public static POD podDetails;
 
     private FragmentEditDetailsPOD fragmentEditDetailsPOD;
 
@@ -39,8 +40,8 @@ public class TrackEditPODActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.button_navigation_check:
-                fragmentEditDetailsPOD.updateFiledsToDB();
-                TrackDB.update(podDetails);
+//                fragmentEditDetailsPOD.updateFiledsToDB();
+//                TrackDB.update(podDetails);
                 this.finish();
                 return true;
         }

@@ -13,6 +13,8 @@ import android.widget.ListView;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.POIListAdapter;
+import ch.hesso.santour.model.POD;
+import ch.hesso.santour.model.POI;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
 import ch.hesso.santour.view.Edition.Activity.TrackEditPOIActivity;
@@ -49,7 +51,7 @@ public class FragmentListPOI extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     //A modifier pour POI
-                    TrackEditPOIActivity.poiDetails = (Track) adapterView.getItemAtPosition(i);
+                    TrackEditPOIActivity.poiDetails = (POI) adapterView.getItemAtPosition(i);
 
                     Intent intent = new Intent(rootView.getContext(), TrackEditPOIActivity.class);
                     startActivity(intent);

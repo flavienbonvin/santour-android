@@ -24,7 +24,7 @@ public class TrackEditPOIActivity extends AppCompatActivity {
     private SectionsPageAdapter sectionsPageAdapter;
     private ViewPager viewPager;
 
-    public static Track poiDetails;
+    public static POI poiDetails;
 
     private FragmentEditDetailsPOI fragmentEditDetailsPOI;
 
@@ -42,8 +42,8 @@ public class TrackEditPOIActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.button_navigation_check:
-                fragmentEditDetailsPOI.updateFiledsToDB();
-                TrackDB.update(poiDetails);
+//                fragmentEditDetailsPOI.updateFiledsToDB();
+//                TrackDB.update(poiDetails);
                 this.finish();
                 return true;
         }
