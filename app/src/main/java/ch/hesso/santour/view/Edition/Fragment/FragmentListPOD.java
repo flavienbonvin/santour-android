@@ -46,7 +46,7 @@ public class FragmentListPOD extends Fragment {
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    //A changer pour cast POI
+                    //A changer pour cast POD
                     TrackEditPODActivity.podDetails = (POD) adapterView.getItemAtPosition(i);
 
                     Intent intent = new Intent(rootView.getContext(), TrackEditPODActivity.class);
