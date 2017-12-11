@@ -54,11 +54,11 @@ public class TrackEditPOIActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.edition_activity_edit_poi);
+        sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
 
         fragmentEditDetailsPOI = new FragmentEditDetailsPOI();
 
-        setContentView(R.layout.edition_activity_edit_poi);
-        sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
 
         viewPager = findViewById(R.id.track_edit_container_poi);
         viewPager.setOffscreenPageLimit(2);

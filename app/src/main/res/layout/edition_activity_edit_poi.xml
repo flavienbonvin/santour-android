@@ -31,6 +31,6 @@
         android:id="@+id/track_edit_container_poi"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/edition_tabs"
+        android:layout_below="@id/edition_tabs_POI"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 </RelativeLayout>
