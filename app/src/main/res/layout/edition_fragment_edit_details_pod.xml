@@ -42,58 +42,38 @@
         app:layout_constraintTop_toBottomOf="@+id/edit_pod_textView_namePOD" />
 
     <TextView
-        android:id="@+id/edit_pod_textView_rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/pod_rating"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_pod_imageView_imagePOD" />
-
-    <TextView
         android:id="@+id/edit_pod_textView_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/pod_description"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_pod_textView_rating" />
-
-    <TextView
-        android:id="@+id/edit_pod_textView_descriptionContent"
-        android:layout_width="244dp"
-        android:layout_height="111dp"
-        android:layout_marginBottom="104dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edit_pod_textView_description" />
-
-    <RatingBar
-        android:id="@+id/edit_pod_ratingBar_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/edit_pod_textView_descriptionContent"
+        android:layout_marginTop="8dp"
+        android:text="@string/pod_description"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.642"
-        app:layout_constraintStart_toEndOf="@+id/edit_pod_textView_rating"
-        app:layout_constraintTop_toBottomOf="@+id/edit_pod_imageView_imagePOD" />
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_pod_imageView_imagePOD"
+        app:layout_constraintVertical_bias="0.197" />
+
+    <TextView
+        android:id="@+id/edit_pod_textView_descriptionContent"
+        android:layout_width="244dp"
+        android:layout_height="111dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.406"
+        app:layout_constraintStart_toEndOf="@+id/edit_pod_textView_description"
+        app:layout_constraintTop_toBottomOf="@+id/edit_pod_imageView_imagePOD"
+        app:layout_constraintVertical_bias="0.288"/>
+
 
 
 </android.support.constraint.ConstraintLayout>
