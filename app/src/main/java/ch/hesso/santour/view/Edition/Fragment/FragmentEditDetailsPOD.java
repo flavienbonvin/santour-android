@@ -21,7 +21,6 @@ public class FragmentEditDetailsPOD extends Fragment {
     private EditText editNamePOD;
     private ImageView editImagePOD;
     private TextView editDescriptionPOD;
-    private RatingBar editRatingPOD;
 
     public FragmentEditDetailsPOD() {
         // Required empty public constructor
@@ -47,17 +46,12 @@ public class FragmentEditDetailsPOD extends Fragment {
 
         editDescriptionPOD  = (TextView) rootView.findViewById(R.id.edit_pod_textView_descriptionContent);
         //editDescriptionPOD.setText(TrackEditPODActivity.podDetails.);
-
-        editRatingPOD  = (RatingBar) rootView.findViewById(R.id.edit_pod_ratingBar_rating);
-        //editDescriptionPOD.setText(TrackEditPODActivity.podDetails.);
-
     }
 
     public void updateFiledsToDB(){
         TrackEditPODActivity.podDetails.setName(editNamePOD.getText().toString());
         //TrackEditPODActivity.podDetails.setImage(editImagePOD.);
         //TrackEditPODActivity.podDetails.setDescription(editDescriptionPOD.getText().toString()));
-        //TrackEditPODActivity.podDetails.setRating(editRatingPOD.);
     }
 
 }
