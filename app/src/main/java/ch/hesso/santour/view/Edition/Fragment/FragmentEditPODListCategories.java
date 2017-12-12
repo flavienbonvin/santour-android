@@ -58,6 +58,7 @@ public class FragmentEditPODListCategories extends Fragment {
                         for (int j = 0; j < TrackEditPODActivity.podDetails.getCategoriesID().size(); j++) {
                             if (categories.get(i).getId().equals(TrackEditPODActivity.podDetails.getCategoriesID().get(j).getPodCatID())) {
                                 ratingTab[i] = TrackEditPODActivity.podDetails.getCategoriesID().get(j).getRate();
+                                
                             }
                         }
                     }
