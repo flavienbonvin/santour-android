@@ -37,7 +37,7 @@ public class TrackEditActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         menu.clear();
-        inflater.inflate(R.menu.navigation_check, menu);
+        inflater.inflate(R.menu.edition_track_navigation_bar_actions, menu);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -46,11 +46,15 @@ public class TrackEditActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.button_navigation_check:
+            case R.id.edition_action_bar_save:
                 fragmentDetailsTrack.updateFiledsToDB();
                 TrackDB.update(trackDetails);
                 this.finish();
-            return true;
+                return true;
+            case R.id.edition_action_bar_delete:
+
+                this.finish();
+                return true;
         }
         return false;
     }
