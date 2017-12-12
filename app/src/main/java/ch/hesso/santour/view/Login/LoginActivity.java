@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
 
             public void onClick(View v) {
 
-                AutoCompleteTextView emailView = findViewById(R.id.login_textView_username);
+                EditText emailView = findViewById(R.id.login_textView_username);
                 EditText passView = findViewById(R.id.login_textView_password);
 
                 auth.signInWithEmailAndPassword(emailView.getText().toString(), passView.getText().toString())
