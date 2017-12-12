@@ -23,21 +23,21 @@
             android:value="AIzaSyDpNPEhpXJTEZ10aIG9u38YRwNJ8oZBF6o" />
 
         <activity
-            android:name=".TestActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".view.Main.MainActivity"
-            android:screenOrientation="portrait">
-        </activity>
-        <activity
             android:name=".view.Login.LoginActivity"
-                android:screenOrientation="portrait">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity
+            android:name=".TestActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.Main.MainActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".view.Tracking.Activity.TrackActivity"
             android:label="@string/track"
@@ -58,6 +58,16 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_main_full_screen_picture"
             android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".view.Edition.Activity.TrackEditPOIActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".view.Edition.Activity.TrackEditPODActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -68,9 +78,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
-        <activity android:name=".view.Edition.Activity.TrackEditPOIActivity" />
-        <activity android:name=".view.Edition.Activity.TrackEditPODActivity"></activity>
     </application>
 
 </manifest>

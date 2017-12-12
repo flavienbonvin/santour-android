@@ -90,8 +90,6 @@ public class LocationManagement {
                 .addOnSuccessListener(new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
-                        Toast.makeText(activity, "Location updated", Toast.LENGTH_SHORT).show();
-
                         if (location != null) {
                             Position position = new Position();
 

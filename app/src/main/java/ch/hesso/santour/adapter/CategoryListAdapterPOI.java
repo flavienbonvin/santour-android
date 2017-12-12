@@ -30,6 +30,11 @@ public class CategoryListAdapterPOI extends BaseAdapter {
         layoutInflater = LayoutInflater.from(aContext);
         isCheckedTab = new boolean[listData.size()];
     }
+    public CategoryListAdapterPOI(Context aContext, ArrayList<CategoryPOI> listData, boolean[] isCheckedTab) {
+        this.listData = listData;
+        layoutInflater = LayoutInflater.from(aContext);
+        this.isCheckedTab = isCheckedTab;
+    }
 
     @Override
     public int getCount() {
@@ -66,6 +71,9 @@ public class CategoryListAdapterPOI extends BaseAdapter {
                 convertView = layoutInflater.inflate(R.layout.item_list_poi_category, null);
                 holder = new CategoryListAdapterPOI.ViewHolder();
                 holder.checkBox = convertView.findViewById(R.id.poi_list_label);
+                if(isCheckedTab[position] == true){
+                    holder.checkBox.setChecked(true);
+                }
                 holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

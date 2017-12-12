@@ -43,7 +43,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
     private ImageButton trackPlayButton;
     private ImageButton trackStopButton;
     private CardView cardViewRecord;
-
+    
     //Add POI / POD button
     private ImageButton addPOIButton;
     private ImageButton addPODButton;

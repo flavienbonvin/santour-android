@@ -5,13 +5,23 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.CategoryListAdapter;
+import ch.hesso.santour.db.CategoryPODDB;
+import ch.hesso.santour.db.DBCallback;
+import ch.hesso.santour.model.CategoryPOD;
+import ch.hesso.santour.model.Track;
+import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
+import ch.hesso.santour.view.Edition.Activity.TrackEditPODActivity;
+import ch.hesso.santour.view.Tracking.Fragment.Recording.FragmentCategoriesPOD;
 
 
 public class FragmentEditPODListCategories extends Fragment {
@@ -35,13 +45,28 @@ public class FragmentEditPODListCategories extends Fragment {
 
         final ListView list = rootView.findViewById(R.id.list_view_pod_categories_list);
 
-        //A changer pour avoir les catégories du poi selectionné
-        /*
-        if (TrackEditPODActivity.podDetails.getPoid().size() != 0) {
-            list.setAdapter(adapter = new CategoryListAdapter(FragmentEditPODListCategories.this.getContext(), TrackEditPODActivity.podDetails.getPoid()));
+        CategoryPODDB.getAll(new DBCallback() {
+            @Override
+            public void resolve(Object o) {
+                ArrayList<CategoryPOD> categories = (ArrayList<CategoryPOD>) o;
+                ListView list = rootView.findViewById(R.id.list_view_pod_categories_list);
 
-        }
-        */
+                int[] ratingTab = new int[categories.size()];
+
+                if (TrackEditPODActivity.podDetails.getCategoriesID() != null) {
+                    for (int i = 0; i < categories.size(); i++) {
+                        for (int j = 0; j < TrackEditPODActivity.podDetails.getCategoriesID().size(); j++) {
+                            if (categories.get(i).getId().equals(TrackEditPODActivity.podDetails.getCategoriesID().get(j).getPodCatID())) {
+                                ratingTab[i] = TrackEditPODActivity.podDetails.getCategoriesID().get(j).getRate();
+                            }
+                        }
+                    }
+                }
+
+                list.setAdapter(new CategoryListAdapter(rootView.getContext(), categories, ratingTab));
+
+            }
+        });
         return rootView;
     }
 }

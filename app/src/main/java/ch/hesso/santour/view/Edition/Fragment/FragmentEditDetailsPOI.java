@@ -45,13 +45,13 @@ public class FragmentEditDetailsPOI extends Fragment {
         //editImagePOI.setImageBitmap(TrackEditPOIActivity.poiDetails.);
 
         editDescriptionPOI  = (TextView) rootView.findViewById(R.id.edit_poi_textView_descriptionContent);
-        //editDescriptionPOI.setText(TrackEditPOIActivity.poiDetails.);
+        editDescriptionPOI.setText(TrackEditPOIActivity.poiDetails.getDescription());
     }
 
     public void updateFiledsToDB(){
         TrackEditPOIActivity.poiDetails.setName(editNamePOI.getText().toString());
+        TrackEditPOIActivity.poiDetails.setDescription(editDescriptionPOI.getText().toString());
         //TrackEditPOIActivity.poiDetails.setImage(editImagePOI.);
-        //TrackEditPOIActivity.poiDetails.setDescription(editDescriptionPOI.getText().toString()));
     }
 
 }

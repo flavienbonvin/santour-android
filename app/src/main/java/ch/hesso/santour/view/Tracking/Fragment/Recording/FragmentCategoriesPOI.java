@@ -62,7 +62,6 @@ public class FragmentCategoriesPOI extends Fragment {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.tracking_fragment_recording_list_categories_poi_rating, container, false);
         setHasOptionsMenu(true);
-        setHasOptionsMenu(true);
 
         poi = (POI) this.getArguments().getSerializable("poi");
 

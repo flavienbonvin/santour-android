@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
     tools:context="ch.hesso.santour.view.Edition.Fragment.FragmentEditDetailsPOI"
     android:background="@color/colorWhite">
 
@@ -51,28 +53,24 @@
         android:text="@string/pod_description"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintEnd_toStartOf="@+id/edit_poi_textView_descriptionContent"
+        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_poi_imageView_imagePOI"
-        app:layout_constraintVertical_bias="0.197" />
+        app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
+    <EditText
         android:id="@+id/edit_poi_textView_descriptionContent"
-        android:layout_width="244dp"
-        android:layout_height="111dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text=""
+        android:ems="10"
+        android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.406"
-        app:layout_constraintStart_toEndOf="@+id/edit_poi_textView_description"
-        app:layout_constraintTop_toBottomOf="@+id/edit_poi_imageView_imagePOI"
-        app:layout_constraintVertical_bias="0.288" />
-
+        app:layout_constraintTop_toBottomOf="@+id/edit_poi_imageView_imagePOI" />
 
 
 </android.support.constraint.ConstraintLayout>
