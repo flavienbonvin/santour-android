@@ -27,6 +27,7 @@ import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.firebase.auth.FirebaseAuth;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.business.TrackingManagement;
@@ -136,6 +137,9 @@ public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
         SeekBar seekBarDifficulty = (SeekBar)this.getActivity().findViewById(R.id.edit_track_seekBar_difficulty);
         CheckBox checkBoxAccessibility = (CheckBox)this.getActivity().findViewById(R.id.edit_track_checkBox_accessForEveryone);
         EditText editTextPauses = (EditText)this.getActivity().findViewById(R.id.edit_track_editText_pauseDuration);
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        MainActivity.track.setIdUser(auth.getCurrentUser().getUid());
 
         MainActivity.track.setDifficulty(seekBarDifficulty.getProgress());
         MainActivity.track.setForEveryone(checkBoxAccessibility.isChecked());
