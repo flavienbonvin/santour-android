@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -70,6 +71,8 @@ public class CategoryListAdapterPOI extends BaseAdapter {
             {
                 convertView = layoutInflater.inflate(R.layout.item_list_poi_category, null);
                 holder = new CategoryListAdapterPOI.ViewHolder();
+                holder.label = convertView.findViewById(R.id.poi_category_label);
+                holder.label.setText(listData.get(position).getName());
                 holder.checkBox = convertView.findViewById(R.id.poi_category_checkbox);
                 if(isCheckedTab[position] == true){
                     holder.checkBox.setChecked(true);
@@ -95,6 +98,7 @@ public class CategoryListAdapterPOI extends BaseAdapter {
 
     static class ViewHolder
     {
+        TextView label;
         CheckBox checkBox;
     }
 }

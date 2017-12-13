@@ -12,6 +12,8 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 
 import ch.hesso.santour.R;
@@ -35,7 +37,7 @@ public class FragmentListTracks extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.edition_fragment_list_tracks, container, false);
-        TrackDB.getAll(new DBCallback() {
+        TrackDB.getAllByIdUser(FirebaseAuth.getInstance().getCurrentUser().getUid(),new DBCallback() {
             @Override
             public void resolve(Object o) {
                 ArrayList<Track> listTrack = (ArrayList<Track>) o;
