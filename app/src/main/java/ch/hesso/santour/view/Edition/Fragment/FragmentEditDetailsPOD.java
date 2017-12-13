@@ -1,6 +1,7 @@
 package ch.hesso.santour.view.Edition.Fragment;
 
 import android.app.Fragment;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,10 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import ch.hesso.santour.R;
+import ch.hesso.santour.business.PictureFirebaseManagement;
+import ch.hesso.santour.business.PictureManagement;
+import ch.hesso.santour.db.DBCallback;
+import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
 import ch.hesso.santour.view.Edition.Activity.TrackEditPODActivity;
 
 public class FragmentEditDetailsPOD extends Fragment {
@@ -42,16 +47,12 @@ public class FragmentEditDetailsPOD extends Fragment {
         editNamePOD.setText(TrackEditPODActivity.podDetails.getName());
 
         editImagePOD  = (ImageView) rootView.findViewById(R.id.edit_pod_imageView_imagePOD);
-        //editImagePOD.setImageBitmap(TrackEditPODActivity.podDetails.);
+        PictureFirebaseManagement.downloadFile(TrackEditPODActivity.podDetails.getPicture());
+        editImagePOD.setImageBitmap(BitmapFactory.decodeFile(PictureManagement.localStoragePath+TrackEditPODActivity.podDetails.getPicture()));
+
 
         editDescriptionPOD  = (TextView) rootView.findViewById(R.id.edit_pod_textView_descriptionContent);
-        //editDescriptionPOD.setText(TrackEditPODActivity.podDetails.);
-    }
-
-    public void updateFiledsToDB(){
-        TrackEditPODActivity.podDetails.setName(editNamePOD.getText().toString());
-        //TrackEditPODActivity.podDetails.setImage(editImagePOD.);
-        //TrackEditPODActivity.podDetails.setDescription(editDescriptionPOD.getText().toString()));
+        editDescriptionPOD.setText(TrackEditPODActivity.podDetails.getDescription());
     }
 
 }

@@ -47,17 +47,11 @@ public class FragmentListPOD extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     //A changer pour cast POD
-                    TrackEditPODActivity.podDetails = (POD) adapterView.getItemAtPosition(i);
-
+                    //TrackEditPODActivity.podDetails = (POD) adapterView.getItemAtPosition(i);
                     Intent intent = new Intent(rootView.getContext(), TrackEditPODActivity.class);
+                    intent.putExtra("position",i);
                     startActivity(intent);
-                    /*
-                    fragmentManager  = getFragmentManager();
-                    fragment = new FragmentEditDetailsPOD();
-                    FragmentTransaction transaction = fragmentManager.beginTransaction();
-                    transaction.addToBackStack(null);
-                    transaction.replace(R.id.edition_content, fragment).commit();
-                    */
+
                 }
             });
         }

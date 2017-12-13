@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.SectionsPageAdapter;
+import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Fragment.FragmentDetailsTrack;
@@ -52,8 +53,12 @@ public class TrackEditActivity extends AppCompatActivity {
                 this.finish();
                 return true;
             case R.id.edition_action_bar_delete:
-
-                this.finish();
+                TrackDB.delete(trackDetails.getId(), new DBCallback() {
+                    @Override
+                    public void resolve(Object o) {
+                        TrackEditActivity.this.finish();
+                    }
+                });
                 return true;
         }
         return false;

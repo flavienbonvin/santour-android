@@ -7,9 +7,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.ListView;
 
 import ch.hesso.santour.R;
+import ch.hesso.santour.adapter.CategoryListAdapter;
 import ch.hesso.santour.adapter.SectionsPageAdapter;
+import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.POD;
 import ch.hesso.santour.model.Track;
@@ -23,6 +27,7 @@ public class TrackEditPODActivity extends AppCompatActivity {
     private ViewPager viewPager;
 
     public static POD podDetails;
+    private static int positionPOD;
 
     private FragmentEditDetailsPOD fragmentEditDetailsPOD;
 
@@ -40,22 +45,42 @@ public class TrackEditPODActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.edition_action_bar_save:
-//                fragmentEditDetailsPOD.updateFiledsToDB();
-//                TrackDB.update(podDetails);
+                savePOD();
                 this.finish();
                 return true;
             case R.id.edition_action_bar_delete:
-
-                this.finish();
+                TrackEditActivity.trackDetails.getPods().remove(positionPOD);
+                TrackDB.update(TrackEditActivity.trackDetails, new DBCallback() {
+                    @Override
+                    public void resolve(Object o) {
+                        TrackEditPODActivity.this.finish();
+                    }
+                });
                 return true;
         }
         return false;
+    }
+
+    private void savePOD() {
+
+        EditText editNamePOD  = (EditText) findViewById(R.id.edit_pod_textView_namePOD);
+        EditText editDescrPOD = (EditText) findViewById(R.id.edit_pod_textView_descriptionContent);
+        TrackEditActivity.trackDetails.getPods().get(positionPOD).setName(editNamePOD.getText().toString());
+        TrackEditActivity.trackDetails.getPods().get(positionPOD).setDescription(editDescrPOD.getText().toString());
+
+        ListView list = findViewById(R.id.list_view_pod_categories_list);
+        CategoryListAdapter adapter = (CategoryListAdapter)list.getAdapter();
+        TrackEditActivity.trackDetails.getPods().get(positionPOD).setCategoriesID(adapter.getAllItems());
+
     }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        positionPOD = getIntent().getIntExtra("position", -1);
+        podDetails = TrackEditActivity.trackDetails.getPods().get(positionPOD);
 
         fragmentEditDetailsPOD = new FragmentEditDetailsPOD();
 

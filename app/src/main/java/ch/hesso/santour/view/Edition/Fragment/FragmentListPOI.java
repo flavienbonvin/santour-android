@@ -51,18 +51,9 @@ public class FragmentListPOI extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     //A modifier pour POI
-                    TrackEditPOIActivity.poiDetails = (POI) adapterView.getItemAtPosition(i);
-
                     Intent intent = new Intent(rootView.getContext(), TrackEditPOIActivity.class);
+                    intent.putExtra("position",i);
                     startActivity(intent);
-
-                    /*
-                    fragmentManager = getFragmentManager();
-                    fragment = new FragmentEditDetailsPOI();
-                    FragmentTransaction transaction = fragmentManager.beginTransaction();
-                    transaction.addToBackStack(null);
-                    transaction.replace(R.id.edition_content, fragment).commit();
-                    */
                 }
             });
         }

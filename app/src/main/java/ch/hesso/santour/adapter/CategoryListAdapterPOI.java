@@ -70,7 +70,7 @@ public class CategoryListAdapterPOI extends BaseAdapter {
             {
                 convertView = layoutInflater.inflate(R.layout.item_list_poi_category, null);
                 holder = new CategoryListAdapterPOI.ViewHolder();
-                holder.checkBox = convertView.findViewById(R.id.poi_list_label);
+                holder.checkBox = convertView.findViewById(R.id.poi_category_checkbox);
                 if(isCheckedTab[position] == true){
                     holder.checkBox.setChecked(true);
                 }

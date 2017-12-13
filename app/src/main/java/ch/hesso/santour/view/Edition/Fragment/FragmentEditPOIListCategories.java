@@ -69,13 +69,6 @@ public class FragmentEditPOIListCategories extends Fragment {
             }
         });
 
-        //A changer pour avoir les catégories du poi selectionné
-        /*
-        if (TrackEditPOIActivity.poiDetails.getPois().size() != 0) {
-            list.setAdapter(adapter = new CategoryListAdapterPOI(FragmentEditPOIListCategories.this.getContext(), TrackEditPOIActivity.poiDetails.getPois()));
-
-        }
-        */
         return rootView;
 
     }

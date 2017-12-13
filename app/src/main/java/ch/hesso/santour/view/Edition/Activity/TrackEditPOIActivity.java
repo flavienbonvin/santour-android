@@ -9,9 +9,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.ListView;
 
 import ch.hesso.santour.R;
+import ch.hesso.santour.adapter.CategoryListAdapter;
+import ch.hesso.santour.adapter.CategoryListAdapterPOI;
 import ch.hesso.santour.adapter.SectionsPageAdapter;
+import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.POI;
 import ch.hesso.santour.model.Track;
@@ -25,6 +30,7 @@ public class TrackEditPOIActivity extends AppCompatActivity {
     private ViewPager viewPager;
 
     public static POI poiDetails;
+    private int positionPOI;
 
     private FragmentEditDetailsPOI fragmentEditDetailsPOI;
 
@@ -42,22 +48,41 @@ public class TrackEditPOIActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.edition_action_bar_save:
-//                fragmentEditDetailsPOI.updateFiledsToDB();
-//                TrackDB.update(poiDetails);
+                savePOI();
                 this.finish();
                 return true;
             case R.id.edition_action_bar_delete:
-
-                this.finish();
+                TrackEditActivity.trackDetails.getPois().remove(positionPOI);
+                TrackDB.update(TrackEditActivity.trackDetails, new DBCallback() {
+                    @Override
+                    public void resolve(Object o) {
+                        TrackEditPOIActivity.this.finish();
+                    }
+                });
                 return true;
         }
         return false;
+    }
+
+    private void savePOI() {
+        EditText editNamePOI  = (EditText) findViewById(R.id.edit_track_textView_namePOI);
+        EditText editDescrPOI = (EditText) findViewById(R.id.edit_poi_textView_descriptionContent);
+        TrackEditActivity.trackDetails.getPois().get(positionPOI).setName(editNamePOI.getText().toString());
+        TrackEditActivity.trackDetails.getPois().get(positionPOI).setDescription(editDescrPOI.getText().toString());
+
+        ListView list = findViewById(R.id.list_view_poi_categories_list);
+        CategoryListAdapterPOI adapter = (CategoryListAdapterPOI) list.getAdapter();
+        TrackEditActivity.trackDetails.getPois().get(positionPOI).setCategoriesID(adapter.getAll());
     }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        positionPOI = getIntent().getIntExtra("position", -1);
+        poiDetails = TrackEditActivity.trackDetails.getPois().get(positionPOI);
+
         setContentView(R.layout.edition_activity_edit_poi);
         sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
 

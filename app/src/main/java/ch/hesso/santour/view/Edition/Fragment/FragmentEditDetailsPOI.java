@@ -1,6 +1,7 @@
 package ch.hesso.santour.view.Edition.Fragment;
 
 import android.app.Fragment;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import ch.hesso.santour.R;
+import ch.hesso.santour.business.PictureFirebaseManagement;
+import ch.hesso.santour.business.PictureManagement;
+import ch.hesso.santour.view.Edition.Activity.TrackEditPODActivity;
 import ch.hesso.santour.view.Edition.Activity.TrackEditPOIActivity;
 
 public class FragmentEditDetailsPOI extends Fragment {
@@ -42,16 +46,12 @@ public class FragmentEditDetailsPOI extends Fragment {
         editNamePOI.setText(TrackEditPOIActivity.poiDetails.getName());
 
         editImagePOI  = (ImageView) rootView.findViewById(R.id.edit_poi_imageView_imagePOI);
-        //editImagePOI.setImageBitmap(TrackEditPOIActivity.poiDetails.);
+        PictureFirebaseManagement.downloadFile(TrackEditPOIActivity.poiDetails.getPicture());
+        editImagePOI.setImageBitmap(BitmapFactory.decodeFile(PictureManagement.localStoragePath+TrackEditPOIActivity.poiDetails.getPicture()));
 
         editDescriptionPOI  = (TextView) rootView.findViewById(R.id.edit_poi_textView_descriptionContent);
         editDescriptionPOI.setText(TrackEditPOIActivity.poiDetails.getDescription());
     }
 
-    public void updateFiledsToDB(){
-        TrackEditPOIActivity.poiDetails.setName(editNamePOI.getText().toString());
-        TrackEditPOIActivity.poiDetails.setDescription(editDescriptionPOI.getText().toString());
-        //TrackEditPOIActivity.poiDetails.setImage(editImagePOI.);
-    }
 
 }

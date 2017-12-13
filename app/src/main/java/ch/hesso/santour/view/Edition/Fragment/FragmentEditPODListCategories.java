@@ -28,10 +28,6 @@ public class FragmentEditPODListCategories extends Fragment {
 
     private View rootView;
 
-    private CategoryListAdapter adapter;
-
-    private FragmentManager fragmentManager;
-    private Fragment fragment;
 
     public FragmentEditPODListCategories() {
         // Required empty public constructor
@@ -44,6 +40,7 @@ public class FragmentEditPODListCategories extends Fragment {
         rootView = inflater.inflate(R.layout.edition_fragment_pod_list_categories, container, false);
 
         final ListView list = rootView.findViewById(R.id.list_view_pod_categories_list);
+
 
         CategoryPODDB.getAll(new DBCallback() {
             @Override

@@ -7,6 +7,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -18,10 +20,19 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 import ch.hesso.santour.db.DBCallback;
+import ch.hesso.santour.view.Main.MainActivity;
 
 /**
  * Created by maxim on 07.12.2017.
@@ -103,4 +114,52 @@ public class PictureFirebaseManagement extends AsyncTask<Context, Void, Void> {
         });
     }
 
+
+    public static void downloadFile(String path){
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
+        String id = path.split("/")[0];
+        File newFolder = new File(PictureManagement.localStoragePath+id);
+
+        if(!newFolder.exists()) {
+
+            newFolder.mkdirs();
+        }
+
+        File newFile = new File(PictureManagement.localStoragePath+ path);
+
+
+        if(newFile.exists()){
+            return;
+        }
+        try {
+            newFile.createNewFile();
+            URL u = new URL("https://firebasestorage.googleapis.com/v0/b/santour-c0a51.appspot.com/o/"+path.replace("/","%2F")+"?alt=media");
+
+            URLConnection conn = u.openConnection();
+            int contentLength = conn.getContentLength();
+
+            DataInputStream stream = new DataInputStream(u.openStream());
+
+            byte[] buffer = new byte[contentLength];
+
+            stream.readFully(buffer);
+            stream.close();
+
+            DataOutputStream fos = new DataOutputStream(new FileOutputStream(newFile));
+            fos.write(buffer);
+            fos.flush();
+            fos.close();
+
+            Log.d("MaxDebug", "file wrotten to "+newFile.getAbsolutePath());
+
+        } catch (MalformedURLException mue) {
+            Log.e("SYNC getUpdate", "malformed url error", mue);
+        } catch (IOException ioe) {
+            Log.e("SYNC getUpdate", "io error", ioe);
+        } catch (SecurityException se) {
+            Log.e("SYNC getUpdate", "security error", se);
+        }
+    }
 }
