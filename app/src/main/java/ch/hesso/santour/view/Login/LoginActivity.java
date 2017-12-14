@@ -62,26 +62,30 @@ public class LoginActivity extends AppCompatActivity {
                 EditText emailView = findViewById(R.id.login_textView_username);
                 EditText passView = findViewById(R.id.login_textView_password);
 
-                auth.signInWithEmailAndPassword(emailView.getText().toString(), passView.getText().toString())
-                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
-                        //progressBar.setVisibility(View.GONE);
-                        if (!task.isSuccessful()) {
-                            // there was an error
-                            Toast.makeText(LoginActivity.this, "auth failed", Toast.LENGTH_LONG).show();
+                if (!emailView.getText().toString().equals("") && !passView.getText().toString().equals("")) {
 
-                        } else {
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
-                        }
-                    }
-                });
+                    auth.signInWithEmailAndPassword(emailView.getText().toString(), passView.getText().toString())
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    // If sign in fails, display a message to the user. If sign in succeeds
+                                    // the auth state listener will be notified and logic to handle the
+                                    // signed in user can be handled in the listener.
+                                    //progressBar.setVisibility(View.GONE);
+                                    if (!task.isSuccessful()) {
+                                        // there was an error
+                                        Toast.makeText(LoginActivity.this, "auth failed", Toast.LENGTH_LONG).show();
 
+                                    } else {
+                                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }
+                            });
+                }else {
+                    Toast.makeText(LoginActivity.this, "Fill all the fileds!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

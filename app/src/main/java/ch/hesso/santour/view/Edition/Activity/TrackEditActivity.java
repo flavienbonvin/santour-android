@@ -31,6 +31,9 @@ public class TrackEditActivity extends AppCompatActivity {
 
 
     public static Track trackDetails;
+    public static FragmentListPOI fragmentListPOI;
+    public static FragmentListPOD fragmentListPOD;
+
 
     private FragmentDetailsTrack fragmentDetailsTrack;
 
@@ -89,8 +92,8 @@ public class TrackEditActivity extends AppCompatActivity {
     {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getFragmentManager());
         adapter.addFragment(fragmentDetailsTrack, getString(R.string.edition_details_track));
-        adapter.addFragment(new FragmentListPOI(), getString(R.string.edition_details_list_poi));
-        adapter.addFragment(new FragmentListPOD(), getString(R.string.edition_details_list_pod));
+        adapter.addFragment(fragmentListPOI = new FragmentListPOI(), getString(R.string.edition_details_list_poi));
+        adapter.addFragment(fragmentListPOD = new FragmentListPOD(), getString(R.string.edition_details_list_pod));
         viewPager.setAdapter(adapter);
     }
 }

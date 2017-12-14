@@ -12,14 +12,6 @@
         android:weightSum="2"
         android:orientation="vertical">
 
-
-        <EditText
-            android:id="@+id/input_edit_search_poi"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/searchPOI"
-            android:inputType="textVisiblePassword"/>
-
         <ListView
             android:id="@+id/list_view_edit_poi"
             android:layout_width="match_parent"

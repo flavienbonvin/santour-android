@@ -1,5 +1,6 @@
 package ch.hesso.santour.view.Main;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -25,6 +26,7 @@ import ch.hesso.santour.view.Tracking.Fragment.FragmentNewTrack;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static TrackingManagement trackingManagement = new TrackingManagement();
     public static Track track;
+    public static MainActivity mainActivity;
 
     private Fragment fragment;
     private FragmentManager fragmentManager;
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Navigation Listener
         navigationView.setNavigationItemSelectedListener(this);
+
+        mainActivity = MainActivity.this;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -124,7 +128,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         else
             drawerLayout.openDrawer(Gravity.START);
     }
-
 }
 
 
