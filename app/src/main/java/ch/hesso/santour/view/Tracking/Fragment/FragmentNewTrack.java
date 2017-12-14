@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,7 +21,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import ch.hesso.santour.R;
 import ch.hesso.santour.business.LocationManagement;
 import ch.hesso.santour.db.DBCallback;
-import ch.hesso.santour.model.POI;
+import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.Position;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Main.MainActivity;
@@ -60,8 +59,10 @@ public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
                     return;
                 }
 
-                MainActivity.track = new Track();
+                //Create a new track in the Mainactivity (where there is a track in static)
+                String newId = TrackDB.getNewId();
                 MainActivity.track.setName(name);
+                MainActivity.track.setId(newId);
                 Intent intent = new Intent(rootView.getContext(), TrackActivity.class);
                 startActivity(intent);
             }
@@ -71,6 +72,7 @@ public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
 
     @Override
     public void onMapReady(GoogleMap googleMap) throws SecurityException {
+        googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getContext(), R.raw.map_json));
         map = googleMap;
 
         UiSettings uiSettings = map.getUiSettings();
@@ -79,7 +81,7 @@ public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
 
         LatLng coordinate = new LatLng(86, 20);
         map.moveCamera(CameraUpdateFactory.newLatLng(coordinate));
-        LocationManagement.getCurrentPosition(FragmentNewTrack.this.getActivity(), new DBCallback() {
+        LocationManagement.getLastKnownPosition(FragmentNewTrack.this.getActivity(), new DBCallback() {
             @Override
             public void resolve(Object o) {
                 Position p = (Position)o;

@@ -3,7 +3,9 @@ package ch.hesso.santour.business;
 import android.app.Activity;
 import android.graphics.Color;
 import android.location.Location;
+import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -12,6 +14,7 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.ArrayList;
@@ -47,51 +50,66 @@ public class LocationManagement {
         locationRequest = new LocationRequest();
         locationRequest.setInterval(10000).setFastestInterval(5000).setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
+        //Create the callback for the location request
         callbackCreation(activity);
 
+        //Check that all mandatory permissions are enabled (location, camera and external storage)
         PermissionManagement.checkMandatoryPermission(activity);
         fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null);
     }
 
     /**
-     * Stop the tracking
+     * Stop the tracking (used at the end of the track)
      * @param activity
      * @return positions
      */
     protected List<Position> stopTracking(Activity activity){
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
-
         return positionsList;
     }
 
-    public static void getCurrentPosition(Activity activity, final DBCallback callback){
-        FusedLocationProviderClient fusedTemp = LocationServices.getFusedLocationProviderClient(activity);
+    /**
+     * Get the current position of the user
+     * @param activity
+     * @param callback
+     */
+    public static void getLastKnownPosition(final Activity activity, final DBCallback callback){
+        final FusedLocationProviderClient fusedTemp = LocationServices.getFusedLocationProviderClient(activity);
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setInterval(0).setFastestInterval(0).setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         PermissionManagement.checkMandatoryPermission(activity);
         fusedTemp.flushLocations();
-        fusedTemp.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+
+        fusedTemp.requestLocationUpdates(locationRequest, null).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
-            public void onSuccess(Location location) {
-                if (location != null) {
-                    Position position = new Position();
+            public void onSuccess(Void aVoid) {
 
-                    position.setAltitude(location.getAltitude());
-                    position.setLatitude(location.getLatitude());
-                    position.setLongitude(location.getLongitude());
-                    position.setTime(System.currentTimeMillis() / 1000);
+                PermissionManagement.checkMandatoryPermission(activity);
+                fusedTemp.getLastLocation()
+                .addOnSuccessListener(new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        if (location != null) {
+                            Position position = new Position();
 
-                    callback.resolve(position);
-                }
+                            position.setAltitude(location.getAltitude());
+                            position.setLatitude(location.getLatitude());
+                            position.setLongitude(location.getLongitude());
+                            position.setTime(System.currentTimeMillis() / 1000);
+                            callback.resolve(position);
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(activity, "Porblem with the location update", Toast.LENGTH_SHORT).show();
+                        Log.e(this.getClass().getCanonicalName(), e.getMessage());
+                    }
+                });
             }
         });
     }
-
-    protected Position takePosition(Activity activity){
-        return positionsList.get(positionsList.size()-1);
-    }
-
 
     /**
      * Calculate the distance of the track
@@ -113,13 +131,8 @@ public class LocationManagement {
             locationTo.setAltitude(positions.get(i+1).altitude);
 
             double temp = locationFrom.distanceTo(locationTo);
-            Log.d("maxDeb", "distance temp "+temp);
-
             distance += temp;
-
-            Log.d("maxDeb",distance+"");
         }
-
         return distance;
     }
 
@@ -133,7 +146,6 @@ public class LocationManagement {
         Location fromLocation = convertToLocation(from);
         Location toLocation = convertToLocation(to);
 
-
         return fromLocation.distanceTo(toLocation);
     }
 
@@ -146,6 +158,7 @@ public class LocationManagement {
             @Override
             public void onLocationResult(LocationResult locationResult) {
                 for (Location location : locationResult.getLocations()) {
+                    Log.d(LocationManagement.class.getName(), "New position logged: " + location.getLatitude() + " " + location.getLongitude());
                     cleanLocationData(location);
                 }
                 MainActivity.track.setDistance(calculateTrackLength(positionsList));
@@ -171,11 +184,15 @@ public class LocationManagement {
 
             double distance = calculateDistance2Points(newPosition, lastPosition);
 
-            if(distance < 200 && distance > 8){
+            if(distance < 100 && distance > 8){
+                Log.d(LocationManagement.class.getName(), "Location added to the track, distance: " + distance);
+
                 positionsList.add(newPosition);
                 mapUpdate();
             }
         } else {
+            Log.d(LocationManagement.class.getName(), "First location logged");
+
             positionsList.add(newPosition);
             mapUpdate();
         }
@@ -211,6 +228,11 @@ public class LocationManagement {
         return position;
     }
 
+    /**
+     * Convert a Position object to a Location
+     * @param position
+     * @return
+     */
     private Location convertToLocation(Position position){
         Location location = new Location("temp");
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/edition_content_poi"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ch.hesso.santour.view.Edition.Activity.TrackEditPOIActivity">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/edition_tabs_POI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/edition_tab_detailsPOI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edition_details_poi" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/edition_tab_categoriesPOI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edition_categories_poi" />
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/track_edit_container_poi"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/edition_tabs_POI"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+</RelativeLayout>

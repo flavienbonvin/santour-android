@@ -1,21 +1,17 @@
 package ch.hesso.santour.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ch.hesso.santour.R;
-import ch.hesso.santour.model.CategoryPOD;
 import ch.hesso.santour.model.POD;
-import ch.hesso.santour.model.RatePOD;
 
 /**
  * Created by maxim on 28.11.2017.
@@ -65,7 +61,7 @@ public class PODListAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.name.setText(listData.get(position).getName());
+        holder.name.setText("POD name : " + listData.get(position).getName());
 
         return convertView;
     }
@@ -73,5 +69,9 @@ public class PODListAdapter extends BaseAdapter {
     static class ViewHolder
     {
         TextView name;
+    }
+
+    public ArrayList<POD> getListData() {
+        return listData;
     }
 }

@@ -3,6 +3,7 @@ package ch.hesso.santour.model;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  */
 
 @IgnoreExtraProperties
-public class Track {
+public class Track implements Serializable{
     @Exclude
     private String id;
     private String name;

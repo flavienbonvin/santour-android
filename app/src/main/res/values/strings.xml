@@ -49,8 +49,8 @@
     <!-- Strings related to add poi/pod-->
     <string name="latitude">Lat : 80.028</string>
     <string name="longitude">Lng : 34.394</string>
-    <string name="pod_name">POD\'s name</string>
-    <string name="poi_name">POI\'s name</string>
+    <string name="pod_name">POD name</string>
+    <string name="poi_name">POI name</string>
     <string name="poi_pod_description">Description</string>
     <string name="title_activity_track2">Track2Activity</string>
     <string name="tab_text_1">Tab 1</string>
@@ -63,5 +63,34 @@
     <string name="track_accessforeveryone">Access for everyone</string>
     <string name="track_pauseduration">Pause duration</string>
     <string name="searchTrack">Search Track</string>
+    <string name="pod_category">Category</string>
+    <string name="pod_description">Description</string>
+    <string name="pod_rating">Rating</string>
+    <!-- Strings related to edition-->
+    <string name="edition_tab_text_1">Details</string>
+    <string name="edition_tab_text_2">POIs list</string>
+    <string name="edition_tab_text_3">PODs list</string>
+    <string name="edition_details_track">Details</string>
+    <string name="edition_details_list_poi">POIs list</string>
+    <string name="edition_details_list_pod">PODs list</string>
+
+    <string name="edition_details_poi">Details POI</string>
+    <string name="edition_categories_poi">Categories POI</string>
+    <string name="edition_details_pod">Details POD</string>
+    <string name="edition_categories_pod">Categories POD</string>
+    <!-- Strings related to main navigation-->
+    <string name="main_navigation_item1">Create a track</string>
+    <string name="main_navigation_item2">List of tracks</string>
+    <string name="main_navigation_item3">Settings</string>
+    <string name="main_navigation_item4">About</string>
+
+
+    <string name="title_activity_main_full_screen_image">MainFullScreenImage</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="title_activity_main_full_screen_picture">MainFullScreenPictureActivity</string>
+    <string name="minutes">minutes</string>
+    <string name="title_activity_track_edit_poi">TrackEditPOIActivity</string>
 
 </resources>

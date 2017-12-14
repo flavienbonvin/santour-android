@@ -22,10 +22,12 @@
             android:textStyle="bold"
             android:text="label">
         </TextView>
+
         <SeekBar
-            android:layout_width="0dp"
             android:id="@+id/pod_category_difficulty"
+            android:layout_width="10dp"
             android:layout_height="fill_parent"
             android:layout_weight="2" />
+
     </LinearLayout>
 </RelativeLayout>

@@ -1,16 +1,10 @@
 package ch.hesso.santour.business;
 
 import android.app.Activity;
-import android.util.Log;
-import android.widget.TextView;
-
-import com.google.android.gms.location.LocationRequest;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.hesso.santour.R;
-import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.Position;
 import ch.hesso.santour.model.Track;
@@ -36,10 +30,13 @@ public class TrackingManagement {
         locationManagement.startLocationTracking(activity);
     }
 
+    /**
+     * Stop the tracking of the user (end of the track)
+     * @param activity
+     */
     public static void stopTracking(Activity activity){
         List<Position> positionList = locationManagement.stopTracking(activity);
         MainActivity.track.setPositions(positionList);
-        TrackDB.add(MainActivity.track);
     }
 
     public static void addPOD(Activity activity){

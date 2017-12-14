@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -29,6 +30,11 @@ public class CategoryListAdapterPOI extends BaseAdapter {
         this.listData = listData;
         layoutInflater = LayoutInflater.from(aContext);
         isCheckedTab = new boolean[listData.size()];
+    }
+    public CategoryListAdapterPOI(Context aContext, ArrayList<CategoryPOI> listData, boolean[] isCheckedTab) {
+        this.listData = listData;
+        layoutInflater = LayoutInflater.from(aContext);
+        this.isCheckedTab = isCheckedTab;
     }
 
     @Override
@@ -65,7 +71,12 @@ public class CategoryListAdapterPOI extends BaseAdapter {
             {
                 convertView = layoutInflater.inflate(R.layout.item_list_poi_category, null);
                 holder = new CategoryListAdapterPOI.ViewHolder();
-                holder.checkBox = convertView.findViewById(R.id.poi_list_label);
+                holder.label = convertView.findViewById(R.id.poi_category_label);
+                holder.label.setText(listData.get(position).getName());
+                holder.checkBox = convertView.findViewById(R.id.poi_category_checkbox);
+                if(isCheckedTab[position] == true){
+                    holder.checkBox.setChecked(true);
+                }
                 holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -87,6 +98,7 @@ public class CategoryListAdapterPOI extends BaseAdapter {
 
     static class ViewHolder
     {
+        TextView label;
         CheckBox checkBox;
     }
 }
