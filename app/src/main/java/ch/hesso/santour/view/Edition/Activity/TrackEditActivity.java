@@ -1,8 +1,10 @@
 package ch.hesso.santour.view.Edition.Activity;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -56,12 +58,7 @@ public class TrackEditActivity extends AppCompatActivity {
                 this.finish();
                 return true;
             case R.id.edition_action_bar_delete:
-                TrackDB.delete(trackDetails.getId(), new DBCallback() {
-                    @Override
-                    public void resolve(Object o) {
-                        TrackEditActivity.this.finish();
-                    }
-                });
+                showAlertDialog();
                 return true;
         }
         return false;
@@ -70,8 +67,6 @@ public class TrackEditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        fragmentDetailsTrack = new FragmentDetailsTrack();
 
         setContentView(R.layout.edition_activity);
         sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
@@ -91,9 +86,38 @@ public class TrackEditActivity extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager)
     {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getFragmentManager());
-        adapter.addFragment(fragmentDetailsTrack, getString(R.string.edition_details_track));
+        adapter.addFragment(fragmentDetailsTrack = new FragmentDetailsTrack(), getString(R.string.edition_details_track));
         adapter.addFragment(fragmentListPOI = new FragmentListPOI(), getString(R.string.edition_details_list_poi));
         adapter.addFragment(fragmentListPOD = new FragmentListPOD(), getString(R.string.edition_details_list_pod));
         viewPager.setAdapter(adapter);
+    }
+
+    private void showAlertDialog(){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Confirm the deletion of the Track")
+                .setMessage("Are you sur to delete this track?")
+                //Close the dialog
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        TrackDB.delete(trackDetails.getId(), new DBCallback() {
+                            @Override
+                            public void resolve(Object o) {
+                                TrackEditActivity.this.finish();
+                            }
+                        });
+
+                        TrackEditActivity.this.finish();
+                        dialog.cancel();
+                    }
+                })
+                //Delete the POI
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .show();
     }
 }
