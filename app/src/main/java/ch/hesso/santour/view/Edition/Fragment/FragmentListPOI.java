@@ -60,4 +60,9 @@ public class FragmentListPOI extends Fragment {
         return rootView;
     }
 
+    public void updateList(){
+        ListView list = rootView.findViewById(R.id.list_view_edit_poi);
+        list.setAdapter(new POIListAdapter(FragmentListPOI.this.getContext(), TrackEditActivity.trackDetails.getPois()));
+    }
+
 }

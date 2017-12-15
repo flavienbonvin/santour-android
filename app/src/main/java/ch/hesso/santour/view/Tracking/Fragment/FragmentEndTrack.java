@@ -18,6 +18,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -31,6 +32,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.business.TrackingManagement;
+import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.Position;
 import ch.hesso.santour.model.Track;
@@ -147,7 +149,12 @@ public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
         if (!editTextPauses.getText().toString().equals(""))
             MainActivity.track.setPauseDuration(Integer.parseInt(editTextPauses.getText().toString()));
 
-        TrackDB.add(MainActivity.track);
+        TrackDB.add(MainActivity.track, new DBCallback() {
+            @Override
+            public void resolve(Object o) {
+                Toast.makeText(MainActivity.mainActivity.getBaseContext(), "Your track " + MainActivity.track.getName() + " has beed saved", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         getActivity().finish();
     }

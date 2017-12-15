@@ -1,5 +1,8 @@
 package ch.hesso.santour.view.Edition.Activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +22,10 @@ import ch.hesso.santour.model.POD;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Fragment.FragmentEditDetailsPOD;
 import ch.hesso.santour.view.Edition.Fragment.FragmentEditPODListCategories;
+import ch.hesso.santour.view.Main.MainActivity;
+import ch.hesso.santour.view.Main.MainFullScreenPictureActivity;
+import ch.hesso.santour.view.Tracking.Activity.TrackActivity;
+import ch.hesso.santour.view.Tracking.Fragment.FragmentListPOI;
 
 public class TrackEditPODActivity extends AppCompatActivity {
 
@@ -49,13 +56,7 @@ public class TrackEditPODActivity extends AppCompatActivity {
                 this.finish();
                 return true;
             case R.id.edition_action_bar_delete:
-                TrackEditActivity.trackDetails.getPods().remove(positionPOD);
-                TrackDB.update(TrackEditActivity.trackDetails, new DBCallback() {
-                    @Override
-                    public void resolve(Object o) {
-                        TrackEditPODActivity.this.finish();
-                    }
-                });
+                showAlertDialog();
                 return true;
         }
         return false;
@@ -72,6 +73,7 @@ public class TrackEditPODActivity extends AppCompatActivity {
         CategoryListAdapter adapter = (CategoryListAdapter)list.getAdapter();
         TrackEditActivity.trackDetails.getPods().get(positionPOD).setCategoriesID(adapter.getAllItems());
 
+        TrackEditActivity.fragmentListPOD.updateList();
     }
 
 
@@ -100,5 +102,34 @@ public class TrackEditPODActivity extends AppCompatActivity {
         adapter.addFragment(fragmentEditDetailsPOD, getString(R.string.edition_details_pod));
         adapter.addFragment(new FragmentEditPODListCategories(), getString(R.string.edition_categories_pod));
         viewPager.setAdapter(adapter);
+    }
+
+    private void showAlertDialog(){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Confirm the deletion of the POD")
+                .setMessage("Are you sur to delete this POD?")
+                //Close the dialog
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        TrackEditActivity.trackDetails.getPods().remove(positionPOD);
+                        TrackDB.update(TrackEditActivity.trackDetails, new DBCallback() {
+                            @Override
+                            public void resolve(Object o) {
+                                TrackEditPODActivity.this.finish();
+                            }
+                        });
+                        TrackEditActivity.fragmentListPOD.updateList();
+                        dialog.cancel();
+                    }
+                })
+                //Delete the POI
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .show();
     }
 }

@@ -76,6 +76,7 @@ public class CategoryListAdapter extends BaseAdapter {
                 holder.label = convertView.findViewById(R.id.pod_category_label);
                 holder.difficulty = convertView.findViewById(R.id.pod_category_difficulty);
                 holder.difficulty.setMax(10);
+                holder.difficulty.setProgress(result.get(position).getRate());
                 //holder.difficulty.setProgress(rating[position]);
                 holder.difficulty.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override

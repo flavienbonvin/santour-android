@@ -13,6 +13,7 @@ import android.widget.ListView;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.PODListAdapter;
+import ch.hesso.santour.adapter.POIListAdapter;
 import ch.hesso.santour.model.POD;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
@@ -56,5 +57,9 @@ public class FragmentListPOD extends Fragment {
             });
         }
         return rootView;
+    }
+    public void updateList(){
+        ListView list = rootView.findViewById(R.id.list_view_pod);
+        list.setAdapter(new PODListAdapter(FragmentListPOD.this.getContext(), TrackEditActivity.trackDetails.getPods()));
     }
 }

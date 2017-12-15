@@ -1,7 +1,9 @@
 package ch.hesso.santour.view.Edition.Activity;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -52,13 +54,7 @@ public class TrackEditPOIActivity extends AppCompatActivity {
                 this.finish();
                 return true;
             case R.id.edition_action_bar_delete:
-                TrackEditActivity.trackDetails.getPois().remove(positionPOI);
-                TrackDB.update(TrackEditActivity.trackDetails, new DBCallback() {
-                    @Override
-                    public void resolve(Object o) {
-                        TrackEditPOIActivity.this.finish();
-                    }
-                });
+                showAlertDialog();
                 return true;
         }
         return false;
@@ -73,6 +69,8 @@ public class TrackEditPOIActivity extends AppCompatActivity {
         ListView list = findViewById(R.id.list_view_poi_categories_list);
         CategoryListAdapterPOI adapter = (CategoryListAdapterPOI) list.getAdapter();
         TrackEditActivity.trackDetails.getPois().get(positionPOI).setCategoriesID(adapter.getAll());
+
+        TrackEditActivity.fragmentListPOI.updateList();
     }
 
 
@@ -102,5 +100,34 @@ public class TrackEditPOIActivity extends AppCompatActivity {
         adapter.addFragment(fragmentEditDetailsPOI, getString(R.string.edition_details_poi));
         adapter.addFragment(new FragmentEditPOIListCategories(), getString(R.string.edition_categories_poi));
         viewPager.setAdapter(adapter);
+    }
+
+    private void showAlertDialog(){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Confirm the deletion of the POI")
+                .setMessage("Are you sur to delete this POI?")
+                //Close the dialog
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        TrackEditActivity.trackDetails.getPois().remove(positionPOI);
+                        TrackDB.update(TrackEditActivity.trackDetails, new DBCallback() {
+                            @Override
+                            public void resolve(Object o) {
+                                TrackEditPOIActivity.this.finish();
+                            }
+                        });
+                        TrackEditActivity.fragmentListPOI.updateList();
+                        dialog.cancel();
+                    }
+                })
+                //Delete the POI
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .show();
     }
 }

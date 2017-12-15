@@ -1,5 +1,6 @@
 package ch.hesso.santour.view.Main;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -13,18 +14,23 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.business.PermissionManagement;
 import ch.hesso.santour.business.TrackingManagement;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Fragment.FragmentListTracks;
+import ch.hesso.santour.view.Login.LoginActivity;
 import ch.hesso.santour.view.Tracking.Activity.TrackActivity;
 import ch.hesso.santour.view.Tracking.Fragment.FragmentNewTrack;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static TrackingManagement trackingManagement = new TrackingManagement();
     public static Track track;
+    public static MainActivity mainActivity;
 
     private Fragment fragment;
     private FragmentManager fragmentManager;
@@ -59,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Navigation Listener
         navigationView.setNavigationItemSelectedListener(this);
+
+        mainActivity = MainActivity.this;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -112,19 +120,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 setTitle("Settings");
                 handleNavigation();
                 return true;
+            case R.id.main_navigation_item4:
+                Toast.makeText(this, "Feature to come", Toast.LENGTH_SHORT).show();
+                handleNavigation();
+                return true;
+            case R.id.main_navigation_item5:
+                logout();
+                handleNavigation();
+                return true;
         }
         return false;
 
     }
 
-    public void handleNavigation()
-    {
-        if(drawerLayout.isDrawerOpen(Gravity.START))
+    public void handleNavigation() {
+        if (drawerLayout.isDrawerOpen(Gravity.START))
             drawerLayout.closeDrawer(Gravity.LEFT);
         else
             drawerLayout.openDrawer(Gravity.START);
     }
 
+    private void logout(){
+        FirebaseAuth.getInstance().signOut();
+        this.finish();
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+    }
 }
 
 
