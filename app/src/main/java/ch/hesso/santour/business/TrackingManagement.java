@@ -39,6 +39,14 @@ public class TrackingManagement {
         MainActivity.track.setPositions(positionList);
     }
 
+    public static void resumeTracking(Activity activity){
+        locationManagement.resumeTracking(activity);
+    }
+
+    public static void pauseTracking(Activity activity){
+        locationManagement.stopTracking(activity);
+    }
+
     public static void addPOD(Activity activity){
         
     }
