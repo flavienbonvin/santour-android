@@ -65,16 +65,26 @@
             android:layout_weight="1">
 
         </EditText>
+
         <Button
             android:id="@+id/login_button_login"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login"
-            android:textStyle="bold"
             android:background="@color/colorAccent"
+            android:text="@string/login"
             android:textColor="@color/colorWhite"
-            />
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/login_textView_resetPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="2"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            android:text="@string/resetPass" />
     </LinearLayout>
 
 
