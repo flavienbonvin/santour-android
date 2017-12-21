@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.TrackListAdapter;
+import ch.hesso.santour.business.PermissionManagement;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.Track;
@@ -85,5 +86,11 @@ public class FragmentListTracks extends Fragment {
             }
         });
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        PermissionManagement.checkAirplaneModeDisabled(FragmentListTracks.this.getActivity());
     }
 }

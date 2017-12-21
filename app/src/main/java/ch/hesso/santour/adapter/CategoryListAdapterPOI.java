@@ -10,6 +10,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.model.CategoryPOI;
@@ -71,9 +72,8 @@ public class CategoryListAdapterPOI extends BaseAdapter {
             {
                 convertView = layoutInflater.inflate(R.layout.item_list_poi_category, null);
                 holder = new CategoryListAdapterPOI.ViewHolder();
-                holder.label = convertView.findViewById(R.id.poi_category_label);
-                holder.label.setText(listData.get(position).getName());
                 holder.checkBox = convertView.findViewById(R.id.poi_category_checkbox);
+                holder.checkBox.setText(listData.get(position).getName());
                 if(isCheckedTab[position] == true){
                     holder.checkBox.setChecked(true);
                 }
@@ -90,15 +90,11 @@ public class CategoryListAdapterPOI extends BaseAdapter {
                 holder = (CategoryListAdapterPOI.ViewHolder) convertView.getTag();
             }
 
-        holder.checkBox.setText(listData.get(position).getName());
-        //holder.difficulty.setProgress(listData.get(position).getRating());
-
         return convertView;
     }
 
     static class ViewHolder
     {
-        TextView label;
         CheckBox checkBox;
     }
 }

@@ -52,16 +52,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.main_drawer_layout);
         navigationView = findViewById(R.id.main_navigation);
 
-
-        PermissionManagement.initialCheck(MainActivity.this);
-
         //menu fragment
         fragmentManager = getFragmentManager();
         fragment = new FragmentListTracks();
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.main_container, fragment).commit();
-        setTitle("List of trackss");
+        setTitle("List of tracks");
 
         //Navigation Listener
         navigationView.setNavigationItemSelectedListener(this);
@@ -140,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             drawerLayout.openDrawer(Gravity.START);
     }
 
-    private void logout(){
+    private void logout() {
         FirebaseAuth.getInstance().signOut();
         this.finish();
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);

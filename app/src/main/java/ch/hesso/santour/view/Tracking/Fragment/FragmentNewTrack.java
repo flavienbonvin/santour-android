@@ -3,11 +3,13 @@ package ch.hesso.santour.view.Tracking.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.provider.CallLog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -20,6 +22,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.business.LocationManagement;
+import ch.hesso.santour.business.PermissionManagement;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.Position;
@@ -42,11 +45,11 @@ public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.tracking_fragment_fragment_newtrack, container, false);
 
+        PermissionManagement.initialCheck(this.getActivity());
 
         mapView = rootView.findViewById(R.id.add_track_map_mapView2);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
-
 
         //button login
         Button btnSave = rootView.findViewById(R.id.add_track_save_button);
@@ -56,6 +59,7 @@ public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
                 EditText nameTrack  = (EditText)rootView.findViewById(R.id.add_track_textView_nameTrack);
                 String name = nameTrack.getText().toString();
                 if(name.equals("")){
+                    Toast.makeText(FragmentNewTrack.this.getActivity(), "You have to enter a name to your track", Toast.LENGTH_SHORT).show();
                     return;
                 }
 

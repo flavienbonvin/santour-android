@@ -27,6 +27,8 @@ public class TrackingManagement {
         Track track = new Track();
         List<Position> positions = new ArrayList<>();
 
+
+
         locationManagement.startLocationTracking(activity);
     }
 
