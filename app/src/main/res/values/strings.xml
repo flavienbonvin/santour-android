@@ -92,5 +92,6 @@
     <string name="title_activity_main_full_screen_picture">MainFullScreenPictureActivity</string>
     <string name="minutes">minutes</string>
     <string name="title_activity_track_edit_poi">TrackEditPOIActivity</string>
+    <string name="resetPass">Reset your password</string>
 
 </resources>
