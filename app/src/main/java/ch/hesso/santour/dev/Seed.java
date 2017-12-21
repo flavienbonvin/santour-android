@@ -83,7 +83,7 @@ public class Seed {
                                 }
                                 final List<POI> poiFinal = poiList;
 
-                                Track t = new Track("track1", 0, true, 2, u.id, positionFinal, podFinal, poiFinal, "test");
+                                /*Track t = new Track("track1", 0, true, 2, u.id, positionFinal, podFinal, poiFinal, "test");
                                 Log.d("FlavDEBUG", t.toString());
 
                                 TrackDB.add(t, new DBCallback() {
@@ -92,7 +92,7 @@ public class Seed {
                                         Track t = (Track) o;
                                         Log.d("Maxtag", t.toString());
                                     }
-                                });
+                                });*/
 
                             }
                         });

@@ -34,6 +34,7 @@ import ch.hesso.santour.business.LocationManagement;
 import ch.hesso.santour.business.TrackingManagement;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.Position;
+import ch.hesso.santour.view.Main.MainActivity;
 import ch.hesso.santour.view.Tracking.Fragment.Recording.FragmentAddPOD;
 import ch.hesso.santour.view.Tracking.Fragment.Recording.FragmentAddPOI;
 
@@ -118,6 +119,9 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 addPODButton.setEnabled(false);
 
                 TrackingManagement.stopTracking(FragmentRecording.this.getActivity());
+                long time = SystemClock.elapsedRealtime() - chrono.getBase();
+
+                MainActivity.track.setDuration(time);
 
                 fragmentManager = getFragmentManager();
                 fragment = new FragmentEndTrack();

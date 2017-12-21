@@ -146,6 +146,7 @@ public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
         MainActivity.track.setDifficulty(seekBarDifficulty.getProgress());
         MainActivity.track.setForEveryone(checkBoxAccessibility.isChecked());
 
+
         if (!editTextPauses.getText().toString().equals(""))
             MainActivity.track.setPauseDuration(Integer.parseInt(editTextPauses.getText().toString()));
 

@@ -111,6 +111,7 @@ public class PictureManagement extends Activity{
 
 
     private void resizeImage(Bitmap imageBitmap){
+        //hauteur de 800 demandé par le PO
         int newHeight = 800;
         double facteur = ((double)(newHeight)/imageBitmap.getHeight());
         int newWidth = (int)Math.round(imageBitmap.getWidth() * facteur);
