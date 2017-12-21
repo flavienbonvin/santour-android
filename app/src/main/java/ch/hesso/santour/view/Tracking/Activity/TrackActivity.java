@@ -12,11 +12,13 @@ import android.widget.Toolbar;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.SectionsPageAdapter;
+import ch.hesso.santour.business.PermissionManagement;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Main.MainActivity;
 import ch.hesso.santour.view.Main.MainFullScreenPictureActivity;
 import ch.hesso.santour.view.Tracking.Fragment.FragmentListPOD;
 import ch.hesso.santour.view.Tracking.Fragment.FragmentListPOI;
+import ch.hesso.santour.view.Tracking.Fragment.FragmentNewTrack;
 import ch.hesso.santour.view.Tracking.Fragment.FragmentRecording;
 
 public class TrackActivity extends AppCompatActivity {
