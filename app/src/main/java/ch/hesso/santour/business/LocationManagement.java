@@ -58,6 +58,19 @@ public class LocationManagement {
         fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null);
     }
 
+    protected void resumeTracking(Activity activity){
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
+        locationRequest = new LocationRequest();
+        locationRequest.setInterval(10000).setFastestInterval(5000).setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        //Create the callback for the location request
+        callbackCreation(activity);
+
+        //Check that all mandatory permissions are enabled (location, camera and external storage)
+        PermissionManagement.checkMandatoryPermission(activity);
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null);
+    }
+
     /**
      * Stop the tracking (used at the end of the track)
      * @param activity
