@@ -98,16 +98,18 @@ public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
 
         PolylineOptions polylineOptions = new PolylineOptions().width(7).color(Color.parseColor("#52c7b8")).geodesic(true);
 
-        LatLng coordinate = new LatLng(MainActivity.track.getPositions().get(0).latitude, MainActivity.track.getPositions().get(0).longitude);
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 18));
+        if (MainActivity.track.getPositions().size() > 0) {
+            LatLng coordinate = new LatLng(MainActivity.track.getPositions().get(0).latitude, MainActivity.track.getPositions().get(0).longitude);
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 18));
 
-        for (Position position : MainActivity.track.getPositions()) {
-            LatLng latLng = new LatLng(position.latitude, position.longitude);
-            polylineOptions.add(latLng);
+            for (Position position : MainActivity.track.getPositions()) {
+                LatLng latLng = new LatLng(position.latitude, position.longitude);
+                polylineOptions.add(latLng);
+            }
+
+            map.clear();
+            map.addPolyline(polylineOptions);
         }
-
-        map.clear();
-        map.addPolyline(polylineOptions);
     }
 
     @Override

@@ -18,14 +18,17 @@ import ch.hesso.santour.model.CategoryPOI;
  */
 
 public class CategoryPOIDB {
+    private static boolean bool = false;
     private static DatabaseReference categoryDB = FirebaseDatabase.getInstance().getReference("category_poi");
 
     public static void add(CategoryPOI category) {
+        checkPersistance();
         String id = categoryDB.push().getKey();
         categoryDB.child(id).setValue(category);
     }
 
     public static void add(CategoryPOI category, final DBCallback callback) {
+        checkPersistance();
         final String id = categoryDB.push().getKey();
         categoryDB.child(id).setValue(category).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -36,10 +39,12 @@ public class CategoryPOIDB {
     }
 
     public static void update(CategoryPOI category) {
+        checkPersistance();
         categoryDB.child(category.getId()).setValue(category);
     }
 
     public static void update(final CategoryPOI category, final DBCallback callback) {
+        checkPersistance();
         categoryDB.child(category.getId()).setValue(category).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -49,6 +54,7 @@ public class CategoryPOIDB {
     }
 
     public static void getAll(final DBCallback callback) {
+        checkPersistance();
         Query q = categoryDB.orderByChild("name");
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
@@ -70,6 +76,7 @@ public class CategoryPOIDB {
     }
 
     public static void getById(String id, final DBCallback callback) {
+        checkPersistance();
         Query q = categoryDB.child(id);
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
@@ -87,15 +94,24 @@ public class CategoryPOIDB {
     }
 
     public static void delete(String id){
+        checkPersistance();
         categoryDB.child(id).removeValue();
     }
 
     public static void delete(String id, final DBCallback callback) {
+        checkPersistance();
         categoryDB.child(id).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 callback.resolve(true);
             }
         });
+    }
+
+    private static void checkPersistance(){
+        if(!bool){
+            categoryDB.keepSynced(true);
+            bool = true;
+        }
     }
 }

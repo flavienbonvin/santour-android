@@ -18,16 +18,20 @@ import ch.hesso.santour.model.Track;
  */
 
 public class TrackDB {
+    private static boolean bool = false;
     private static DatabaseReference tracksDB = FirebaseDatabase.getInstance().getReference("tracks");
 
     public static String getNewId(){
+        checkPersistance();
         return tracksDB.push().getKey();
     }
     public static void add(Track track) {
+        checkPersistance();
         tracksDB.child(track.getId()).setValue(track);
     }
 
     public static void add(Track track, final DBCallback callback) {
+        checkPersistance();
         final String id = tracksDB.push().getKey();
         tracksDB.child(id).setValue(track).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -38,10 +42,12 @@ public class TrackDB {
     }
 
     public static void update(Track track) {
+        checkPersistance();
         tracksDB.child(track.getId()).setValue(track);
     }
 
     public static void update(final Track track, final DBCallback callback) {
+        checkPersistance();
         tracksDB.child(track.getId()).setValue(track).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -51,6 +57,7 @@ public class TrackDB {
     }
 
     public static void getAll(final DBCallback callback) {
+        checkPersistance();
         Query q = tracksDB.orderByChild("name");
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
@@ -72,6 +79,7 @@ public class TrackDB {
     }
 
     public static void getAllByIdUser(final String idUser, final DBCallback callback) {
+        checkPersistance();
         getAll(new DBCallback() {
             @Override
             public void resolve(Object o) {
@@ -89,6 +97,7 @@ public class TrackDB {
     }
 
     public static void getById(String id, final DBCallback callback) {
+        checkPersistance();
         Query q = tracksDB.child(id);
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
@@ -106,15 +115,24 @@ public class TrackDB {
     }
 
     public static void delete(String id){
+        checkPersistance();
         tracksDB.child(id).removeValue();
     }
 
     public static void delete(String id, final DBCallback callback) {
+        checkPersistance();
         tracksDB.child(id).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 callback.resolve(true);
             }
         });
+    }
+
+    private static void checkPersistance(){
+        if(!bool){
+            tracksDB.keepSynced(true);
+            bool = true;
+        }
     }
 }

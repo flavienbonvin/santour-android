@@ -70,7 +70,7 @@ public class PermissionManagement extends ActivityCompat {
         //Test that the setting is high accuracy
         try {
             if (Settings.Secure.getInt(activity.getContentResolver(), Settings.Secure.LOCATION_MODE) != Settings.Secure.LOCATION_MODE_HIGH_ACCURACY) {
-                showDialog(activity, "Check that high accuracy is enabled!","You have to activate the location service!", Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                showDialog(activity, "Check that high accuracy is enabled!","You have to activate the location service!", Settings.ACTION_LOCATION_SOURCE_SETTINGS, true);
             }
         } catch (Settings.SettingNotFoundException e) {
             e.printStackTrace();
@@ -80,7 +80,7 @@ public class PermissionManagement extends ActivityCompat {
     public static void checkAirplaneModeDisabled(Activity activity){
         try {
             if (Settings.Global.getInt(activity.getContentResolver(), Settings.Global.AIRPLANE_MODE_ON,0) != 0){
-                showDialog(activity, "You cannot have airplane mode activated!", "You have to disable airplane mode!", Settings.ACTION_AIRPLANE_MODE_SETTINGS);
+                showDialog(activity, "You cannot have airplane mode activated!", "You have to disable airplane mode!", Settings.ACTION_AIRPLANE_MODE_SETTINGS, false);
             }
         } catch (Exception e){
             e.printStackTrace();
@@ -92,7 +92,7 @@ public class PermissionManagement extends ActivityCompat {
      * @param activity
      * @param message
      */
-    private static void showDialog(final Activity activity, String message, String title, final String settings) {
+    private static void showDialog(final Activity activity, String message, String title, final String settings, final boolean finishActivity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle(title)
                 .setMessage(message)
@@ -106,7 +106,9 @@ public class PermissionManagement extends ActivityCompat {
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        activity.finish();
+                        if (finishActivity) {
+                            activity.finish();
+                        }
                     }
                 }).show();
     }

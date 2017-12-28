@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,9 +39,14 @@ public class FragmentListTracks extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.edition_fragment_list_tracks, container, false);
+
+        Log.d(FragmentListTracks.class.getCanonicalName(), "Before download");
         TrackDB.getAllByIdUser(FirebaseAuth.getInstance().getCurrentUser().getUid(),new DBCallback() {
             @Override
             public void resolve(Object o) {
+
+                Log.d(FragmentListTracks.class.getCanonicalName(), "After download");
+
                 ArrayList<Track> listTrack = (ArrayList<Track>) o;
                 final ListView list = rootView.findViewById(R.id.list_view_track);
                 list.setAdapter(new TrackListAdapter(FragmentListTracks.this.getContext(), listTrack));
@@ -62,6 +68,8 @@ public class FragmentListTracks extends Fragment {
                 editText.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        Log.d(FragmentListTracks.class.getCanonicalName(), "Click on item");
+
                         ArrayList<Track> tracks = new ArrayList<>();
                         TrackListAdapter adapt = (TrackListAdapter) list.getAdapter();
                         ArrayList<Track> trackAdapter = adapt.getListData();
