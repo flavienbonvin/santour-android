@@ -43,6 +43,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
     //Play & Stop button
     private ImageButton trackPlayButton;
     private ImageButton trackStopButton;
+    private ImageButton trackPauseButton;
     private CardView cardViewRecord;
     
     //Add POI / POD button
@@ -87,6 +88,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
 
         trackPlayButton = rootView.findViewById(R.id.track_play_button);
         trackStopButton = rootView.findViewById(R.id.track_stop_button);
+        trackPauseButton = rootView.findViewById(R.id.track_pause_button);
         cardViewRecord = rootView.findViewById(R.id.track_card_view_record);
 
         chrono = rootView.findViewById(R.id.track_chronometer);
@@ -95,8 +97,9 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
             public void onClick(View v) {
                 trackPlayButton.setVisibility(View.GONE);
                 trackStopButton.setVisibility(View.VISIBLE);
+                trackPauseButton.setClickable(true);
                 cardViewRecord.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimaryRed));
-                chrono.setBase(SystemClock.elapsedRealtime());
+                //chrono.setBase(SystemClock.elapsedRealtime());
                 chrono.start();
                 TrackingManagement.startTracking(FragmentRecording.this.getActivity());
 
@@ -111,6 +114,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
             public void onClick(View v) {
                 trackPlayButton.setVisibility(View.VISIBLE);
                 trackStopButton.setVisibility(View.GONE);
+                trackPauseButton.setClickable(false);
                 cardViewRecord.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
                 chrono.stop();
 
@@ -130,6 +134,17 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 transaction.replace(R.id.main_content, fragment).commit();
             }
         });
+
+        trackPauseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                trackPlayButton.setVisibility(View.VISIBLE);
+                trackStopButton.setVisibility(View.GONE);
+                cardViewRecord.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+                chrono.stop();
+            }
+        });
+
 
         LocationManagement.interfaceToWatch(FragmentRecording.this);
 
