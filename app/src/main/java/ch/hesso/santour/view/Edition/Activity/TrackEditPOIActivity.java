@@ -22,6 +22,7 @@ import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.POI;
 import ch.hesso.santour.model.Track;
+
 import ch.hesso.santour.view.Edition.Fragment.FragmentEditDetailsPOI;
 import ch.hesso.santour.view.Edition.Fragment.FragmentEditPOIListCategories;
 

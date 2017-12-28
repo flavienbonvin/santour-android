@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                                     //progressBar.setVisibility(View.GONE);
                                     if (!task.isSuccessful()) {
                                         // there was an error
-                                        Toast.makeText(LoginActivity.this, "auth failed", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(LoginActivity.this, "Wrong email/password", Toast.LENGTH_LONG).show();
 
                                     } else {
                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);

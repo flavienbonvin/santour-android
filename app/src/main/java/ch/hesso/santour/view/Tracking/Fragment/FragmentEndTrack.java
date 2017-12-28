@@ -1,8 +1,10 @@
 package ch.hesso.santour.view.Tracking.Fragment;
 
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -40,6 +42,7 @@ import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.Position;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
+import ch.hesso.santour.view.Edition.Activity.TrackEditPODActivity;
 import ch.hesso.santour.view.Edition.Fragment.FragmentListTracks;
 import ch.hesso.santour.view.Main.MainActivity;
 
@@ -73,8 +76,7 @@ public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_bar_close:
-                MainActivity.track = new Track();
-                getActivity().finish();
+                deleteTrackDialog();
                 return true;
             case R.id.action_bar_save:
                 saveTrackAndRedirect();
@@ -151,6 +153,27 @@ public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
+    }
+
+    private void deleteTrackDialog(){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(FragmentEndTrack.this.getContext());
+        builder.setTitle("Confirm the deletion of the track")
+                .setMessage("Are you sur to delete this track?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        MainActivity.track = new Track();
+                        FragmentEndTrack.this.getActivity().finish();
+                        dialog.cancel();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .show();
     }
 
 

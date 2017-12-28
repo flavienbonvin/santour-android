@@ -108,7 +108,7 @@ public class TrackEditPODActivity extends AppCompatActivity {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirm the deletion of the POD")
                 .setMessage("Are you sur to delete this POD?")
-                //Close the dialog
+                //Delete the POI
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -123,7 +123,7 @@ public class TrackEditPODActivity extends AppCompatActivity {
                         dialog.cancel();
                     }
                 })
-                //Delete the POI
+                //Close the dialog
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
