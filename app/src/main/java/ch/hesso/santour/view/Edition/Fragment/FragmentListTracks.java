@@ -24,11 +24,13 @@ import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
+import ch.hesso.santour.view.Main.MainActivity;
 
 
 public class FragmentListTracks extends Fragment {
 
     private View rootView;
+    private TrackListAdapter adapter;
 
     public FragmentListTracks() {
         // Required empty public constructor
@@ -49,7 +51,7 @@ public class FragmentListTracks extends Fragment {
 
                 ArrayList<Track> listTrack = (ArrayList<Track>) o;
                 final ListView list = rootView.findViewById(R.id.list_view_track);
-                list.setAdapter(new TrackListAdapter(FragmentListTracks.this.getContext(), listTrack));
+                list.setAdapter(adapter = new TrackListAdapter(FragmentListTracks.this.getContext(), listTrack));
 
                 list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -63,37 +65,40 @@ public class FragmentListTracks extends Fragment {
                     }
                 });
 
-                //Search in the listView
-                EditText editText = (EditText) rootView.findViewById(R.id.input_search_track);
-                editText.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        Log.d(FragmentListTracks.class.getCanonicalName(), "Click on item");
+                serach(list);
 
-                        ArrayList<Track> tracks = new ArrayList<>();
-                        TrackListAdapter adapt = (TrackListAdapter) list.getAdapter();
-                        ArrayList<Track> trackAdapter = adapt.getListData();
-
-                        for (Track track : trackAdapter) {
-                            if (track.getName().contains(s.toString())) {
-                                tracks.add(track);
-                            }
-                        }
-                        //Change the adatper with the list of results of the search
-                        list.setAdapter(new TrackListAdapter(FragmentListTracks.this.getContext(), tracks));
-                    }
-
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-                    }
-                });
             }
         });
         return rootView;
+    }
+
+    private void serach(final ListView list){
+
+        //Search in the listView
+        EditText editText = (EditText) rootView.findViewById(R.id.input_search_track);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                ArrayList<Track> tracks = new ArrayList<>();
+                ArrayList<Track> trackAdapter = adapter.getListData();
+
+                for (Track track : trackAdapter) {
+                    if (track.getName().contains(s.toString())) {
+                        tracks.add(track);
+                    }
+                }
+                //Change the adatper with the list of results of the search
+                list.setAdapter(new TrackListAdapter(FragmentListTracks.this.getContext(), tracks));
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
     }
 
     @Override

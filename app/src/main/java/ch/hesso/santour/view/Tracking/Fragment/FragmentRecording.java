@@ -44,7 +44,9 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
     private ImageButton trackPlayButton;
     private ImageButton trackStopButton;
     private ImageButton trackPauseButton;
+    private long timeWhenStopped;
     private CardView cardViewRecord;
+    private CardView cardViewPause;
     
     //Add POI / POD button
     private ImageButton addPOIButton;
@@ -90,6 +92,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
         trackStopButton = rootView.findViewById(R.id.track_stop_button);
         trackPauseButton = rootView.findViewById(R.id.track_pause_button);
         cardViewRecord = rootView.findViewById(R.id.track_card_view_record);
+        cardViewPause = rootView.findViewById(R.id.track_card_view_pause);
 
         chrono = rootView.findViewById(R.id.track_chronometer);
         trackPlayButton.setOnClickListener(new View.OnClickListener() {
@@ -99,13 +102,31 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 trackStopButton.setVisibility(View.VISIBLE);
                 trackPauseButton.setClickable(true);
                 cardViewRecord.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimaryRed));
-                //chrono.setBase(SystemClock.elapsedRealtime());
+                cardViewPause.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+
+                chrono.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
                 chrono.start();
+
                 TrackingManagement.startTracking(FragmentRecording.this.getActivity());
 
                 //TODO change style of the button when disabled
                 addPOIButton.setEnabled(true);
                 addPODButton.setEnabled(true);
+            }
+        });
+
+        trackPauseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                trackPlayButton.setVisibility(View.VISIBLE);
+                trackStopButton.setVisibility(View.GONE);
+                cardViewRecord.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+                cardViewPause.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimaryRed));
+
+                timeWhenStopped = chrono.getBase() - SystemClock.elapsedRealtime();
+                chrono.stop();
+
+                TrackingManagement.pauseTracking(FragmentRecording.this.getActivity());
             }
         });
 
@@ -132,16 +153,6 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.main_content, fragment).commit();
-            }
-        });
-
-        trackPauseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                trackPlayButton.setVisibility(View.VISIBLE);
-                trackStopButton.setVisibility(View.GONE);
-                cardViewRecord.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
-                chrono.stop();
             }
         });
 
@@ -202,6 +213,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
             }
         });
     }
+
 
 
 

@@ -16,14 +16,18 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.model.Position;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
+import ch.hesso.santour.view.Main.MainActivity;
 
 /**
  * Created by flavien on 12/4/17.
@@ -80,16 +84,29 @@ public class FragmentDetailsTrack extends Fragment implements OnMapReadyCallback
 
         PolylineOptions polylineOptions = new PolylineOptions().width(7).color(Color.parseColor("#52c7b8")).geodesic(true);
 
-        LatLng coordinate = new LatLng(TrackEditActivity.trackDetails.getPositions().get(0).latitude, TrackEditActivity.trackDetails.getPositions().get(0).longitude);
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinate, 18));
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+
 
         for (Position position : TrackEditActivity.trackDetails.getPositions()) {
             LatLng latLng = new LatLng(position.latitude, position.longitude);
             polylineOptions.add(latLng);
+            builder.include(latLng);
         }
+
+        LatLngBounds bounds = builder.build();
 
         map.clear();
         map.addPolyline(polylineOptions);
+        map.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 50));
+
+        LatLng startLatLng = new LatLng(TrackEditActivity.trackDetails.getPositions().get(0).latitude, TrackEditActivity.trackDetails.getPositions().get(0).longitude);
+        map.addMarker(new MarkerOptions()
+            .position(startLatLng)
+            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+
+        LatLng endLatLng = new LatLng(TrackEditActivity.trackDetails.getPositions().get(TrackEditActivity.trackDetails.getPositions().size()-1).latitude, TrackEditActivity.trackDetails.getPositions().get(TrackEditActivity.trackDetails.getPositions().size()-1).longitude);
+        map.addMarker(new MarkerOptions()
+                .position(endLatLng));
     }
 
     private void initFields(){

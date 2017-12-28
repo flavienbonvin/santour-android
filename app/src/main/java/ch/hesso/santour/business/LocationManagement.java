@@ -1,6 +1,8 @@
 package ch.hesso.santour.business;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.location.Location;
 import android.support.annotation.NonNull;
@@ -23,6 +25,7 @@ import java.util.List;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.Position;
 import ch.hesso.santour.view.Main.MainActivity;
+import ch.hesso.santour.view.Main.SettingsFragment;
 
 /**
  * Created by flavien on 11/23/17.
@@ -197,7 +200,11 @@ public class LocationManagement {
 
             double distance = calculateDistance2Points(newPosition, lastPosition);
 
-            if(distance < 100 && distance > 8){
+            //Get the value of the preference
+            SharedPreferences sharedPref = MainActivity.mainActivity.getPreferences(Context.MODE_PRIVATE);
+            int minDistance = Integer.parseInt(sharedPref.getString("minimanlDistance", "Missing"));
+
+            if(distance < 100 && distance > minDistance){
                 Log.d(LocationManagement.class.getName(), "Location added to the track, distance: " + distance);
 
                 positionsList.add(newPosition);

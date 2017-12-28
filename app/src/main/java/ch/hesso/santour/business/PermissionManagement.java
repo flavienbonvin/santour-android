@@ -33,6 +33,7 @@ public class PermissionManagement extends ActivityCompat {
      */
     public static void initialCheck(Activity activity) {
         checkMandatoryPermission(activity);
+        checkAirplaneModeDisabled(activity);
         checkHighAccuracyIsEnabled(activity);
     }
 
@@ -41,7 +42,7 @@ public class PermissionManagement extends ActivityCompat {
      *
      * @param activity
      */
-    protected static void checkMandatoryPermission(Activity activity) {
+    public static void checkMandatoryPermission(Activity activity) {
         if (!checkHasPermission(activity)) {
             ActivityCompat.requestPermissions(activity, MANDATORY_PERMISSIONS, PERMISSION_ALL);
         }

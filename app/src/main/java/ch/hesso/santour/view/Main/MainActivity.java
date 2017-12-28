@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.main_activity);
         super.onCreate(savedInstanceState);
 
+
         //Check if preferences are already downloaded or not
         checkPreferences();
 
@@ -71,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Navigation Listener
         navigationView.setNavigationItemSelectedListener(this);
+
+        PermissionManagement.checkMandatoryPermission(MainActivity.this);
 
         mainActivity = MainActivity.this;
     }
@@ -137,6 +140,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         return false;
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     public void handleNavigation() {
