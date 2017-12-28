@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,8 +20,11 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.File;
+
 import ch.hesso.santour.R;
 import ch.hesso.santour.business.PermissionManagement;
+import ch.hesso.santour.business.PreferenceDownload;
 import ch.hesso.santour.business.TrackingManagement;
 import ch.hesso.santour.db.CategoryPODDB;
 import ch.hesso.santour.model.Track;
@@ -48,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         setContentView(R.layout.main_activity);
         super.onCreate(savedInstanceState);
+
+        //Check if preferences are already downloaded or not
+        checkPreferences();
 
         //Navigation Drawer
         drawerItemsList = getResources().getStringArray(R.array.items);
@@ -144,6 +151,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         this.finish();
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
+    }
+
+    private void checkPreferences(){
+        File f = new File(
+                "/data/data/ch.hesso.santour/shared_prefs/view.Main.MainActivity.xml");
+
+        if (!f.exists()){
+            new PreferenceDownload().execute();
+        }
     }
 }
 

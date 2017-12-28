@@ -35,7 +35,7 @@ public class Seed {
         database.getReference("category_pod").removeValue();
         database.getReference("category_poi").removeValue();
 
-        User u = new User("max","max@max.com","pass","tracker");
+        User u = new User("max","max@max.com", "tracker");
         UserDB.add(u, new DBCallback() {
             @Override
             public void resolve(Object o) {
