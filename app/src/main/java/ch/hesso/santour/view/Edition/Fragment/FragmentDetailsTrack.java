@@ -123,14 +123,12 @@ public class FragmentDetailsTrack extends Fragment implements OnMapReadyCallback
             editTextPause.setText("0");
 
         checkBoxAccess  = (CheckBox)rootView.findViewById(R.id.edit_track_checkBox_accessForEveryone);
-        checkBoxAccess.setChecked(TrackEditActivity.trackDetails.isForEveryone());
     }
 
     public void updateFiledsToDB(){
         TrackEditActivity.trackDetails.setName(editTextName.getText().toString());
         TrackEditActivity.trackDetails.setDifficulty(seekBarDifficulty.getProgress());
         TrackEditActivity.trackDetails.setPauseDuration(Integer.parseInt(editTextPause.getText().toString()));
-        TrackEditActivity.trackDetails.setForEveryone(checkBoxAccess.isChecked());
     }
 
     @Override

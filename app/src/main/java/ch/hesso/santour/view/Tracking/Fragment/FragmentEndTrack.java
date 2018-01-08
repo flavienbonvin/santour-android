@@ -186,7 +186,6 @@ public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
         MainActivity.track.setIdUser(auth.getCurrentUser().getUid());
 
         MainActivity.track.setDifficulty(seekBarDifficulty.getProgress());
-        MainActivity.track.setForEveryone(checkBoxAccessibility.isChecked());
 
 
         if (!editTextPauses.getText().toString().equals(""))

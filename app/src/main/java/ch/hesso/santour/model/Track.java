@@ -18,7 +18,6 @@ public class Track implements Serializable{
     private String name;
     private int pauseDuration;
     private long duration;
-    private boolean isForEveryone;
     private int difficulty;
     private double distance;
     private String idUser;
@@ -34,12 +33,11 @@ public class Track implements Serializable{
         this.distance = 0;
     }
 
-    public Track(String id, String name, int pauseDuration, long duration, boolean isForEveryone, int difficulty, String idUser, List<Position> positions, List<POD> pods, List<POI> pois, String typeTrackID) {
+    public Track(String id, String name, int pauseDuration, long duration, int difficulty, String idUser, List<Position> positions, List<POD> pods, List<POI> pois, String typeTrackID) {
         this.id = id;
         this.name = name;
         this.duration = duration;
         this.pauseDuration = pauseDuration;
-        this.isForEveryone = isForEveryone;
         this.difficulty = difficulty;
         this.idUser = idUser;
         this.positions = positions;
@@ -48,11 +46,10 @@ public class Track implements Serializable{
         this.typeTrackID = typeTrackID;
     }
 
-    public Track(String name, int pauseDuration, long duration, boolean isForEveryone, int difficulty, String idUser, List<Position> positions, List<POD> pods, List<POI> pois, String typeTrackID) {
+    public Track(String name, int pauseDuration, long duration, int difficulty, String idUser, List<Position> positions, List<POD> pods, List<POI> pois, String typeTrackID) {
         this.name = name;
         this.pauseDuration = pauseDuration;
         this.duration = duration;
-        this.isForEveryone = isForEveryone;
         this.difficulty = difficulty;
         this.idUser = idUser;
         this.positions = positions;
@@ -98,14 +95,6 @@ public class Track implements Serializable{
 
     public void setPauseDuration(int pauseDuration) {
         this.pauseDuration = pauseDuration;
-    }
-
-    public boolean isForEveryone() {
-        return isForEveryone;
-    }
-
-    public void setForEveryone(boolean forEveryone) {
-        isForEveryone = forEveryone;
     }
 
     public int getDifficulty() {
@@ -170,7 +159,6 @@ public class Track implements Serializable{
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", pauseDuration=" + pauseDuration +
-                ", isForEveryone=" + isForEveryone +
                 ", difficulty=" + difficulty +
                 ", idUser='" + idUser + '\'' +
                 ", positions=" + positions +
