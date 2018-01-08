@@ -78,7 +78,6 @@
             android:text="@string/login"
             android:textColor="@color/colorWhite"
             android:textStyle="bold" />
-            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/login_textView_resetPass"
