@@ -189,7 +189,6 @@ public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
 
 
         if (!editTextPauses.getText().toString().equals(""))
-            MainActivity.track.setPauseDuration(Integer.parseInt(editTextPauses.getText().toString()));
 
         TrackDB.add(MainActivity.track, new DBCallback() {
             @Override

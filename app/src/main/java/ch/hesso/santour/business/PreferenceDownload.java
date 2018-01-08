@@ -22,7 +22,7 @@ public class PreferenceDownload extends AsyncTask<String, String, String> {
     protected String doInBackground(String... strings) {
         int count;
         try {
-            URL url = new URL("http://cobwebsite.ch/settings.txt");
+            URL url = new URL(MainActivity.URL_SETTINGS);
 
             BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
             String str = "";

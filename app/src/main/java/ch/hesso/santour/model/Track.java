@@ -16,7 +16,6 @@ public class Track implements Serializable{
     @Exclude
     private String id;
     private String name;
-    private int pauseDuration;
     private long duration;
     private int difficulty;
     private double distance;
@@ -24,7 +23,6 @@ public class Track implements Serializable{
     private List<Position> positions;
     private List<POD> pods;
     private List<POI> pois;
-    private String typeTrackID;
 
     public Track() {
         this.positions = new ArrayList<>();
@@ -37,25 +35,21 @@ public class Track implements Serializable{
         this.id = id;
         this.name = name;
         this.duration = duration;
-        this.pauseDuration = pauseDuration;
         this.difficulty = difficulty;
         this.idUser = idUser;
         this.positions = positions;
         this.pods = pods;
         this.pois = pois;
-        this.typeTrackID = typeTrackID;
     }
 
     public Track(String name, int pauseDuration, long duration, int difficulty, String idUser, List<Position> positions, List<POD> pods, List<POI> pois, String typeTrackID) {
         this.name = name;
-        this.pauseDuration = pauseDuration;
         this.duration = duration;
         this.difficulty = difficulty;
         this.idUser = idUser;
         this.positions = positions;
         this.pods = pods;
         this.pois = pois;
-        this.typeTrackID = typeTrackID;
     }
 
     public void addPosition(Position p){
@@ -87,14 +81,6 @@ public class Track implements Serializable{
 
     public void setDuration(long duration) {
         this.duration = duration;
-    }
-
-    public int getPauseDuration() {
-        return pauseDuration;
-    }
-
-    public void setPauseDuration(int pauseDuration) {
-        this.pauseDuration = pauseDuration;
     }
 
     public int getDifficulty() {
@@ -137,14 +123,6 @@ public class Track implements Serializable{
         this.pois = pois;
     }
 
-    public String getTypeTrackID() {
-        return typeTrackID;
-    }
-
-    public void setTypeTrackID(String typeTrackID) {
-        this.typeTrackID = typeTrackID;
-    }
-
     public double getDistance() {
         return distance;
     }
@@ -158,13 +136,11 @@ public class Track implements Serializable{
         return "Track{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", pauseDuration=" + pauseDuration +
                 ", difficulty=" + difficulty +
                 ", idUser='" + idUser + '\'' +
                 ", positions=" + positions +
                 ", dangers=" + pods +
                 ", interests=" + pois +
-                ", typeTrackID='" + typeTrackID + '\'' +
                 '}';
     }
 }

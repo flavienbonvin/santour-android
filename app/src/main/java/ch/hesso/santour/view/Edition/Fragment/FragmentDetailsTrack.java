@@ -79,7 +79,6 @@ public class FragmentDetailsTrack extends Fragment implements OnMapReadyCallback
         map = googleMap;
 
         UiSettings uiSettings = map.getUiSettings();
-        uiSettings.setAllGesturesEnabled(false);
         uiSettings.setMyLocationButtonEnabled(false);
 
         PolylineOptions polylineOptions = new PolylineOptions().width(7).color(Color.parseColor("#52c7b8")).geodesic(true);
@@ -116,19 +115,12 @@ public class FragmentDetailsTrack extends Fragment implements OnMapReadyCallback
         seekBarDifficulty  = (SeekBar)rootView.findViewById(R.id.edit_track_seekBar_difficulty);
         seekBarDifficulty.setProgress(TrackEditActivity.trackDetails.getDifficulty());
 
-        editTextPause  = (EditText) rootView.findViewById(R.id.edit_track_editText_pauseDuration);
-        if(!String.valueOf(TrackEditActivity.trackDetails.getPauseDuration()).equals(""))
-            editTextPause.setText(String.valueOf(TrackEditActivity.trackDetails.getPauseDuration()));
-        else
-            editTextPause.setText("0");
-
         checkBoxAccess  = (CheckBox)rootView.findViewById(R.id.edit_track_checkBox_accessForEveryone);
     }
 
     public void updateFiledsToDB(){
         TrackEditActivity.trackDetails.setName(editTextName.getText().toString());
         TrackEditActivity.trackDetails.setDifficulty(seekBarDifficulty.getProgress());
-        TrackEditActivity.trackDetails.setPauseDuration(Integer.parseInt(editTextPause.getText().toString()));
     }
 
     @Override

@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static Track track;
     public static MainActivity mainActivity;
 
+    public static String URL_SETTINGS = "http://cobwebsite.ch/settings.txt";
+
     private Fragment fragment;
     private FragmentManager fragmentManager;
 
