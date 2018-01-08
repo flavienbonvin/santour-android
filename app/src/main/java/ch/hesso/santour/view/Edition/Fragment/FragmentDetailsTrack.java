@@ -43,8 +43,6 @@ public class FragmentDetailsTrack extends Fragment implements OnMapReadyCallback
 
     private EditText editTextName;
     private SeekBar seekBarDifficulty;
-    private EditText editTextPause;
-    private CheckBox checkBoxAccess;
 
 
     public FragmentDetailsTrack() {
@@ -115,22 +113,11 @@ public class FragmentDetailsTrack extends Fragment implements OnMapReadyCallback
 
         seekBarDifficulty  = (SeekBar)rootView.findViewById(R.id.edit_track_seekBar_difficulty);
         seekBarDifficulty.setProgress(TrackEditActivity.trackDetails.getDifficulty());
-
-        editTextPause  = (EditText) rootView.findViewById(R.id.edit_track_editText_pauseDuration);
-        if(!String.valueOf(TrackEditActivity.trackDetails.getPauseDuration()).equals(""))
-            editTextPause.setText(String.valueOf(TrackEditActivity.trackDetails.getPauseDuration()));
-        else
-            editTextPause.setText("0");
-
-        checkBoxAccess  = (CheckBox)rootView.findViewById(R.id.edit_track_checkBox_accessForEveryone);
-        checkBoxAccess.setChecked(TrackEditActivity.trackDetails.isForEveryone());
     }
 
     public void updateFiledsToDB(){
         TrackEditActivity.trackDetails.setName(editTextName.getText().toString());
         TrackEditActivity.trackDetails.setDifficulty(seekBarDifficulty.getProgress());
-        TrackEditActivity.trackDetails.setPauseDuration(Integer.parseInt(editTextPause.getText().toString()));
-        TrackEditActivity.trackDetails.setForEveryone(checkBoxAccess.isChecked());
     }
 
     @Override

@@ -179,18 +179,11 @@ public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
 
     private void saveTrackAndRedirect(){
         SeekBar seekBarDifficulty = (SeekBar)this.getActivity().findViewById(R.id.edit_track_seekBar_difficulty);
-        CheckBox checkBoxAccessibility = (CheckBox)this.getActivity().findViewById(R.id.edit_track_checkBox_accessForEveryone);
-        EditText editTextPauses = (EditText)this.getActivity().findViewById(R.id.edit_track_editText_pauseDuration);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         MainActivity.track.setIdUser(auth.getCurrentUser().getUid());
 
         MainActivity.track.setDifficulty(seekBarDifficulty.getProgress());
-        MainActivity.track.setForEveryone(checkBoxAccessibility.isChecked());
-
-
-        if (!editTextPauses.getText().toString().equals(""))
-            MainActivity.track.setPauseDuration(Integer.parseInt(editTextPauses.getText().toString()));
 
         TrackDB.add(MainActivity.track, new DBCallback() {
             @Override
