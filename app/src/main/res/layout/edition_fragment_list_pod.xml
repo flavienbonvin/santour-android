@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true"
-    tools:context="ch.hesso.santour.view.Tracking.Fragment.FragmentListPOD">
+    tools:context="ch.hesso.santour.view.Tracking.Fragment.FragmentListPOD"
+    android:padding="10dp">
 
     <LinearLayout
         android:id="@+id/linear_layout_list_pod"
