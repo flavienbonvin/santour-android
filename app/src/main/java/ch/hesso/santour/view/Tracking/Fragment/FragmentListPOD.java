@@ -144,7 +144,7 @@ public class FragmentListPOD extends Fragment {
 
 
     /**
-     * Update hte list with the new POD (called once a POD is created)
+     * Update the list with the new POD (called once a POD is created)
      */
     public void updateList(){
         ListView list = rootView.findViewById(R.id.list_view_pod);

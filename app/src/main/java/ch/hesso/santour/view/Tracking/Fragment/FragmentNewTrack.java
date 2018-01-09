@@ -31,6 +31,7 @@ import ch.hesso.santour.view.Main.MainActivity;
 import ch.hesso.santour.view.Tracking.Activity.TrackActivity;
 
 
+
 public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
 
     //Google Map
