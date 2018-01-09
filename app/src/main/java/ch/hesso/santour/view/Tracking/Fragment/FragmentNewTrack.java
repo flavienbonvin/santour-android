@@ -3,7 +3,6 @@ package ch.hesso.santour.view.Tracking.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.provider.CallLog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +25,6 @@ import ch.hesso.santour.business.PermissionManagement;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.Position;
-import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Main.MainActivity;
 import ch.hesso.santour.view.Tracking.Activity.TrackActivity;
 
@@ -57,7 +55,7 @@ public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
         btnSave.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                EditText nameTrack  = (EditText)rootView.findViewById(R.id.add_track_textView_nameTrack);
+                EditText nameTrack  = rootView.findViewById(R.id.add_track_textView_nameTrack);
                 String name = nameTrack.getText().toString();
                 if(name.equals("")){
                     Toast.makeText(FragmentNewTrack.this.getActivity(), "You have to enter a name to your track", Toast.LENGTH_SHORT).show();

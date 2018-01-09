@@ -37,8 +37,8 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="0.0 m"
                     android:textAlignment="center"
+                    android:text="0.0m"
                     android:textSize="25dp"/>
         </LinearLayout>
         <LinearLayout
@@ -67,8 +67,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 app:cardCornerRadius="50dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="5dp"
                 android:id="@+id/track_card_view_record"
                 android:background="@color/colorPrimary"
                 app:cardBackgroundColor="@color/colorPrimary"
@@ -92,19 +92,20 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 app:cardCornerRadius="50dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="15dp"
                 android:id="@+id/track_card_view_pause"
                 android:background="@color/colorPrimary"
                 app:cardBackgroundColor="@color/colorPrimary"
                 >
+
                 <ImageButton
+                    android:id="@+id/track_pause_button"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:clickable="false"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    style="@style/Widget.AppCompat.Button.Borderless"
-                    android:id="@+id/track_pause_button"
-                    android:clickable="false"
-                    android:src="@drawable/ic_pause_circle_outline_black_24dp"/>
+                    android:src="@drawable/ic_pause_circle_outline_black_24dp" />
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
                 android:layout_width="80dp"

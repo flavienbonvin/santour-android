@@ -1,13 +1,8 @@
 package ch.hesso.santour.view.Tracking.Fragment;
 
 import android.app.AlertDialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,7 +11,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -36,14 +30,10 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.firebase.auth.FirebaseAuth;
 
 import ch.hesso.santour.R;
-import ch.hesso.santour.business.TrackingManagement;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.Position;
 import ch.hesso.santour.model.Track;
-import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
-import ch.hesso.santour.view.Edition.Activity.TrackEditPODActivity;
-import ch.hesso.santour.view.Edition.Fragment.FragmentListTracks;
 import ch.hesso.santour.view.Main.MainActivity;
 
 public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
@@ -51,6 +41,8 @@ public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
     //Google Map
     private MapView mapView;
     private GoogleMap map;
+
+    private SeekBar seekBarDifficulty;
 
     public FragmentEndTrack() {
         // Required empty public constructor
@@ -63,6 +55,21 @@ public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
         setHasOptionsMenu(true);
 
         ((EditText)rootView.findViewById(R.id.edit_track_textView_nameTrack)).setText(MainActivity.track.getName());
+
+        final TextView editTextDifficulty = rootView.findViewById(R.id.tv_difficulty_end_track);
+
+        seekBarDifficulty = rootView.findViewById(R.id.edit_track_seekBar_difficulty);
+        seekBarDifficulty.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                editTextDifficulty.setText(String.valueOf(progress));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
 
         mapView = rootView.findViewById(R.id.edit_track_map_mapView2);
         mapView.onCreate(savedInstanceState);
@@ -178,8 +185,6 @@ public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
 
 
     private void saveTrackAndRedirect(){
-        SeekBar seekBarDifficulty = (SeekBar)this.getActivity().findViewById(R.id.edit_track_seekBar_difficulty);
-
         FirebaseAuth auth = FirebaseAuth.getInstance();
         MainActivity.track.setIdUser(auth.getCurrentUser().getUid());
 

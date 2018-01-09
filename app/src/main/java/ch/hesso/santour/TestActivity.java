@@ -12,7 +12,6 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.StorageReference;
@@ -21,13 +20,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-
-import ch.hesso.santour.business.PictureManagement;
-import ch.hesso.santour.business.TrackingManagement;
-import ch.hesso.santour.db.DBCallback;
-import ch.hesso.santour.db.TrackDB;
-import ch.hesso.santour.model.Track;
 
 public class TestActivity extends AppCompatActivity {
     private static final int SELECT_PICTURE = 1;

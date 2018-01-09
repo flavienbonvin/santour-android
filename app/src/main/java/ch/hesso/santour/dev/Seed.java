@@ -1,18 +1,14 @@
 package ch.hesso.santour.dev;
 
-import android.util.Log;
-
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import ch.hesso.santour.db.CategoryPODDB;
 import ch.hesso.santour.db.CategoryPOIDB;
 import ch.hesso.santour.db.DBCallback;
-import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.db.UserDB;
 import ch.hesso.santour.model.CategoryPOD;
 import ch.hesso.santour.model.CategoryPOI;
@@ -20,7 +16,6 @@ import ch.hesso.santour.model.POD;
 import ch.hesso.santour.model.POI;
 import ch.hesso.santour.model.Position;
 import ch.hesso.santour.model.RatePOD;
-import ch.hesso.santour.model.Track;
 import ch.hesso.santour.model.User;
 
 /**

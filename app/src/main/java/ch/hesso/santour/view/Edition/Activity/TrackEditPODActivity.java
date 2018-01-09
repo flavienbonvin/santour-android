@@ -2,7 +2,6 @@ package ch.hesso.santour.view.Edition.Activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -19,13 +18,8 @@ import ch.hesso.santour.adapter.SectionsPageAdapter;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.POD;
-import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Fragment.FragmentEditDetailsPOD;
 import ch.hesso.santour.view.Edition.Fragment.FragmentEditPODListCategories;
-import ch.hesso.santour.view.Main.MainActivity;
-import ch.hesso.santour.view.Main.MainFullScreenPictureActivity;
-import ch.hesso.santour.view.Tracking.Activity.TrackActivity;
-import ch.hesso.santour.view.Tracking.Fragment.FragmentListPOI;
 
 public class TrackEditPODActivity extends AppCompatActivity {
 
@@ -64,8 +58,8 @@ public class TrackEditPODActivity extends AppCompatActivity {
 
     private void savePOD() {
 
-        EditText editNamePOD  = (EditText) findViewById(R.id.edit_pod_textView_namePOD);
-        EditText editDescrPOD = (EditText) findViewById(R.id.edit_pod_textView_descriptionContent);
+        EditText editNamePOD  = findViewById(R.id.edit_pod_textView_namePOD);
+        EditText editDescrPOD = findViewById(R.id.edit_pod_textView_descriptionContent);
         TrackEditActivity.trackDetails.getPods().get(positionPOD).setName(editNamePOD.getText().toString());
         TrackEditActivity.trackDetails.getPods().get(positionPOD).setDescription(editDescrPOD.getText().toString());
 

@@ -25,7 +25,6 @@ import java.util.List;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.Position;
 import ch.hesso.santour.view.Main.MainActivity;
-import ch.hesso.santour.view.Main.SettingsFragment;
 
 /**
  * Created by flavien on 11/23/17.

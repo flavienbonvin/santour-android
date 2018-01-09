@@ -10,7 +10,6 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 import ch.hesso.santour.view.Main.MainActivity;
-import ch.hesso.santour.view.Main.SettingsFragment;
 
 /**
  * Created by flavien on 12/28/17.

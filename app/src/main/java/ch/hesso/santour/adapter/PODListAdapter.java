@@ -21,10 +21,13 @@ public class PODListAdapter extends BaseAdapter {
     private ArrayList<POD> listData;
     private LayoutInflater layoutInflater;
 
+    private Context context;
+
 
     public PODListAdapter(Context aContext, List<POD> listData) {
         this.listData = (ArrayList<POD>)listData;
         layoutInflater = LayoutInflater.from(aContext);
+        context = aContext;
     }
 
     @Override
@@ -61,7 +64,7 @@ public class PODListAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.name.setText("POD name : " + listData.get(position).getName());
+        holder.name.setText(context.getString(R.string.pod_name) + listData.get(position).getName());
 
         return convertView;
     }

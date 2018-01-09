@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/main_navigation_item1"
         android:enabled="true"
@@ -26,6 +24,6 @@
     <item
         android:id="@+id/main_navigation_item5"
         android:enabled="true"
-        android:title="Logout"
+        android:title="@string/logout"
         app:showAsAction="ifRoom"/>
 </menu>

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.hesso.santour.R;
-import ch.hesso.santour.model.POD;
 
 /**
  * Created by degir on 05.12.2017.

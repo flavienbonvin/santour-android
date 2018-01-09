@@ -12,11 +12,12 @@
 
         <CheckBox
             android:id="@+id/poi_category_checkbox"
-            android:layout_width="8dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingBottom="15dp"
             android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:paddingTop="15dp"
             android:text="" />
     </LinearLayout>

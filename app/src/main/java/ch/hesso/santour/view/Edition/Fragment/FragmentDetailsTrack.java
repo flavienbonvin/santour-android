@@ -1,15 +1,14 @@
 package ch.hesso.santour.view.Edition.Fragment;
 
 import android.app.Fragment;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -25,9 +24,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.model.Position;
-import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
-import ch.hesso.santour.view.Main.MainActivity;
 
 /**
  * Created by flavien on 12/4/17.
@@ -107,11 +104,24 @@ public class FragmentDetailsTrack extends Fragment implements OnMapReadyCallback
     }
 
     private void initFields(){
-        editTextName  = (EditText) rootView.findViewById(R.id.edit_track_textView_nameTrack);
+        editTextName  = rootView.findViewById(R.id.edit_track_textView_nameTrack);
         editTextName.setText(TrackEditActivity.trackDetails.getName());
 
-        seekBarDifficulty  = (SeekBar)rootView.findViewById(R.id.edit_track_seekBar_difficulty);
+        seekBarDifficulty  = rootView.findViewById(R.id.edit_track_seekBar_difficulty);
         seekBarDifficulty.setProgress(TrackEditActivity.trackDetails.getDifficulty());
+
+        final TextView textView = rootView.findViewById(R.id.tv_difficulty_detail_track);
+        textView.setText(String.valueOf(TrackEditActivity.trackDetails.getDifficulty()));
+        seekBarDifficulty.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                textView.setText(String.valueOf(progress));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {}
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
     }
 
     public void updateFiledsToDB(){

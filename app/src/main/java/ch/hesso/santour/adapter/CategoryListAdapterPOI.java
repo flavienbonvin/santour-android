@@ -7,10 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.model.CategoryPOI;

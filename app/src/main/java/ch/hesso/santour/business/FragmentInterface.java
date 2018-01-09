@@ -10,7 +10,7 @@ import ch.hesso.santour.model.Position;
 
 public interface FragmentInterface {
 
-    public void updateMap(PolylineOptions polyLine, Position lastPosition);
+    void updateMap(PolylineOptions polyLine, Position lastPosition);
 
-    public void setTextDistance(String text);
+    void setTextDistance(String text);
 }

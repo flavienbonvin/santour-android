@@ -1,6 +1,5 @@
 package ch.hesso.santour.view.Main;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -10,15 +9,11 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
 
@@ -26,11 +21,9 @@ import ch.hesso.santour.R;
 import ch.hesso.santour.business.PermissionManagement;
 import ch.hesso.santour.business.PreferenceDownload;
 import ch.hesso.santour.business.TrackingManagement;
-import ch.hesso.santour.db.CategoryPODDB;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Fragment.FragmentListTracks;
 import ch.hesso.santour.view.Login.LoginActivity;
-import ch.hesso.santour.view.Tracking.Activity.TrackActivity;
 import ch.hesso.santour.view.Tracking.Fragment.FragmentNewTrack;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -38,10 +31,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static Track track;
     public static MainActivity mainActivity;
 
-    public static String URL_SETTINGS = "http://cobwebsite.ch/settings.txt";
+    public static final String URL_SETTINGS = "http://cobwebsite.ch/settings.txt";
+    public static final String URL_RESET_PASS = "http://www.google.ch";
 
-    private Fragment fragment;
-    private FragmentManager fragmentManager;
+    private static Fragment fragment;
+    private static FragmentManager fragmentManager;
 
     private String[] drawerItemsList;
     private DrawerLayout drawerLayout;
@@ -147,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
+        setTitle("List of tracks");
     }
 
     public void handleNavigation() {
@@ -170,6 +165,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (!f.exists()){
             new PreferenceDownload().execute();
         }
+    }
+
+    public static void switchToTrackLists(){
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        fragment = new FragmentListTracks();
+        transaction.addToBackStack(null);
+        transaction.replace(R.id.main_container, fragment).commit();
     }
 }
 

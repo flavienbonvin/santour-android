@@ -34,7 +34,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Main.MainActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.Tracking.Activity.TrackActivity"
             android:label="@string/track"

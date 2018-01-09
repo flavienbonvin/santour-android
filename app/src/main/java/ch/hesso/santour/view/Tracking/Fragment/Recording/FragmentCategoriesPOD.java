@@ -1,6 +1,5 @@
 package ch.hesso.santour.view.Tracking.Fragment.Recording;
 
-import android.app.Activity;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -23,7 +22,6 @@ import ch.hesso.santour.model.CategoryPOD;
 import ch.hesso.santour.model.POD;
 import ch.hesso.santour.view.Main.MainActivity;
 import ch.hesso.santour.view.Tracking.Activity.TrackActivity;
-import ch.hesso.santour.view.Tracking.Fragment.FragmentListPOD;
 
 public class FragmentCategoriesPOD extends Fragment {
 

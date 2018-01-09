@@ -1,6 +1,6 @@
 <resources>
     <!--Strings related to titles-->
-    <string name="app_name">SanTour</string>
+    <string name="app_name" translatable="false">SanTour</string>
     <string name="title_activity_login">Sign in</string>
     <string name="title_edit_details">Edit details</string>
     <string name="title_edit_list_pod">Edit list PODs</string>
@@ -17,12 +17,10 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email  completions.     "</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
 
     <!-- Strings related to track activity-->
     <string name="track">Track</string>
@@ -49,19 +47,19 @@
     <!-- Strings related to add poi/pod-->
     <string name="latitude">Lat : 80.028</string>
     <string name="longitude">Lng : 34.394</string>
-    <string name="pod_name">POD name</string>
-    <string name="poi_name">POI name</string>
+    <string name="pod_name">POD name: </string>
+    <string name="poi_name">POI name: </string>
     <string name="poi_pod_description">Description</string>
-    <string name="title_activity_track2">Track2Activity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
+    <string name="title_activity_track2" translatable="false">Track2Activity</string>
+    <string name="tab_text_1" translatable="false">Tab 1</string>
+    <string name="tab_text_2" translatable="false">Tab 2</string>
+    <string name="tab_text_3" translatable="false">Tab 3</string>
     <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="section_format" translatable="false">Hello World from section: %1$d</string>
     <string name="searchPOD">Search POD</string>
     <string name="track_difficulty">Difficulty</string>
-    <string name="track_accessforeveryone">Access for everyone</string>
-    <string name="track_pauseduration">Pause duration</string>
+    <string name="track_accessforeveryone" translatable="false">Access for everyone</string>
+    <string name="track_pauseduration" translatable="false">Pause duration</string>
     <string name="searchTrack">Search Track</string>
     <string name="pod_category">Category</string>
     <string name="pod_description">Description</string>
@@ -85,15 +83,33 @@
     <string name="main_navigation_item4">About</string>
 
 
-    <string name="title_activity_main_full_screen_image">MainFullScreenImage</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_main_full_screen_image" translatable="false">MainFullScreenImage</string>
+    <string name="dummy_button" translatable="false">Dummy Button</string>
+    <string name="dummy_content" translatable="false">DUMMY\nCONTENT</string>
 
-    <string name="title_activity_main_full_screen_picture">MainFullScreenPictureActivity</string>
+    <string name="title_activity_main_full_screen_picture" translatable="false">MainFullScreenPictureActivity</string>
     <string name="minutes">minutes</string>
-    <string name="title_activity_track_edit_poi">TrackEditPOIActivity</string>
+    <string name="title_activity_track_edit_poi" translatable="false">TrackEditPOIActivity</string>
     <string name="resetPass">Reset your password</string>
     <string name="sychronise">Sychronise</string>
-    <string name="infoSynch">Forcer la synchronisation</string>
+    <string name="back">back</string>
+    <string name="minimal_distance_server">Minimal Distance (server)</string>
+    <string name="seekbar_steps_server">Seekbar steps (server)</string>
+    <string name="download_settings">Download settings</string>
+    <string name="logout">Logout</string>
+    <string name="name">name</string>
+    <string name="next">Next</string>
+    <string name="lat_">Lat:</string>
+    <string name="lng_">Lng:</string>
+    <string name="name_">Name:</string>
+    <string name="desc_">Description:</string>
+    <string name="selected_">Selected categories:</string>
+    <string name="detail_poi_">Details of the POI:</string>
+    <string name="yes">Yes</string>
+    <string name="show_pic">Show picture</string>
+    <string name="danger_rating_">Danger rating:</string>
+    <string name="detail_pod">Details of the POD:</string>
+    <string name="delete">Delete</string>
+    <string name="infoSynch">Force sync</string>
 
 </resources>

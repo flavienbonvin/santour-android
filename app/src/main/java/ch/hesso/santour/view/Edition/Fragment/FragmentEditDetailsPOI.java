@@ -13,7 +13,6 @@ import android.widget.TextView;
 import ch.hesso.santour.R;
 import ch.hesso.santour.business.PictureFirebaseManagement;
 import ch.hesso.santour.business.PictureManagement;
-import ch.hesso.santour.view.Edition.Activity.TrackEditPODActivity;
 import ch.hesso.santour.view.Edition.Activity.TrackEditPOIActivity;
 
 public class FragmentEditDetailsPOI extends Fragment {
@@ -42,14 +41,14 @@ public class FragmentEditDetailsPOI extends Fragment {
     }
 
     private void initFields(){
-        editNamePOI  = (EditText) rootView.findViewById(R.id.edit_track_textView_namePOI);
+        editNamePOI  = rootView.findViewById(R.id.edit_track_textView_namePOI);
         editNamePOI.setText(TrackEditPOIActivity.poiDetails.getName());
 
-        editImagePOI  = (ImageView) rootView.findViewById(R.id.edit_poi_imageView_imagePOI);
+        editImagePOI  = rootView.findViewById(R.id.edit_poi_imageView_imagePOI);
         PictureFirebaseManagement.downloadFile(TrackEditPOIActivity.poiDetails.getPicture());
         editImagePOI.setImageBitmap(BitmapFactory.decodeFile(PictureManagement.localStoragePath+TrackEditPOIActivity.poiDetails.getPicture()));
 
-        editDescriptionPOI  = (TextView) rootView.findViewById(R.id.edit_poi_textView_descriptionContent);
+        editDescriptionPOI  = rootView.findViewById(R.id.edit_poi_textView_descriptionContent);
         editDescriptionPOI.setText(TrackEditPOIActivity.poiDetails.getDescription());
     }
 

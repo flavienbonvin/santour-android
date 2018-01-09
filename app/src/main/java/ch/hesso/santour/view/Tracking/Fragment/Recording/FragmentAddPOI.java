@@ -63,7 +63,7 @@ public class FragmentAddPOI extends Fragment {
         rootView = inflater.inflate(R.layout.tracking_fragment_recording_add_poi, container, false);
         setHasOptionsMenu(true);
 
-        final ImageButton imageButton = (ImageButton) rootView.findViewById(R.id.track_add_poi_add_picture);
+        final ImageButton imageButton = rootView.findViewById(R.id.track_add_poi_add_picture);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,13 +72,13 @@ public class FragmentAddPOI extends Fragment {
             }
         });
 
-        Button nextButton = (Button) rootView.findViewById(R.id.next_poi);
+        Button nextButton = rootView.findViewById(R.id.next_poi);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                EditText editTextName = (EditText) getActivity().findViewById(R.id.edit_text_poi_name);
-                EditText editTextDesc = (EditText) getActivity().findViewById(R.id.edit_text_poi_desc);
+                EditText editTextName = getActivity().findViewById(R.id.edit_text_poi_name);
+                EditText editTextDesc = getActivity().findViewById(R.id.edit_text_poi_desc);
                 String poiName = editTextName.getText().toString();
                 String poiDesc = editTextDesc.getText().toString();
 
@@ -112,12 +112,12 @@ public class FragmentAddPOI extends Fragment {
             public void resolve(Object o) {
                 position = (Position) o;
 
-                TextView textViewLat = (TextView) rootView.findViewById(R.id.tv_lat_add_poi);
-                TextView textViewLng = (TextView) rootView.findViewById(R.id.tv_lng_add_poi);
+                TextView textViewLat = rootView.findViewById(R.id.tv_lat_add_poi);
+                TextView textViewLng = rootView.findViewById(R.id.tv_lng_add_poi);
 
                 //Update the text of where the latitude and longitude are displayed
-                textViewLat.setText("Lat: " + Math.floor(position.latitude * 100) / 100);
-                textViewLng.setText("Lng: " + Math.floor(position.longitude * 100) / 100);
+                textViewLat.setText(getString(R.string.lat_) + Math.floor(position.latitude * 100) / 100);
+                textViewLng.setText(getString(R.string.lng_) + Math.floor(position.longitude * 100) / 100);
             }
         });
         return rootView;

@@ -24,7 +24,6 @@ import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
-import ch.hesso.santour.view.Main.MainActivity;
 
 
 public class FragmentListTracks extends Fragment {
@@ -75,7 +74,7 @@ public class FragmentListTracks extends Fragment {
     private void serach(final ListView list){
 
         //Search in the listView
-        EditText editText = (EditText) rootView.findViewById(R.id.input_search_track);
+        EditText editText = rootView.findViewById(R.id.input_search_track);
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {

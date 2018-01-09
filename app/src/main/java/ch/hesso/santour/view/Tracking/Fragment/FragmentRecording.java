@@ -20,7 +20,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -93,6 +92,8 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
         trackPauseButton = rootView.findViewById(R.id.track_pause_button);
         cardViewRecord = rootView.findViewById(R.id.track_card_view_record);
         cardViewPause = rootView.findViewById(R.id.track_card_view_pause);
+        
+        trackPauseButton.setEnabled(false);
 
         chrono = rootView.findViewById(R.id.track_chronometer);
         trackPlayButton.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +102,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 trackPlayButton.setVisibility(View.GONE);
                 trackStopButton.setVisibility(View.VISIBLE);
                 trackPauseButton.setClickable(true);
+                trackPauseButton.setEnabled(true);
                 cardViewRecord.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimaryRed));
                 cardViewPause.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
 
@@ -136,6 +138,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 trackPlayButton.setVisibility(View.VISIBLE);
                 trackStopButton.setVisibility(View.GONE);
                 trackPauseButton.setClickable(false);
+                trackPauseButton.setEnabled(false);
                 cardViewRecord.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
                 chrono.stop();
 
@@ -254,7 +257,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
 
     @Override
     public void setTextDistance(String text) {
-        TextView textView = (TextView) getActivity().findViewById(R.id.tv_distance);
+        TextView textView = getActivity().findViewById(R.id.tv_distance);
         textView.setText(text);
     }
 }

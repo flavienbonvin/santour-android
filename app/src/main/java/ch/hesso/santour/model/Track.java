@@ -55,8 +55,9 @@ public class Track implements Serializable{
     public void addPosition(Position p){
         this.positions.add(p);
     }
-    public void addPOD(POD pod){this.pods.add(pod);};
-    public void addPOI(POI poi){this.pois.add(poi);};
+    public void addPOD(POD pod){this.pods.add(pod);}
+
+    public void addPOI(POI poi){this.pois.add(poi);}
 
 
     public String getId() {

@@ -4,10 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -32,7 +29,6 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import ch.hesso.santour.db.DBCallback;
-import ch.hesso.santour.view.Main.MainActivity;
 
 /**
  * Created by maxim on 07.12.2017.

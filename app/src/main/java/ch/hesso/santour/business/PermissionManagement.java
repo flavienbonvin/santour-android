@@ -10,8 +10,6 @@ import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
-import java.util.Set;
-
 /**
  * Created by flavien on 11/23/17.
  */
