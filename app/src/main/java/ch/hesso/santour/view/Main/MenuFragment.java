@@ -41,7 +41,6 @@ public class MenuFragment extends Fragment {
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.main_container, fragment).commit();
-                getActivity().setTitle("Create a track");
             }
         });
 
@@ -57,7 +56,6 @@ public class MenuFragment extends Fragment {
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.main_container, fragment).commit();
-                getActivity().setTitle("List of tracks");
             }
         });
         return rootView;

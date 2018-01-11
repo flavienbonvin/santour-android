@@ -43,8 +43,8 @@ public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.tracking_fragment_fragment_newtrack, container, false);
-
         PermissionManagement.initialCheck(this.getActivity());
+        getActivity().setTitle(R.string.createTrack);
 
         mapView = rootView.findViewById(R.id.add_track_map_mapView2);
         mapView.onCreate(savedInstanceState);

@@ -40,7 +40,7 @@ public class FragmentListTracks extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.edition_fragment_list_tracks, container, false);
-
+        getActivity().setTitle(R.string.listTrack);
         Log.d(FragmentListTracks.class.getCanonicalName(), "Before download");
         TrackDB.getAllByIdUser(FirebaseAuth.getInstance().getCurrentUser().getUid(),new DBCallback() {
             @Override
