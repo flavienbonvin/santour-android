@@ -15,13 +15,10 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.io.File;
-
 import ch.hesso.santour.R;
 import ch.hesso.santour.business.PermissionManagement;
 import ch.hesso.santour.business.PreferenceDownload;
 import ch.hesso.santour.business.TrackingManagement;
-import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Fragment.FragmentListTracks;
 import ch.hesso.santour.view.Login.LoginActivity;
@@ -39,9 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static Fragment fragment;
     private static FragmentManager fragmentManager;
 
-    private String[] drawerItemsList;
     private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,9 +51,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         checkPreferences();
 
         //Navigation Drawer
-        drawerItemsList = getResources().getStringArray(R.array.items);
+        String[] drawerItemsList = getResources().getStringArray(R.array.items);
         drawerLayout = findViewById(R.id.main_drawer_layout);
-        navigationView = findViewById(R.id.main_navigation);
+        NavigationView navigationView = findViewById(R.id.main_navigation);
 
         //menu fragment
         fragmentManager = getFragmentManager();
@@ -135,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    public void handleNavigation() {
+    private void handleNavigation() {
         if (drawerLayout.isDrawerOpen(Gravity.START))
             drawerLayout.closeDrawer(Gravity.LEFT);
         else

@@ -20,8 +20,6 @@ public class FragmentListPOI extends Fragment {
 
     private View rootView;
 
-    private POIListAdapter adapter;
-
     private FragmentManager fragmentManager;
     private Fragment fragment;
 
@@ -40,6 +38,7 @@ public class FragmentListPOI extends Fragment {
 
         //Add a list of POI if there is any on the track
         if (TrackEditActivity.trackDetails.getPois().size() != 0) {
+            POIListAdapter adapter;
             list.setAdapter(adapter = new POIListAdapter(FragmentListPOI.this.getContext(), TrackEditActivity.trackDetails.getPois()));
 
             //Open a new fragment once a POI is clicked

@@ -11,7 +11,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +39,6 @@ public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
 
     //Google Map
     private MapView mapView;
-    private GoogleMap map;
 
     private SeekBar seekBarDifficulty;
 
@@ -103,7 +101,7 @@ public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) throws SecurityException {
         googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getContext(), R.raw.map_json));
-        map = googleMap;
+        GoogleMap map = googleMap;
 
         UiSettings uiSettings = map.getUiSettings();
         uiSettings.setAllGesturesEnabled(true);

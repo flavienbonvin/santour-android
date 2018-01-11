@@ -24,10 +24,6 @@ import ch.hesso.santour.view.Edition.Fragment.FragmentEditPOIListCategories;
 
 public class TrackEditPOIActivity extends AppCompatActivity {
 
-    //Tabs layout adapter for fragment
-    private SectionsPageAdapter sectionsPageAdapter;
-    private ViewPager viewPager;
-
     public static POI poiDetails;
     private int positionPOI;
 
@@ -79,12 +75,12 @@ public class TrackEditPOIActivity extends AppCompatActivity {
         poiDetails = TrackEditActivity.trackDetails.getPois().get(positionPOI);
 
         setContentView(R.layout.edition_activity_edit_poi);
-        sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
+        SectionsPageAdapter sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
 
         fragmentEditDetailsPOI = new FragmentEditDetailsPOI();
 
 
-        viewPager = findViewById(R.id.track_edit_container_poi);
+        ViewPager viewPager = findViewById(R.id.track_edit_container_poi);
         viewPager.setOffscreenPageLimit(2);
         setupViewPager(viewPager);
 

@@ -10,7 +10,7 @@ public class Position implements Serializable{
     public double latitude;
     public double longitude;
     public double altitude;
-    public double time;
+    private double time;
 
     public Position() {
     }

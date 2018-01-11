@@ -2,11 +2,9 @@ package ch.hesso.santour.business;
 
 import android.app.Activity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ch.hesso.santour.model.Position;
-import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Main.MainActivity;
 
 /**
@@ -15,19 +13,13 @@ import ch.hesso.santour.view.Main.MainActivity;
 
 public class TrackingManagement {
 
-    private static LocationManagement locationManagement = new LocationManagement();
+    private static final LocationManagement locationManagement = new LocationManagement();
 
     /**
      * Method used to start a track
      * @param activity
      */
     public static void startTracking(final Activity activity){
-
-        Track track = new Track();
-        List<Position> positions = new ArrayList<>();
-
-
-
         locationManagement.startLocationTracking(activity);
     }
 
@@ -46,14 +38,6 @@ public class TrackingManagement {
 
     public static void pauseTracking(Activity activity){
         locationManagement.stopTracking(activity);
-    }
-
-    public static void addPOD(Activity activity){
-        
-    }
-
-    public static void addPOI(Activity activity){
-
     }
 
 

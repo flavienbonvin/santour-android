@@ -16,9 +16,9 @@ import ch.hesso.santour.R;
  * Created by degir on 05.12.2017.
  */
 
-public class NavigationDrawerAdapter extends BaseAdapter{
-    private ArrayList<String> listData;
-    private LayoutInflater layoutInflater;
+class NavigationDrawerAdapter extends BaseAdapter{
+    private final ArrayList<String> listData;
+    private final LayoutInflater layoutInflater;
 
 
     public NavigationDrawerAdapter(Context aContext, List<String> listData) {

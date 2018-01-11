@@ -29,14 +29,12 @@ import ch.hesso.santour.model.Position;
 
 public class FragmentAddPOD extends Fragment {
 
-    private Button nextButton;
     private String imageName = "";
 
     private FragmentManager fragmentManager;
     private Fragment fragment;
     private View rootView;
 
-    private POD pod;
     private Position pos;
 
     public FragmentAddPOD() {
@@ -67,9 +65,9 @@ public class FragmentAddPOD extends Fragment {
         rootView = inflater.inflate(R.layout.tracking_fragment_recording_add_pod, container, false);
         setHasOptionsMenu(true);
 
-        pod = new POD();
+        POD pod = new POD();
 
-        nextButton = rootView.findViewById(R.id.track_add_pod_next);
+        Button nextButton = rootView.findViewById(R.id.track_add_pod_next);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

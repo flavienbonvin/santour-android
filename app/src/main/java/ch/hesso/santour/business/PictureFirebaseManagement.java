@@ -1,7 +1,6 @@
 package ch.hesso.santour.business;
 
 import android.app.AlertDialog;
-import android.app.PictureInPictureParams;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -41,14 +40,14 @@ public class PictureFirebaseManagement extends AsyncTask<Context, Void, Void> {
     @Override
     protected Void doInBackground(final Context... contexts) {
         storage = FirebaseStorage.getInstance().getReference();
-        String ret = "";
+        String ret;
         try {
             InputStream inputStream = contexts[0].openFileInput("config.txt");
 
             if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
+                String receiveString;
                 StringBuilder stringBuilder = new StringBuilder();
 
                 while ((receiveString = bufferedReader.readLine()) != null) {

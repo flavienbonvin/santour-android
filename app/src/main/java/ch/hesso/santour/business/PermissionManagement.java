@@ -16,11 +16,11 @@ import android.support.v4.content.ContextCompat;
 
 public class PermissionManagement extends ActivityCompat {
 
-    public static final int PERMISSION_ALL = 1;
+    private static final int PERMISSION_ALL = 1;
 
     //TODO Improve permission request, explain why we need them
     //TODO MIGHT NEED TO REMOVE THE WRITE_EXTERNAL_STORAGE
-    public static String[] MANDATORY_PERMISSIONS = {
+    private static final String[] MANDATORY_PERMISSIONS = {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.CAMERA,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -58,14 +58,14 @@ public class PermissionManagement extends ActivityCompat {
                 return false;
             }
         }
-        return false;
+        return true;
     }
 
     /**
      * Check that high accuracy location is enabled on the device (if location is disabled this will show the dialog too)
      * @param activity
      */
-    public static void checkHighAccuracyIsEnabled(Activity activity){
+    private static void checkHighAccuracyIsEnabled(Activity activity){
         //Test that the setting is high accuracy
         try {
             if (Settings.Secure.getInt(activity.getContentResolver(), Settings.Secure.LOCATION_MODE) != Settings.Secure.LOCATION_MODE_HIGH_ACCURACY) {

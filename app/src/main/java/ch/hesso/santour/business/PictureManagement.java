@@ -18,7 +18,6 @@ import android.util.Log;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -50,7 +49,7 @@ public class PictureManagement extends Activity{
         context = this.getBaseContext();
     }
 
-    public void takePicture(){
+    private void takePicture(){
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -151,7 +150,6 @@ public class PictureManagement extends Activity{
     public static Bitmap rotatePicture(Bitmap b) {
         Matrix m = new Matrix();
         m.setRotate(90);
-        Bitmap bmRotated = Bitmap.createBitmap(b, 0, 0, b.getWidth(), b.getHeight(), m , true);
-        return bmRotated;
+        return Bitmap.createBitmap(b, 0, 0, b.getWidth(), b.getHeight(), m , true);
     }
 }

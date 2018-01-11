@@ -3,8 +3,6 @@ package ch.hesso.santour.view.Edition.Fragment;
 import android.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,21 +22,9 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-import org.w3c.dom.Text;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
-
 import ch.hesso.santour.R;
-import ch.hesso.santour.business.LocationManagement;
 import ch.hesso.santour.model.Position;
-import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
-import ch.hesso.santour.view.Main.MainActivity;
 
 /**
  * Created by flavien on 12/4/17.
@@ -50,12 +36,10 @@ public class FragmentDetailsTrack extends Fragment implements OnMapReadyCallback
 
     //Google Map
     private MapView mapView;
-    private GoogleMap map;
 
     private EditText editTextName;
     private SeekBar seekBarDifficulty;
     private TextView textViewDistance;
-    private TextView textViewTime;
 
 
     public FragmentDetailsTrack() {
@@ -87,7 +71,7 @@ public class FragmentDetailsTrack extends Fragment implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) throws SecurityException {
         googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(getContext(), R.raw.map_json));
-        map = googleMap;
+        GoogleMap map = googleMap;
 
         UiSettings uiSettings = map.getUiSettings();
         uiSettings.setMyLocationButtonEnabled(false);
@@ -127,7 +111,7 @@ public class FragmentDetailsTrack extends Fragment implements OnMapReadyCallback
         seekBarDifficulty.setProgress(TrackEditActivity.trackDetails.getDifficulty());
 
         textViewDistance = rootView.findViewById(R.id.text_view_edit_track_distance);
-        textViewTime = rootView.findViewById(R.id.text_view_edit_track_time);
+        TextView textViewTime = rootView.findViewById(R.id.text_view_edit_track_time);
         formatDistanceTextView();
 
         Double duration = Math.floor(TrackEditActivity.trackDetails.getDuration() / 1000);
@@ -137,7 +121,7 @@ public class FragmentDetailsTrack extends Fragment implements OnMapReadyCallback
             int durationSeconde = (int)(Math.floor(duration % 60));
 
             if (durationMinute > 60) {
-                int durationHeure = (int) (durationMinute / 60);
+                int durationHeure = durationMinute / 60;
                 durationString = durationHeure + "h " + durationMinute + "mn " + durationSeconde + "s";
             } else {
                 durationString = durationMinute + "mn " + durationSeconde + "s";

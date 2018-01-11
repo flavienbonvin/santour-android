@@ -21,11 +21,10 @@ import ch.hesso.santour.model.RatePOD;
 
 public class CategoryListAdapter extends BaseAdapter {
 
-    private ArrayList<CategoryPOD> listData;
-    private LayoutInflater layoutInflater;
-    private ArrayList<RatePOD> result;
+    private final ArrayList<CategoryPOD> listData;
+    private final LayoutInflater layoutInflater;
+    private final ArrayList<RatePOD> result;
 
-    private int[] rating;
     public CategoryListAdapter(Context aContext, ArrayList<CategoryPOD> listData) {
         this.listData = listData;
         layoutInflater = LayoutInflater.from(aContext);
@@ -38,7 +37,7 @@ public class CategoryListAdapter extends BaseAdapter {
         this.listData = listData;
         layoutInflater = LayoutInflater.from(aContext);
         result = new ArrayList<>();
-        this.rating = rating;
+        int[] rating1 = rating;
 
         for(int i = 0;i<listData.size();i++){
             result.add(new RatePOD(listData.get(i).getId(),rating[i]));

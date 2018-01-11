@@ -19,7 +19,7 @@ import ch.hesso.santour.model.CategoryPOD;
 
 public class CategoryPODDB {
     private static boolean bool = false;
-    private static DatabaseReference categoryDB = FirebaseDatabase.getInstance().getReference("category_pod");
+    private static final DatabaseReference categoryDB = FirebaseDatabase.getInstance().getReference("category_pod");
 
     public static void add(CategoryPOD category) {
         checkPersistance();
@@ -75,7 +75,7 @@ public class CategoryPODDB {
         q.addValueEventListener(valueEventListener);
     }
 
-    public static void getById(String id, final DBCallback callback) {
+    private static void getById(String id, final DBCallback callback) {
         checkPersistance();
         Query q = categoryDB.child(id);
         ValueEventListener valueEventListener = new ValueEventListener() {

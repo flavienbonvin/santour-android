@@ -23,10 +23,6 @@ import ch.hesso.santour.view.Edition.Fragment.FragmentEditPODListCategories;
 
 public class TrackEditPODActivity extends AppCompatActivity {
 
-    //Tabs layout adapter for fragment
-    private SectionsPageAdapter sectionsPageAdapter;
-    private ViewPager viewPager;
-
     public static POD podDetails;
     private static int positionPOD;
 
@@ -81,9 +77,9 @@ public class TrackEditPODActivity extends AppCompatActivity {
         fragmentEditDetailsPOD = new FragmentEditDetailsPOD();
 
         setContentView(R.layout.edition_activity_edit_pod);
-        sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
+        SectionsPageAdapter sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
 
-        viewPager = findViewById(R.id.track_edit_container_pod);
+        ViewPager viewPager = findViewById(R.id.track_edit_container_pod);
         viewPager.setOffscreenPageLimit(2);
         setupViewPager(viewPager);
 

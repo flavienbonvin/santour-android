@@ -19,10 +19,10 @@ import ch.hesso.santour.model.CategoryPOI;
 
 public class CategoryListAdapterPOI extends BaseAdapter {
 
-    private ArrayList<CategoryPOI> listData;
-    private LayoutInflater layoutInflater;
+    private final ArrayList<CategoryPOI> listData;
+    private final LayoutInflater layoutInflater;
 
-    private boolean[] isCheckedTab;
+    private final boolean[] isCheckedTab;
 
 
     public CategoryListAdapterPOI(Context aContext, ArrayList<CategoryPOI> listData) {
@@ -55,7 +55,7 @@ public class CategoryListAdapterPOI extends BaseAdapter {
         ArrayList<String> list = new ArrayList<>();
 
         for(int i = 0; i < isCheckedTab.length; i++){
-            if (isCheckedTab[i] == true){
+            if (isCheckedTab[i]){
                 list.add(listData.get(i).getId());
             }
         }
@@ -72,7 +72,7 @@ public class CategoryListAdapterPOI extends BaseAdapter {
                 holder = new CategoryListAdapterPOI.ViewHolder();
                 holder.checkBox = convertView.findViewById(R.id.poi_category_checkbox);
                 holder.checkBox.setText(listData.get(position).getName());
-                if(isCheckedTab[position] == true){
+                if(isCheckedTab[position]){
                     holder.checkBox.setChecked(true);
                 }
                 holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

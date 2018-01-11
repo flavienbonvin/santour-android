@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ch.hesso.santour"
-    android:versionCode="2"
-    android:versionName="SanTour 1.0.1">
+    package="ch.hesso.santour">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -25,6 +28,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -34,14 +38,16 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Main.MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".view.Tracking.Activity.TrackActivity"
+            android:label="@string/track"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".view.Edition.Activity.TrackEditActivity"
+            android:label="Edit track"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
@@ -51,6 +57,7 @@
         <activity
             android:name=".view.Main.MainFullScreenPictureActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_main_full_screen_picture"
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".view.Edition.Activity.TrackEditPOIActivity"

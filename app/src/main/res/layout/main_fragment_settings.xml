@@ -69,28 +69,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/settings_tv_seekbar_step_server"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
-        android:text="@string/seekbar_steps_server"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settings_tv_minimal_dist_server" />
-
-    <TextView
-        android:id="@+id/settings_tv_seekbar_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settings_tv_minimal_dist_value" />
 
     <Button
         android:id="@+id/bt_settings_server_download_file"
@@ -99,10 +77,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/download_settings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settings_tv_seekbar_step_server" />
+        app:layout_constraintTop_toBottomOf="@+id/settings_tv_minimal_dist_server" />
 
 </android.support.constraint.ConstraintLayout>

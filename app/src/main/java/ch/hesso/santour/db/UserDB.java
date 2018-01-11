@@ -17,9 +17,9 @@ import ch.hesso.santour.model.User;
  * Created by Maxime on 18.11.2017.
  */
 
-public class UserDB {
+class UserDB {
     private static boolean bool = false;
-    private static DatabaseReference usersDB = FirebaseDatabase.getInstance().getReference("users");
+    private static final DatabaseReference usersDB = FirebaseDatabase.getInstance().getReference("users");
 
     public static void add(User u) {
         checkPersistance();
@@ -85,7 +85,7 @@ public class UserDB {
         q.addValueEventListener(valueEventListener);
     }
 
-    public static void getById(String id, final DBCallback callback) {
+    private static void getById(String id, final DBCallback callback) {
         checkPersistance();
         // on récupère la bonne entrée
         Query q = usersDB.child(id);

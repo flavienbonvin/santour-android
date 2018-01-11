@@ -18,7 +18,6 @@ import ch.hesso.santour.view.Edition.Activity.TrackEditPODActivity;
 public class FragmentListPOD extends Fragment {
 
     private View rootView;
-    private PODListAdapter adapter;
 
     private FragmentManager fragmentManager;
     private Fragment fragment;
@@ -37,6 +36,7 @@ public class FragmentListPOD extends Fragment {
 
         //Add a list of POD if there is any on the track
         if(TrackEditActivity.trackDetails.getPods().size() != 0) {
+            PODListAdapter adapter;
             list.setAdapter(adapter = new PODListAdapter(FragmentListPOD.this.getContext(), TrackEditActivity.trackDetails.getPods()));
 
             //Open a new fragment once a POD is clicked

@@ -48,7 +48,7 @@ public class LocationManagement {
      * Start the location tracking,
      * @param activity
      */
-    protected void startLocationTracking(Activity activity) {
+    void startLocationTracking(Activity activity) {
         positionsList = new ArrayList<>();
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
@@ -63,7 +63,7 @@ public class LocationManagement {
         fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null);
     }
 
-    protected void resumeTracking(Activity activity){
+    void resumeTracking(Activity activity){
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
         locationRequest = new LocationRequest();
         locationRequest.setInterval(10000).setFastestInterval(5000).setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -81,7 +81,7 @@ public class LocationManagement {
      * @param activity
      * @return positions
      */
-    protected List<Position> stopTracking(Activity activity){
+    List<Position> stopTracking(Activity activity){
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
         return positionsList;
     }
@@ -158,7 +158,7 @@ public class LocationManagement {
      * @param positions
      * @return distance
      */
-    protected double calculateTrackLength(List<Position> positions){
+    private double calculateTrackLength(List<Position> positions){
         Location locationFrom = new Location("temp");
         Location locationTo = new Location("temp");
         double distance = 0;

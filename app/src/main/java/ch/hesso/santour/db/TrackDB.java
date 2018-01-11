@@ -19,7 +19,7 @@ import ch.hesso.santour.model.Track;
 
 public class TrackDB {
     private static boolean bool = false;
-    private static DatabaseReference tracksDB = FirebaseDatabase.getInstance().getReference("tracks");
+    private static final DatabaseReference tracksDB = FirebaseDatabase.getInstance().getReference("tracks");
 
     public static String getNewId(){
         checkPersistance();
@@ -56,7 +56,7 @@ public class TrackDB {
         });
     }
 
-    public static void getAll(final DBCallback callback) {
+    private static void getAll(final DBCallback callback) {
         checkPersistance();
         Query q = tracksDB.orderByChild("name");
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -96,7 +96,7 @@ public class TrackDB {
         });
     }
 
-    public static void getById(String id, final DBCallback callback) {
+    private static void getById(String id, final DBCallback callback) {
         checkPersistance();
         Query q = tracksDB.child(id);
         ValueEventListener valueEventListener = new ValueEventListener() {

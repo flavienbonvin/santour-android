@@ -18,10 +18,10 @@ import ch.hesso.santour.model.POD;
  */
 
 public class PODListAdapter extends BaseAdapter {
-    private ArrayList<POD> listData;
-    private LayoutInflater layoutInflater;
+    private final ArrayList<POD> listData;
+    private final LayoutInflater layoutInflater;
 
-    private Context context;
+    private final Context context;
 
 
     public PODListAdapter(Context aContext, List<POD> listData) {

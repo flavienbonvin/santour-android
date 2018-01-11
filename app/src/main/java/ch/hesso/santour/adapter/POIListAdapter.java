@@ -18,10 +18,10 @@ import ch.hesso.santour.model.POI;
  */
 
 public class POIListAdapter extends BaseAdapter{
-    private ArrayList<POI> listData;
-    private LayoutInflater layoutInflater;
+    private final ArrayList<POI> listData;
+    private final LayoutInflater layoutInflater;
 
-    private Context context;
+    private final Context context;
 
     public POIListAdapter(Context aContext, List<POI> listData) {
         this.listData = (ArrayList<POI>)listData;

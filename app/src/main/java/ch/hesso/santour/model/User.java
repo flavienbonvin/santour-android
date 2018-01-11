@@ -11,8 +11,8 @@ import com.google.firebase.database.IgnoreExtraProperties;
 public class User {
     @Exclude
     public String id;
-    public String email;
-    public String typeUser;
+    private String email;
+    private String typeUser;
     private String idAuth;
 
     public User() {

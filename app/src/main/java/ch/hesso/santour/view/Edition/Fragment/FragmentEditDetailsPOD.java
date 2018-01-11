@@ -20,10 +20,6 @@ public class FragmentEditDetailsPOD extends Fragment {
 
     private View rootView;
 
-    private EditText editNamePOD;
-    private ImageView editImagePOD;
-    private TextView editDescriptionPOD;
-
     public FragmentEditDetailsPOD() {
         // Required empty public constructor
     }
@@ -40,15 +36,15 @@ public class FragmentEditDetailsPOD extends Fragment {
     }
 
     private void initFields(){
-        editNamePOD  = rootView.findViewById(R.id.edit_pod_textView_namePOD);
+        EditText editNamePOD = rootView.findViewById(R.id.edit_pod_textView_namePOD);
         editNamePOD.setText(TrackEditPODActivity.podDetails.getName());
 
-        editImagePOD  = rootView.findViewById(R.id.edit_pod_imageView_imagePOD);
+        ImageView editImagePOD = rootView.findViewById(R.id.edit_pod_imageView_imagePOD);
         PictureFirebaseManagement.downloadFile(TrackEditPODActivity.podDetails.getPicture());
         editImagePOD.setImageBitmap(BitmapFactory.decodeFile(PictureManagement.localStoragePath+TrackEditPODActivity.podDetails.getPicture()));
 
 
-        editDescriptionPOD  = rootView.findViewById(R.id.edit_pod_textView_descriptionContent);
+        TextView editDescriptionPOD = rootView.findViewById(R.id.edit_pod_textView_descriptionContent);
         editDescriptionPOD.setText(TrackEditPODActivity.podDetails.getDescription());
     }
 

@@ -1,10 +1,6 @@
 package ch.hesso.santour.business;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -15,11 +11,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 import ch.hesso.santour.R;
-import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.view.Main.MainActivity;
-import ch.hesso.santour.view.Main.MainFullScreenPictureActivity;
-import ch.hesso.santour.view.Tracking.Activity.TrackActivity;
-import ch.hesso.santour.view.Tracking.Fragment.FragmentListPOD;
 
 /**
  * Created by flavien on 12/28/17.
@@ -27,7 +19,7 @@ import ch.hesso.santour.view.Tracking.Fragment.FragmentListPOD;
 
 public class PreferenceDownload extends AsyncTask<String, String, String> {
 
-    private boolean needToast;
+    private final boolean needToast;
     public PreferenceDownload(boolean needToast){
         this.needToast = needToast;
     }
@@ -39,7 +31,7 @@ public class PreferenceDownload extends AsyncTask<String, String, String> {
             URL url = new URL(MainActivity.URL_SETTINGS);
 
             BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-            String str = "";
+            String str;
             String finalString = "";
             while ((str = in.readLine()) != null) {
                 finalString = str;

@@ -38,7 +38,7 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
-                    android:text="0.0m"
+                    android:text="@string/_0_0m"
                     android:textSize="25dp"/>
         </LinearLayout>
         <LinearLayout
