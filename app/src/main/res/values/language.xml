@@ -3,6 +3,5 @@
     <string-array name="spinnerLanguage">
         <item>French</item>
         <item>English</item>
-        <item>German</item>
     </string-array>
 </resources>

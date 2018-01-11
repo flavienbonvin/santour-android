@@ -1,15 +1,12 @@
 package ch.hesso.santour.view.Edition.Fragment;
 
 import android.app.FragmentManager;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -19,9 +16,7 @@ import ch.hesso.santour.adapter.CategoryListAdapterPOI;
 import ch.hesso.santour.db.CategoryPOIDB;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.CategoryPOI;
-import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
 import ch.hesso.santour.view.Edition.Activity.TrackEditPOIActivity;
-import ch.hesso.santour.view.Tracking.Fragment.Recording.FragmentCategoriesPOI;
 
 
 public class FragmentEditPOIListCategories extends Fragment {

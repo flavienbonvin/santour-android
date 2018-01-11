@@ -11,25 +11,20 @@ import com.google.firebase.database.IgnoreExtraProperties;
 public class User {
     @Exclude
     public String id;
-    public String pseudo;
-    public String email;
-    public String password;
-    public String typeUser;
+    private String email;
+    private String typeUser;
+    private String idAuth;
 
     public User() {
     }
 
-    public User(String pseudo, String email, String password, String typeUser) {
-        this.pseudo = pseudo;
+    public User(String email, String typeUser) {
         this.email = email;
-        this.password = password;
         this.typeUser = typeUser;
     }
-    public User(String id, String pseudo, String email, String password, String typeUser) {
+    public User(String id, String email, String typeUser) {
         this.id = id;
-        this.pseudo = pseudo;
         this.email = email;
-        this.password = password;
         this.typeUser = typeUser;
     }
 
@@ -37,10 +32,9 @@ public class User {
     public String toString() {
         return "User{" +
                 "id='" + id + '\'' +
-                ", pseudo='" + pseudo + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 ", typeUser='" + typeUser + '\'' +
+                ", idAuth='" + idAuth + '\'' +
                 '}';
     }
 }

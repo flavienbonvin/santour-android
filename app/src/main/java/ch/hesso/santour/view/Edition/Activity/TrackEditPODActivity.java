@@ -2,7 +2,6 @@ package ch.hesso.santour.view.Edition.Activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -19,19 +18,10 @@ import ch.hesso.santour.adapter.SectionsPageAdapter;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.POD;
-import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Fragment.FragmentEditDetailsPOD;
 import ch.hesso.santour.view.Edition.Fragment.FragmentEditPODListCategories;
-import ch.hesso.santour.view.Main.MainActivity;
-import ch.hesso.santour.view.Main.MainFullScreenPictureActivity;
-import ch.hesso.santour.view.Tracking.Activity.TrackActivity;
-import ch.hesso.santour.view.Tracking.Fragment.FragmentListPOI;
 
 public class TrackEditPODActivity extends AppCompatActivity {
-
-    //Tabs layout adapter for fragment
-    private SectionsPageAdapter sectionsPageAdapter;
-    private ViewPager viewPager;
 
     public static POD podDetails;
     private static int positionPOD;
@@ -64,8 +54,8 @@ public class TrackEditPODActivity extends AppCompatActivity {
 
     private void savePOD() {
 
-        EditText editNamePOD  = (EditText) findViewById(R.id.edit_pod_textView_namePOD);
-        EditText editDescrPOD = (EditText) findViewById(R.id.edit_pod_textView_descriptionContent);
+        EditText editNamePOD  = findViewById(R.id.edit_pod_textView_namePOD);
+        EditText editDescrPOD = findViewById(R.id.edit_pod_textView_descriptionContent);
         TrackEditActivity.trackDetails.getPods().get(positionPOD).setName(editNamePOD.getText().toString());
         TrackEditActivity.trackDetails.getPods().get(positionPOD).setDescription(editDescrPOD.getText().toString());
 
@@ -87,9 +77,9 @@ public class TrackEditPODActivity extends AppCompatActivity {
         fragmentEditDetailsPOD = new FragmentEditDetailsPOD();
 
         setContentView(R.layout.edition_activity_edit_pod);
-        sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
+        SectionsPageAdapter sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
 
-        viewPager = findViewById(R.id.track_edit_container_pod);
+        ViewPager viewPager = findViewById(R.id.track_edit_container_pod);
         viewPager.setOffscreenPageLimit(2);
         setupViewPager(viewPager);
 
@@ -108,7 +98,7 @@ public class TrackEditPODActivity extends AppCompatActivity {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Confirm the deletion of the POD")
                 .setMessage("Are you sur to delete this POD?")
-                //Close the dialog
+                //Delete the POI
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -123,7 +113,7 @@ public class TrackEditPODActivity extends AppCompatActivity {
                         dialog.cancel();
                     }
                 })
-                //Delete the POI
+                //Close the dialog
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

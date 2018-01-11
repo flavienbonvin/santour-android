@@ -1,11 +1,7 @@
 package ch.hesso.santour.view.Edition.Fragment;
 
-import android.app.FragmentManager;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +14,7 @@ import ch.hesso.santour.adapter.CategoryListAdapter;
 import ch.hesso.santour.db.CategoryPODDB;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.CategoryPOD;
-import ch.hesso.santour.model.Track;
-import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
 import ch.hesso.santour.view.Edition.Activity.TrackEditPODActivity;
-import ch.hesso.santour.view.Tracking.Fragment.Recording.FragmentCategoriesPOD;
 
 
 public class FragmentEditPODListCategories extends Fragment {

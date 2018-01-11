@@ -1,5 +1,4 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,110 +6,70 @@
     android:clickable="true"
     tools:context="ch.hesso.santour.view.Tracking.Fragment.FragmentEndTrack">
 
-
-    <EditText
-        android:id="@+id/edit_track_textView_nameTrack"
-        style="@style/Widget.AppCompat.EditText"
-        android:layout_width="match_parent"
-        android:layout_height="71dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        android:hint="@string/trackName"
-        android:inputType="text"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/edit_track_map_mapView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.66" />
-
     <com.google.android.gms.maps.MapView
         android:id="@+id/edit_track_map_mapView2"
         android:layout_width="match_parent"
-        android:layout_height="255dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/edit_track_textView_nameTrack"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp" />
+        android:layout_height="300dp"/>
 
+    <LinearLayout
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:id="@+id/linear_layout_end_track"
+        android:orientation="horizontal"
+        android:weightSum = "2"
+        android:layout_below="@id/edit_track_map_mapView2"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <TextView
+            android:id="@+id/tv_add_pod_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/trackName"
+            android:textSize="20dp" />
+        <TextView
+            android:id="@+id/edit_track_textView_nameTrack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            android:visibility="visible"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:id="@+id/linear_layout_end_track_difficulty"
+        android:orientation="horizontal"
+        android:weightSum = "4"
+        android:layout_below="@id/linear_layout_end_track"
+        android:paddingBottom="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <TextView
+            android:id="@+id/edit_track_textView_difficulty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            android:text="@string/track_difficulty"/>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/edit_track_map_mapView2">
+        <TextView
+            android:id="@+id/tv_difficulty_end_track"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:visibility="visible"
+            android:text="@string/_0"/>
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/edit_track_textView_difficulty"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="@string/track_difficulty"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/edit_track_textView_accessforeveryone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="@string/track_accessforeveryone"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edit_track_textView_pauseduration" />
-
-            <TextView
-                android:id="@+id/edit_track_textView_pauseduration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="@string/track_pauseduration"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edit_track_textView_difficulty" />
-
-            <CheckBox
-                android:id="@+id/edit_track_checkBox_accessForEveryone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                app:layout_constraintRight_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edit_track_editText_pauseDuration" />
-
-            <SeekBar
-                android:id="@+id/edit_track_seekBar_difficulty"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:max="10"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                app:layout_constraintRight_toLeftOf="parent" />
-
-            <EditText
-                android:id="@+id/edit_track_editText_pauseDuration"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="@string/minutes"
-                android:inputType="number"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                app:layout_constraintRight_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edit_track_seekBar_difficulty" />
-        </android.support.constraint.ConstraintLayout>
-    </ScrollView>
-
-</android.support.constraint.ConstraintLayout>
+        <SeekBar
+            android:id="@+id/edit_track_seekBar_difficulty"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:max="10"
+            android:layout_gravity="center_vertical" />
+    </LinearLayout>
+</RelativeLayout>

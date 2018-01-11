@@ -18,13 +18,16 @@ import ch.hesso.santour.model.POI;
  */
 
 public class POIListAdapter extends BaseAdapter{
-    private ArrayList<POI> listData;
-    private LayoutInflater layoutInflater;
+    private final ArrayList<POI> listData;
+    private final LayoutInflater layoutInflater;
 
+    private final Context context;
 
     public POIListAdapter(Context aContext, List<POI> listData) {
         this.listData = (ArrayList<POI>)listData;
         layoutInflater = LayoutInflater.from(aContext);
+
+        context = aContext;
     }
 
     @Override
@@ -60,7 +63,7 @@ public class POIListAdapter extends BaseAdapter{
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.name.setText("POI name : " + listData.get(position).getName());
+        holder.name.setText(context.getString(R.string.poi_name) + listData.get(position).getName());
 
         return convertView;
     }

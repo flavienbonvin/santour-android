@@ -21,11 +21,10 @@ import ch.hesso.santour.model.RatePOD;
 
 public class CategoryListAdapter extends BaseAdapter {
 
-    private ArrayList<CategoryPOD> listData;
-    private LayoutInflater layoutInflater;
-    private ArrayList<RatePOD> result;
+    private final ArrayList<CategoryPOD> listData;
+    private final LayoutInflater layoutInflater;
+    private final ArrayList<RatePOD> result;
 
-    private int[] rating;
     public CategoryListAdapter(Context aContext, ArrayList<CategoryPOD> listData) {
         this.listData = listData;
         layoutInflater = LayoutInflater.from(aContext);
@@ -38,7 +37,7 @@ public class CategoryListAdapter extends BaseAdapter {
         this.listData = listData;
         layoutInflater = LayoutInflater.from(aContext);
         result = new ArrayList<>();
-        this.rating = rating;
+        int[] rating1 = rating;
 
         for(int i = 0;i<listData.size();i++){
             result.add(new RatePOD(listData.get(i).getId(),rating[i]));
@@ -68,16 +67,20 @@ public class CategoryListAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
 
 
-        CategoryListAdapter.ViewHolder holder;
+        final CategoryListAdapter.ViewHolder holder;
         if (convertView == null)
             {
                 convertView = layoutInflater.inflate(R.layout.item_list_pod_category, null);
                 holder = new CategoryListAdapter.ViewHolder();
                 holder.label = convertView.findViewById(R.id.pod_category_label);
                 holder.difficulty = convertView.findViewById(R.id.pod_category_difficulty);
+                holder.value = convertView.findViewById(R.id.pod_category_value);
+
                 holder.difficulty.setMax(10);
                 holder.difficulty.setProgress(result.get(position).getRate());
+                holder.value.setText(String.valueOf(result.get(position).getRate()));
                 //holder.difficulty.setProgress(rating[position]);
+
                 holder.difficulty.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
                     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -87,6 +90,7 @@ public class CategoryListAdapter extends BaseAdapter {
                         result.get(position).setRate(i);
 
                         seekBar.setProgress(i);
+                        holder.value.setText(String.valueOf(i));
                     }
 
                     @Override
@@ -115,6 +119,7 @@ public class CategoryListAdapter extends BaseAdapter {
     {
         TextView label;
         SeekBar difficulty;
+        TextView value;
     }
 }
 

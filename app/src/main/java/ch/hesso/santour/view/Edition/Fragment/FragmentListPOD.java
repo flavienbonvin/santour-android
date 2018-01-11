@@ -2,7 +2,6 @@ package ch.hesso.santour.view.Edition.Fragment;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,16 +12,12 @@ import android.widget.ListView;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.PODListAdapter;
-import ch.hesso.santour.adapter.POIListAdapter;
-import ch.hesso.santour.model.POD;
-import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
 import ch.hesso.santour.view.Edition.Activity.TrackEditPODActivity;
 
 public class FragmentListPOD extends Fragment {
 
     private View rootView;
-    private PODListAdapter adapter;
 
     private FragmentManager fragmentManager;
     private Fragment fragment;
@@ -41,6 +36,7 @@ public class FragmentListPOD extends Fragment {
 
         //Add a list of POD if there is any on the track
         if(TrackEditActivity.trackDetails.getPods().size() != 0) {
+            PODListAdapter adapter;
             list.setAdapter(adapter = new PODListAdapter(FragmentListPOD.this.getContext(), TrackEditActivity.trackDetails.getPods()));
 
             //Open a new fragment once a POD is clicked

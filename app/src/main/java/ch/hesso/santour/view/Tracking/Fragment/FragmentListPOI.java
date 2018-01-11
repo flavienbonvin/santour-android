@@ -8,29 +8,20 @@ import android.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SearchView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import ch.hesso.santour.R;
-import ch.hesso.santour.adapter.PODListAdapter;
 import ch.hesso.santour.adapter.POIListAdapter;
-import ch.hesso.santour.db.CategoryPODDB;
 import ch.hesso.santour.db.CategoryPOIDB;
 import ch.hesso.santour.db.DBCallback;
-import ch.hesso.santour.model.CategoryPOD;
 import ch.hesso.santour.model.CategoryPOI;
-import ch.hesso.santour.model.POD;
 import ch.hesso.santour.model.POI;
 import ch.hesso.santour.view.Main.MainActivity;
 import ch.hesso.santour.view.Main.MainFullScreenPictureActivity;
@@ -81,25 +72,25 @@ public class FragmentListPOI extends Fragment {
 
                         final POI poi = adapter.getListData().get(pos);
 
-                        String message = "Name: " + poi.getName() + "\nDescription: " + poi.getDescription() + "\n\nSelected categories:\n";
+                        StringBuilder message = new StringBuilder(getString(R.string.name_) + poi.getName() + "\n" + getString(R.string.desc_) + poi.getDescription() + "\n\n" + getString(R.string.selected_));
                         for (int i = 0; i < poi.getCategoriesID().size(); i++) {
                             if (poi.getCategoriesID().get(i).equals(categoryPOIList.get(i).getId())) {
-                                message += "\t" + categoryPOIList.get(i).getName() + "\n";
+                                message.append("\t").append(categoryPOIList.get(i).getName()).append("\n");
                             }
                         }
 
                         final AlertDialog.Builder builder = new AlertDialog.Builder(FragmentListPOI.this.getActivity());
-                        builder.setTitle("Details of the POD:")
-                                .setMessage(message)
+                        builder.setTitle(R.string.detail_poi_)
+                                .setMessage(message.toString())
                                 //Close the dialog
-                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                .setPositiveButton((getString(R.string.yes)), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.cancel();
                                     }
                                 })
                                 //Show the picture un full screen
-                                .setNeutralButton("Show picture", new DialogInterface.OnClickListener() {
+                                .setNeutralButton(getString(R.string.show_pic), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intent = new Intent(FragmentListPOI.this.getActivity(), MainFullScreenPictureActivity.class);
@@ -108,7 +99,7 @@ public class FragmentListPOI extends Fragment {
                                     }
                                 })
                                 //Delete the POI
-                                .setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                                .setNegativeButton((getString(R.string.delete)), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         MainActivity.track.getPois().remove(poi);
@@ -127,7 +118,7 @@ public class FragmentListPOI extends Fragment {
      * @param list
      */
     private void search(final ListView list) {
-        EditText editText = (EditText) rootView.findViewById(R.id.input_edit_search_poi);
+        EditText editText = rootView.findViewById(R.id.input_edit_search_poi);
         editText.addTextChangedListener(new TextWatcher() {
 
             @Override

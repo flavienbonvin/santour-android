@@ -1,27 +1,25 @@
 package ch.hesso.santour.view.Login;
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Locale;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.view.Main.MainActivity;
@@ -36,12 +34,15 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        try{
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         auth = FirebaseAuth.getInstance();
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.login_activity);
-        setTitle("Login");
+        setTitle(R.string.title_activity_login);
         super.onCreate(savedInstanceState);
 
         if (auth.getCurrentUser() != null) {
@@ -51,8 +52,18 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-        /*Test t = new Test();
-        t.launch();*/
+
+        loadLastLanguage();
+
+        Button buttonReset = findViewById(R.id.btResetPassword);
+        buttonReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(MainActivity.URL_RESET_PASS));
+                startActivity(browserIntent);
+            }
+        });
+
         //button login
         Button btnLogin = findViewById(R.id.login_button_login);
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                                     //progressBar.setVisibility(View.GONE);
                                     if (!task.isSuccessful()) {
                                         // there was an error
-                                        Toast.makeText(LoginActivity.this, "auth failed", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(LoginActivity.this, "Wrong email/password", Toast.LENGTH_LONG).show();
 
                                     } else {
                                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -90,5 +101,13 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-
+    private void loadLastLanguage(){
+        String language = PreferenceManager.getDefaultSharedPreferences(this).getString("lang", "fr");
+        Locale locale = new Locale(language);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+    }
 }

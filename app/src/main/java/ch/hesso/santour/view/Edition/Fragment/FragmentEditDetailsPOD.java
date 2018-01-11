@@ -8,24 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.business.PictureFirebaseManagement;
 import ch.hesso.santour.business.PictureManagement;
-import ch.hesso.santour.db.DBCallback;
-import ch.hesso.santour.view.Edition.Activity.TrackEditActivity;
 import ch.hesso.santour.view.Edition.Activity.TrackEditPODActivity;
 
 public class FragmentEditDetailsPOD extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
 
     private View rootView;
-
-    private EditText editNamePOD;
-    private ImageView editImagePOD;
-    private TextView editDescriptionPOD;
 
     public FragmentEditDetailsPOD() {
         // Required empty public constructor
@@ -43,15 +36,15 @@ public class FragmentEditDetailsPOD extends Fragment {
     }
 
     private void initFields(){
-        editNamePOD  = (EditText) rootView.findViewById(R.id.edit_pod_textView_namePOD);
+        EditText editNamePOD = rootView.findViewById(R.id.edit_pod_textView_namePOD);
         editNamePOD.setText(TrackEditPODActivity.podDetails.getName());
 
-        editImagePOD  = (ImageView) rootView.findViewById(R.id.edit_pod_imageView_imagePOD);
+        ImageView editImagePOD = rootView.findViewById(R.id.edit_pod_imageView_imagePOD);
         PictureFirebaseManagement.downloadFile(TrackEditPODActivity.podDetails.getPicture());
         editImagePOD.setImageBitmap(BitmapFactory.decodeFile(PictureManagement.localStoragePath+TrackEditPODActivity.podDetails.getPicture()));
 
 
-        editDescriptionPOD  = (TextView) rootView.findViewById(R.id.edit_pod_textView_descriptionContent);
+        TextView editDescriptionPOD = rootView.findViewById(R.id.edit_pod_textView_descriptionContent);
         editDescriptionPOD.setText(TrackEditPODActivity.podDetails.getDescription());
     }
 

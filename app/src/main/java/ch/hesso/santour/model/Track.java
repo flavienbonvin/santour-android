@@ -16,15 +16,13 @@ public class Track implements Serializable{
     @Exclude
     private String id;
     private String name;
-    private int pauseDuration;
-    private boolean isForEveryone;
+    private long duration;
     private int difficulty;
     private double distance;
     private String idUser;
     private List<Position> positions;
     private List<POD> pods;
     private List<POI> pois;
-    private String typeTrackID;
 
     public Track() {
         this.positions = new ArrayList<>();
@@ -33,40 +31,33 @@ public class Track implements Serializable{
         this.distance = 0;
     }
 
-    public Track(String name){
-        this.name = name;
-    }
-
-    public Track(String id, String name, int pauseDuration, boolean isForEveryone, int difficulty, String idUser, List<Position> positions, List<POD> pods, List<POI> pois, String typeTrackID) {
+    public Track(String id, String name, int pauseDuration, long duration, int difficulty, String idUser, List<Position> positions, List<POD> pods, List<POI> pois, String typeTrackID) {
         this.id = id;
         this.name = name;
-        this.pauseDuration = pauseDuration;
-        this.isForEveryone = isForEveryone;
+        this.duration = duration;
         this.difficulty = difficulty;
         this.idUser = idUser;
         this.positions = positions;
         this.pods = pods;
         this.pois = pois;
-        this.typeTrackID = typeTrackID;
     }
 
-    public Track(String name, int pauseDuration, boolean isForEveryone, int difficulty, String idUser, List<Position> positions, List<POD> pods, List<POI> pois, String typeTrackID) {
+    public Track(String name, int pauseDuration, long duration, int difficulty, String idUser, List<Position> positions, List<POD> pods, List<POI> pois, String typeTrackID) {
         this.name = name;
-        this.pauseDuration = pauseDuration;
-        this.isForEveryone = isForEveryone;
+        this.duration = duration;
         this.difficulty = difficulty;
         this.idUser = idUser;
         this.positions = positions;
         this.pods = pods;
         this.pois = pois;
-        this.typeTrackID = typeTrackID;
     }
 
     public void addPosition(Position p){
         this.positions.add(p);
     }
-    public void addPOD(POD pod){this.pods.add(pod);};
-    public void addPOI(POI poi){this.pois.add(poi);};
+    public void addPOD(POD pod){this.pods.add(pod);}
+
+    public void addPOI(POI poi){this.pois.add(poi);}
 
 
     public String getId() {
@@ -85,20 +76,12 @@ public class Track implements Serializable{
         this.name = name;
     }
 
-    public int getPauseDuration() {
-        return pauseDuration;
+    public long getDuration() {
+        return duration;
     }
 
-    public void setPauseDuration(int pauseDuration) {
-        this.pauseDuration = pauseDuration;
-    }
-
-    public boolean isForEveryone() {
-        return isForEveryone;
-    }
-
-    public void setForEveryone(boolean forEveryone) {
-        isForEveryone = forEveryone;
+    public void setDuration(long duration) {
+        this.duration = duration;
     }
 
     public int getDifficulty() {
@@ -141,14 +124,6 @@ public class Track implements Serializable{
         this.pois = pois;
     }
 
-    public String getTypeTrackID() {
-        return typeTrackID;
-    }
-
-    public void setTypeTrackID(String typeTrackID) {
-        this.typeTrackID = typeTrackID;
-    }
-
     public double getDistance() {
         return distance;
     }
@@ -162,14 +137,11 @@ public class Track implements Serializable{
         return "Track{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", pauseDuration=" + pauseDuration +
-                ", isForEveryone=" + isForEveryone +
                 ", difficulty=" + difficulty +
                 ", idUser='" + idUser + '\'' +
                 ", positions=" + positions +
                 ", dangers=" + pods +
                 ", interests=" + pois +
-                ", typeTrackID='" + typeTrackID + '\'' +
                 '}';
     }
 }

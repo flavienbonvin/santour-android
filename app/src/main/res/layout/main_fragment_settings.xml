@@ -1,38 +1,149 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ch.hesso.santour.view.Main.SettingsFragment">
 
+    <LinearLayout
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:id="@+id/linear_layout_settings_distance"
+        android:orientation="horizontal"
+        android:weightSum = "2"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <TextView
+            android:id="@+id/settings_tv_minimal_dist_server"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="16dp"
+            android:layout_height="wrap_content"
+            android:text="@string/minimal_distance_server"/>
 
-    <Spinner
-        android:id="@+id/langage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        <TextView
+            android:id="@+id/settings_tv_minimal_dist_value"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:id="@+id/linear_layout_settings_precision"
+        android:layout_below="@id/linear_layout_settings_distance"
+        android:orientation="horizontal"
+        android:weightSum = "2"
+        android:paddingBottom="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:id="@+id/linear_layout_settings_download"
+        android:layout_below="@id/linear_layout_settings_precision"
+        android:orientation="horizontal"
+        android:weightSum = "2"
+        android:paddingBottom="20dp"
+        android:paddingLeft="20dp"
         android:gravity="center"
-        android:entries="@array/spinnerLanguage"
-        app:layout_constraintBottom_toTopOf="@+id/cloud"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.739"
-        tools:ignore="HardcodedText" />
+        android:paddingRight="20dp">
+        <TextView
+            android:id="@+id/settings_tv_download_settings"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="16dp"
+            android:layout_height="wrap_content"
+            android:text="@string/download_settings" />
+        <Button
+            android:id="@+id/bt_settings_server_download_file"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:textColor="@color/colorWhite"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:textSize="13dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="@string/settings"
+            android:drawableTint="@color/colorWhite"
+            android:drawableLeft="@drawable/ic_cloud_download_black_24dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:id="@+id/linear_layout_settings_language"
+        android:layout_below="@id/linear_layout_settings_download"
+        android:orientation="horizontal"
+        android:weightSum = "2"
+        android:paddingBottom="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <TextView
+            android:id="@+id/settings_tv_language"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="16dp"
+            android:layout_height="wrap_content"
+            android:text="@string/language" />
+        <Spinner
+            android:id="@+id/settings_spinner_language"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="37dp"
+            android:entries="@array/spinnerLanguage"
+            android:gravity="center"
+            android:textSize="16dp"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width = "match_parent"
+        android:layout_height = "wrap_content"
+        android:id="@+id/linear_layout_settings_sync"
+        android:layout_below="@id/linear_layout_settings_language"
+        android:orientation="horizontal"
+        android:weightSum = "2"
+        android:paddingBottom="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <TextView
+            android:id="@+id/settings_textView_explainSynch"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="37dp"
+            android:textSize="16dp"
+            android:text="@string/infoSynch">
+        </TextView>
+        <Button
+            android:id="@+id/settings_button_synchro"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="@string/sychronise"
+            android:textSize="13dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:drawableTint="@color/colorWhite"
+            android:textColor="@color/colorWhite"
+            android:drawableLeft="@drawable/ic_sync_black_24dp"/>
+    </LinearLayout>
 
-    <Switch
-        android:id="@+id/cloud"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="248dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/cloud"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</android.support.constraint.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+</RelativeLayout>

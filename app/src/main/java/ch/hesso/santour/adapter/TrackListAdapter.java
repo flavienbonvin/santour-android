@@ -19,14 +19,13 @@ import ch.hesso.santour.model.Track;
 
 public class TrackListAdapter extends BaseAdapter{
 
-    private ArrayList<Track> listData;
-    private LayoutInflater layoutInflater;
-    private ArrayList<Track> copie;
+    private final ArrayList<Track> listData;
+    private final LayoutInflater layoutInflater;
 
     public TrackListAdapter(Context aContext, ArrayList<Track> listData){
         this.listData = listData;
         layoutInflater = LayoutInflater.from(aContext);
-        copie = new ArrayList<>();
+        ArrayList<Track> copie = new ArrayList<>();
         copie.addAll(listData);
     }
 

@@ -1,8 +1,6 @@
 package ch.hesso.santour.view.Edition.Activity;
 
 import android.app.AlertDialog;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -15,21 +13,16 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import ch.hesso.santour.R;
-import ch.hesso.santour.adapter.CategoryListAdapter;
 import ch.hesso.santour.adapter.CategoryListAdapterPOI;
 import ch.hesso.santour.adapter.SectionsPageAdapter;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.POI;
-import ch.hesso.santour.model.Track;
+
 import ch.hesso.santour.view.Edition.Fragment.FragmentEditDetailsPOI;
 import ch.hesso.santour.view.Edition.Fragment.FragmentEditPOIListCategories;
 
 public class TrackEditPOIActivity extends AppCompatActivity {
-
-    //Tabs layout adapter for fragment
-    private SectionsPageAdapter sectionsPageAdapter;
-    private ViewPager viewPager;
 
     public static POI poiDetails;
     private int positionPOI;
@@ -61,8 +54,8 @@ public class TrackEditPOIActivity extends AppCompatActivity {
     }
 
     private void savePOI() {
-        EditText editNamePOI  = (EditText) findViewById(R.id.edit_track_textView_namePOI);
-        EditText editDescrPOI = (EditText) findViewById(R.id.edit_poi_textView_descriptionContent);
+        EditText editNamePOI  = findViewById(R.id.edit_track_textView_namePOI);
+        EditText editDescrPOI = findViewById(R.id.edit_poi_textView_descriptionContent);
         TrackEditActivity.trackDetails.getPois().get(positionPOI).setName(editNamePOI.getText().toString());
         TrackEditActivity.trackDetails.getPois().get(positionPOI).setDescription(editDescrPOI.getText().toString());
 
@@ -82,12 +75,12 @@ public class TrackEditPOIActivity extends AppCompatActivity {
         poiDetails = TrackEditActivity.trackDetails.getPois().get(positionPOI);
 
         setContentView(R.layout.edition_activity_edit_poi);
-        sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
+        SectionsPageAdapter sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
 
         fragmentEditDetailsPOI = new FragmentEditDetailsPOI();
 
 
-        viewPager = findViewById(R.id.track_edit_container_poi);
+        ViewPager viewPager = findViewById(R.id.track_edit_container_poi);
         viewPager.setOffscreenPageLimit(2);
         setupViewPager(viewPager);
 

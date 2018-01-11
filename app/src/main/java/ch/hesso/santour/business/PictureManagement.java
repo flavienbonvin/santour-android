@@ -5,34 +5,24 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.BitmapRegionDecoder;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.FileProvider;
 import android.util.Base64;
 import android.util.Log;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import ch.hesso.santour.view.Main.MainActivity;
 
@@ -59,7 +49,7 @@ public class PictureManagement extends Activity{
         context = this.getBaseContext();
     }
 
-    public void takePicture(){
+    private void takePicture(){
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -83,7 +73,7 @@ public class PictureManagement extends Activity{
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 200 && resultCode == this.RESULT_OK) {
+        if (requestCode == 200 && resultCode == RESULT_OK) {
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             StorageReference ref = storage.child(MainActivity.track.getId()+"/"+timeStamp+".jpg");
 
@@ -110,19 +100,15 @@ public class PictureManagement extends Activity{
 
 
 
-    private void resizeImage(Bitmap imageBitmap){
+    public static Bitmap resizeImage(Bitmap imageBitmap){
+        //hauteur de 800 demandé par le PO
         int newHeight = 800;
         double facteur = ((double)(newHeight)/imageBitmap.getHeight());
         int newWidth = (int)Math.round(imageBitmap.getWidth() * facteur);
         Log.d("maxDebug", "facteur "+facteur+" newHeight "+newHeight+" newWidth "+newWidth);
         Bitmap small = Bitmap.createScaledBitmap(imageBitmap, newWidth, newHeight, false);
-        encodeBitmapBase64(small);
-    }
-    private void encodeBitmapBase64(Bitmap imageBitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        String imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
-        resolve(imageEncoded);
+        imageBitmap.recycle();
+        return small;
     }
 
     private void resolve(String imageString){
@@ -164,7 +150,6 @@ public class PictureManagement extends Activity{
     public static Bitmap rotatePicture(Bitmap b) {
         Matrix m = new Matrix();
         m.setRotate(90);
-        Bitmap bmRotated = Bitmap.createBitmap(b, 0, 0, b.getWidth(), b.getHeight(), m , true);
-        return bmRotated;
+        return Bitmap.createBitmap(b, 0, 0, b.getWidth(), b.getHeight(), m , true);
     }
 }

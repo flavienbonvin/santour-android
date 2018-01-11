@@ -20,7 +20,6 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -34,6 +33,7 @@ import ch.hesso.santour.business.LocationManagement;
 import ch.hesso.santour.business.TrackingManagement;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.Position;
+import ch.hesso.santour.view.Main.MainActivity;
 import ch.hesso.santour.view.Tracking.Fragment.Recording.FragmentAddPOD;
 import ch.hesso.santour.view.Tracking.Fragment.Recording.FragmentAddPOI;
 
@@ -42,7 +42,10 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
     //Play & Stop button
     private ImageButton trackPlayButton;
     private ImageButton trackStopButton;
+    private ImageButton trackPauseButton;
+    private long timeWhenStopped;
     private CardView cardViewRecord;
+    private CardView cardViewPause;
     
     //Add POI / POD button
     private ImageButton addPOIButton;
@@ -64,20 +67,17 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
 
     private Marker marker;
 
+    private boolean isPaused = false;
+
 
     public FragmentRecording() {
         // Required empty public constructor
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.tracking_fragment_recording, container, false);
+        getActivity().setTitle(MainActivity.track.getName());
         setHasOptionsMenu(true);
 
         mapView = rootView.findViewById(R.id.track_map);
@@ -86,7 +86,11 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
 
         trackPlayButton = rootView.findViewById(R.id.track_play_button);
         trackStopButton = rootView.findViewById(R.id.track_stop_button);
+        trackPauseButton = rootView.findViewById(R.id.track_pause_button);
         cardViewRecord = rootView.findViewById(R.id.track_card_view_record);
+        cardViewPause = rootView.findViewById(R.id.track_card_view_pause);
+        
+        trackPauseButton.setEnabled(false);
 
         chrono = rootView.findViewById(R.id.track_chronometer);
         trackPlayButton.setOnClickListener(new View.OnClickListener() {
@@ -94,14 +98,41 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
             public void onClick(View v) {
                 trackPlayButton.setVisibility(View.GONE);
                 trackStopButton.setVisibility(View.VISIBLE);
+                trackPauseButton.setClickable(true);
+                trackPauseButton.setEnabled(true);
                 cardViewRecord.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimaryRed));
-                chrono.setBase(SystemClock.elapsedRealtime());
+                cardViewPause.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+
+                chrono.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
                 chrono.start();
-                TrackingManagement.startTracking(FragmentRecording.this.getActivity());
+
+                if(!isPaused) {
+                    TrackingManagement.startTracking(FragmentRecording.this.getActivity());
+                }else {
+                    TrackingManagement.resumeTracking(FragmentRecording.this.getActivity());
+                    isPaused = false;
+                }
 
                 //TODO change style of the button when disabled
                 addPOIButton.setEnabled(true);
                 addPODButton.setEnabled(true);
+            }
+        });
+
+        trackPauseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                trackPlayButton.setVisibility(View.VISIBLE);
+                trackStopButton.setVisibility(View.GONE);
+                cardViewRecord.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+                cardViewPause.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimaryRed));
+
+                timeWhenStopped = chrono.getBase() - SystemClock.elapsedRealtime();
+                chrono.stop();
+
+                isPaused = true;
+
+                TrackingManagement.pauseTracking(FragmentRecording.this.getActivity());
             }
         });
 
@@ -110,6 +141,8 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
             public void onClick(View v) {
                 trackPlayButton.setVisibility(View.VISIBLE);
                 trackStopButton.setVisibility(View.GONE);
+                trackPauseButton.setClickable(false);
+                trackPauseButton.setEnabled(false);
                 cardViewRecord.setCardBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
                 chrono.stop();
 
@@ -118,14 +151,20 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 addPODButton.setEnabled(false);
 
                 TrackingManagement.stopTracking(FragmentRecording.this.getActivity());
+                long time = SystemClock.elapsedRealtime() - chrono.getBase();
+
+                MainActivity.track.setDuration(time);
 
                 fragmentManager = getFragmentManager();
                 fragment = new FragmentEndTrack();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.addToBackStack(null);
+                transaction.addToBackStack("NoReturn");
                 transaction.replace(R.id.main_content, fragment).commit();
+
+                isPaused = false;
             }
         });
+
 
         LocationManagement.interfaceToWatch(FragmentRecording.this);
 
@@ -137,7 +176,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 fragmentManager  = getFragmentManager();
                 fragment  = new FragmentAddPOI();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.addToBackStack(null);
+                transaction.addToBackStack("ADD");
                 transaction.replace(R.id.main_content, fragment).commit();
             }
         });
@@ -150,7 +189,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 fragmentManager  = getFragmentManager();
                 fragment  = new FragmentAddPOD();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.addToBackStack("NoReturn");
+                transaction.addToBackStack("ADD");
                 transaction.replace(R.id.main_content, fragment).commit();
             }
         });
@@ -183,6 +222,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
             }
         });
     }
+
 
 
 
@@ -223,7 +263,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
 
     @Override
     public void setTextDistance(String text) {
-        TextView textView = (TextView) getActivity().findViewById(R.id.tv_distance);
+        TextView textView = getActivity().findViewById(R.id.tv_distance);
         textView.setText(text);
     }
 }

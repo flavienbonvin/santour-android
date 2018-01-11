@@ -10,7 +10,7 @@ public class Position implements Serializable{
     public double latitude;
     public double longitude;
     public double altitude;
-    public double time;
+    private double time;
 
     public Position() {
     }
@@ -56,9 +56,6 @@ public class Position implements Serializable{
         if (position.latitude != this.latitude){
             return false;
         }
-        if(position.longitude != this.longitude){
-            return false;
-        }
-        return true;
+        return !(position.longitude != this.longitude);
     }
 }

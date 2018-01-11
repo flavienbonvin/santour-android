@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -30,14 +29,12 @@ import ch.hesso.santour.model.Position;
 
 public class FragmentAddPOD extends Fragment {
 
-    private Button nextButton;
     private String imageName = "";
 
     private FragmentManager fragmentManager;
     private Fragment fragment;
     private View rootView;
 
-    private POD pod;
     private Position pos;
 
     public FragmentAddPOD() {
@@ -68,14 +65,14 @@ public class FragmentAddPOD extends Fragment {
         rootView = inflater.inflate(R.layout.tracking_fragment_recording_add_pod, container, false);
         setHasOptionsMenu(true);
 
-        pod = new POD();
+        POD pod = new POD();
 
-        nextButton = rootView.findViewById(R.id.track_add_pod_next);
+        Button nextButton = rootView.findViewById(R.id.track_add_pod_next);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText editTextName = (EditText) getActivity().findViewById(R.id.edit_text_pod_name);
-                EditText editTextDesc = (EditText) getActivity().findViewById(R.id.edit_text_pod_desc);
+                EditText editTextName = getActivity().findViewById(R.id.edit_text_pod_name);
+                EditText editTextDesc = getActivity().findViewById(R.id.edit_text_pod_desc);
                 String podName = editTextName.getText().toString();
                 String podDesc = editTextDesc.getText().toString();
 
@@ -101,7 +98,7 @@ public class FragmentAddPOD extends Fragment {
             }
         });
 
-        ImageButton pictureButton = (ImageButton) rootView.findViewById(R.id.track_add_pod_add_picture);
+        ImageButton pictureButton = rootView.findViewById(R.id.track_add_pod_add_picture);
         pictureButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -116,12 +113,12 @@ public class FragmentAddPOD extends Fragment {
             public void resolve(Object o) {
                 pos = (Position) o;
 
-                TextView textViewLat = (TextView) getActivity().findViewById(R.id.tv_lat_add_pod);
-                TextView textViewLng = (TextView) getActivity().findViewById(R.id.tv_lng_add_pod);
+                TextView textViewLat = getActivity().findViewById(R.id.tv_lat_add_pod);
+                TextView textViewLng = getActivity().findViewById(R.id.tv_lng_add_pod);
 
                 //Update the text of where the latitude and longitude are displayed
-                textViewLat.setText("Lat: " + Math.floor(pos.latitude * 100) / 100);
-                textViewLng.setText("Lng: " + Math.floor(pos.longitude * 100) / 100);
+                textViewLat.setText(getString(R.string.lat_) + Math.floor(pos.latitude * 100) / 100);
+                textViewLng.setText(getString(R.string.lng_) + Math.floor(pos.longitude * 100) / 100);
             }
         });
         return rootView;

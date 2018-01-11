@@ -2,19 +2,15 @@ package ch.hesso.santour.view.Tracking.Activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.adapter.SectionsPageAdapter;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Main.MainActivity;
-import ch.hesso.santour.view.Main.MainFullScreenPictureActivity;
 import ch.hesso.santour.view.Tracking.Fragment.FragmentListPOD;
 import ch.hesso.santour.view.Tracking.Fragment.FragmentListPOI;
 import ch.hesso.santour.view.Tracking.Fragment.FragmentRecording;
@@ -29,17 +25,14 @@ public class TrackActivity extends AppCompatActivity {
     public static FragmentListPOI fragmentListPOI;
     public static FragmentListPOD fragmentListPOD;
 
-    private SectionsPageAdapter sectionsPageAdapter;
-    private ViewPager viewPager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tracking_activity);
-        sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
+        SectionsPageAdapter sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
 
-        viewPager = findViewById(R.id.track_container);
+        ViewPager viewPager = findViewById(R.id.track_container);
         viewPager.setOffscreenPageLimit(3);
         setupViewPager(viewPager);
 
@@ -49,7 +42,8 @@ public class TrackActivity extends AppCompatActivity {
 
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getFragmentManager());
-        adapter.addFragment(new FragmentRecording(), getString(R.string.my_track));
+        FragmentRecording fragmentRecording;
+        adapter.addFragment(fragmentRecording = new FragmentRecording(), getString(R.string.my_track));
         adapter.addFragment(fragmentListPOI = new FragmentListPOI(), getString(R.string.pois_list));
         adapter.addFragment(fragmentListPOD = new FragmentListPOD(), getString(R.string.pods_list));
         viewPager.setAdapter(adapter);
@@ -57,7 +51,6 @@ public class TrackActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        getFragmentManager().popBackStack("NoReturn", 0);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(TrackActivity.this);
         builder.setTitle("You can't go back!")

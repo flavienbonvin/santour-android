@@ -1,6 +1,8 @@
 package ch.hesso.santour.business;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.location.Location;
 import android.support.annotation.NonNull;
@@ -13,12 +15,15 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.android.gms.maps.GoogleMap;
 
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.Position;
@@ -43,9 +48,22 @@ public class LocationManagement {
      * Start the location tracking,
      * @param activity
      */
-    protected void startLocationTracking(Activity activity) {
+    void startLocationTracking(Activity activity) {
         positionsList = new ArrayList<>();
 
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
+        locationRequest = new LocationRequest();
+        locationRequest.setInterval(10000).setFastestInterval(5000).setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        //Create the callback for the location request
+        callbackCreation(activity);
+
+        //Check that all mandatory permissions are enabled (location, camera and external storage)
+        PermissionManagement.checkMandatoryPermission(activity);
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null);
+    }
+
+    void resumeTracking(Activity activity){
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
         locationRequest = new LocationRequest();
         locationRequest.setInterval(10000).setFastestInterval(5000).setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -63,9 +81,33 @@ public class LocationManagement {
      * @param activity
      * @return positions
      */
-    protected List<Position> stopTracking(Activity activity){
+    List<Position> stopTracking(Activity activity){
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
         return positionsList;
+    }
+
+    public void createTempTracking(Activity activity, GoogleMap map){
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
+        locationRequest = new LocationRequest();
+        locationRequest.setInterval(0).setFastestInterval(0).setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        callbackCreationTemp(activity, map);
+        PermissionManagement.checkMandatoryPermission(activity);
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null);
+    }
+
+    public void stopTempTracking(Activity activity){
+        fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+    }
+
+    private void callbackCreationTemp(final Activity activity, final GoogleMap map){
+        locationCallback = new LocationCallback(){
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                map.clear();
+                map.addMarker(new MarkerOptions().position(new LatLng(locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude())));
+            }
+        };
     }
 
     /**
@@ -116,7 +158,7 @@ public class LocationManagement {
      * @param positions
      * @return distance
      */
-    protected double calculateTrackLength(List<Position> positions){
+    private double calculateTrackLength(List<Position> positions){
         Location locationFrom = new Location("temp");
         Location locationTo = new Location("temp");
         double distance = 0;
@@ -184,7 +226,12 @@ public class LocationManagement {
 
             double distance = calculateDistance2Points(newPosition, lastPosition);
 
-            if(distance < 100 && distance > 8){
+            //Get the value of the preference
+            SharedPreferences sharedPref = MainActivity.mainActivity.getPreferences(Context.MODE_PRIVATE);
+
+            int minDistance = Integer.parseInt(sharedPref.getString("minimanlDistance", "8"));
+
+            if(distance < 100 && distance > minDistance){
                 Log.d(LocationManagement.class.getName(), "Location added to the track, distance: " + distance);
 
                 positionsList.add(newPosition);

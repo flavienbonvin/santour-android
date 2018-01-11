@@ -7,13 +7,13 @@
         android:enabled="true"
         android:icon="@drawable/ic_delete_white_24dp"
         android:orderInCategory="-10"
-        android:title="back"
+        android:title="@string/back"
         app:showAsAction="always" />
     <item
         android:id="@+id/edition_action_bar_save"
         android:enabled="true"
         android:icon="@drawable/ic_save"
         android:orderInCategory="-10"
-        android:title="save"
+        android:title="@string/save"
         app:showAsAction="always" />
 </menu>

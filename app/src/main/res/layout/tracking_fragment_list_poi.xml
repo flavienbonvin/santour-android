@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ch.hesso.santour.view.Edition.Fragment.FragmentListPOI">
+    tools:context="ch.hesso.santour.view.Edition.Fragment.FragmentListPOI"
+    android:padding="10dp">
 
 
     <LinearLayout
@@ -18,7 +19,10 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="@string/searchPOI"
-            android:inputType="textVisiblePassword"/>
+            android:inputType="textVisiblePassword"
+            android:drawableRight="@drawable/ic_search_black_24dp"
+            android:paddingBottom="20dp"
+            android:layout_marginBottom="10dp"/>
 
         <ListView
             android:id="@+id/list_view_edit_poi"

@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -20,10 +19,10 @@ import ch.hesso.santour.model.CategoryPOI;
 
 public class CategoryListAdapterPOI extends BaseAdapter {
 
-    private ArrayList<CategoryPOI> listData;
-    private LayoutInflater layoutInflater;
+    private final ArrayList<CategoryPOI> listData;
+    private final LayoutInflater layoutInflater;
 
-    private boolean[] isCheckedTab;
+    private final boolean[] isCheckedTab;
 
 
     public CategoryListAdapterPOI(Context aContext, ArrayList<CategoryPOI> listData) {
@@ -56,7 +55,7 @@ public class CategoryListAdapterPOI extends BaseAdapter {
         ArrayList<String> list = new ArrayList<>();
 
         for(int i = 0; i < isCheckedTab.length; i++){
-            if (isCheckedTab[i] == true){
+            if (isCheckedTab[i]){
                 list.add(listData.get(i).getId());
             }
         }
@@ -71,10 +70,9 @@ public class CategoryListAdapterPOI extends BaseAdapter {
             {
                 convertView = layoutInflater.inflate(R.layout.item_list_poi_category, null);
                 holder = new CategoryListAdapterPOI.ViewHolder();
-                holder.label = convertView.findViewById(R.id.poi_category_label);
-                holder.label.setText(listData.get(position).getName());
                 holder.checkBox = convertView.findViewById(R.id.poi_category_checkbox);
-                if(isCheckedTab[position] == true){
+                holder.checkBox.setText(listData.get(position).getName());
+                if(isCheckedTab[position]){
                     holder.checkBox.setChecked(true);
                 }
                 holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -90,15 +88,11 @@ public class CategoryListAdapterPOI extends BaseAdapter {
                 holder = (CategoryListAdapterPOI.ViewHolder) convertView.getTag();
             }
 
-        holder.checkBox.setText(listData.get(position).getName());
-        //holder.difficulty.setProgress(listData.get(position).getRating());
-
         return convertView;
     }
 
     static class ViewHolder
     {
-        TextView label;
         CheckBox checkBox;
     }
 }

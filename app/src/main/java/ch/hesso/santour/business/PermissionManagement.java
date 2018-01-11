@@ -16,11 +16,11 @@ import android.support.v4.content.ContextCompat;
 
 public class PermissionManagement extends ActivityCompat {
 
-    public static final int PERMISSION_ALL = 1;
+    private static final int PERMISSION_ALL = 1;
 
     //TODO Improve permission request, explain why we need them
     //TODO MIGHT NEED TO REMOVE THE WRITE_EXTERNAL_STORAGE
-    public static String[] MANDATORY_PERMISSIONS = {
+    private static final String[] MANDATORY_PERMISSIONS = {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.CAMERA,
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -31,6 +31,7 @@ public class PermissionManagement extends ActivityCompat {
      */
     public static void initialCheck(Activity activity) {
         checkMandatoryPermission(activity);
+        checkAirplaneModeDisabled(activity);
         checkHighAccuracyIsEnabled(activity);
     }
 
@@ -39,7 +40,7 @@ public class PermissionManagement extends ActivityCompat {
      *
      * @param activity
      */
-    protected static void checkMandatoryPermission(Activity activity) {
+    public static void checkMandatoryPermission(Activity activity) {
         if (!checkHasPermission(activity)) {
             ActivityCompat.requestPermissions(activity, MANDATORY_PERMISSIONS, PERMISSION_ALL);
         }
@@ -57,7 +58,7 @@ public class PermissionManagement extends ActivityCompat {
                 return false;
             }
         }
-        return false;
+        return true;
     }
 
     /**
@@ -68,12 +69,21 @@ public class PermissionManagement extends ActivityCompat {
         //Test that the setting is high accuracy
         try {
             if (Settings.Secure.getInt(activity.getContentResolver(), Settings.Secure.LOCATION_MODE) != Settings.Secure.LOCATION_MODE_HIGH_ACCURACY) {
-                showDialog(activity, "Check that high accuracy is enabled!");
+                showDialog(activity, "Check that high accuracy is enabled!","You have to activate the location service!", Settings.ACTION_LOCATION_SOURCE_SETTINGS, true);
             }
         } catch (Settings.SettingNotFoundException e) {
             e.printStackTrace();
         }
+    }
 
+    public static void checkAirplaneModeDisabled(Activity activity){
+        try {
+            if (Settings.Global.getInt(activity.getContentResolver(), Settings.Global.AIRPLANE_MODE_ON,0) != 0){
+                showDialog(activity, "You cannot have airplane mode activated!", "You have to disable airplane mode!", Settings.ACTION_AIRPLANE_MODE_SETTINGS, false);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -81,23 +91,23 @@ public class PermissionManagement extends ActivityCompat {
      * @param activity
      * @param message
      */
-    private static void showDialog(final Activity activity, String message) {
+    private static void showDialog(final Activity activity, String message, String title, final String settings, final boolean finishActivity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setTitle("You have to activate the location service!")
+        builder.setTitle(title)
                 .setMessage(message)
-
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        Intent intent = new Intent(settings);
                         activity.startActivity(intent);
                     }
                 })
-
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        activity.finish();
+                        if (finishActivity) {
+                            activity.finish();
+                        }
                     }
                 }).show();
     }

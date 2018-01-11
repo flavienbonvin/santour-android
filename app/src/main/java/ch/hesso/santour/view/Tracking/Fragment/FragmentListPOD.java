@@ -72,26 +72,26 @@ public class FragmentListPOD extends Fragment {
 
                         final POD pod = adapter.getListData().get(pos);
 
-                        String message = "Name: " + pod.getName() + "\nDescription: " + pod.getDescription() + "\n\nDanger rating:\n";
+                        StringBuilder message = new StringBuilder(getString(R.string.name_) + pod.getName() + "\n" + getString(R.string.name_) + pod.getDescription() + "\n\n" + getString(R.string.danger_rating_) + "\n");
 
                         for (int i = 0; i < pod.getCategoriesID().size(); i++){
                             if(pod.getCategoriesID().get(i).getPodCatID().equals(categoryPODList.get(i).getId())){
-                                message += "\t" + categoryPODList.get(i).getName() + ": " + pod.getCategoriesID().get(i).getRate() + "\n";
+                                message.append("\t").append(categoryPODList.get(i).getName()).append(": ").append(pod.getCategoriesID().get(i).getRate()).append("\n");
                             }
                         }
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(FragmentListPOD.this.getActivity());
-                        builder.setTitle("Details of the POD:")
-                                .setMessage(message)
+                        builder.setTitle(R.string.detail_pod)
+                                .setMessage(message.toString())
                                 //Close the dialog
-                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.cancel();
                                     }
                                 })
                                 //Show the picture
-                                .setNeutralButton("Show picture", new DialogInterface.OnClickListener() {
+                                .setNeutralButton(getString(R.string.show_pic), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         Intent intent = new Intent(FragmentListPOD.this.getActivity(), MainFullScreenPictureActivity.class);
@@ -100,7 +100,7 @@ public class FragmentListPOD extends Fragment {
                                     }
                                 })
                                 //Delete the POD
-                                .setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                                .setNegativeButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         MainActivity.track.getPods().remove(pod);
@@ -119,7 +119,7 @@ public class FragmentListPOD extends Fragment {
      * @param list
      */
     private void search(final ListView list) {
-        EditText editText = (EditText) rootView.findViewById(R.id.input_search_pod);
+        EditText editText = rootView.findViewById(R.id.input_search_pod);
         editText.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -144,7 +144,7 @@ public class FragmentListPOD extends Fragment {
 
 
     /**
-     * Update hte list with the new POD (called once a POD is created)
+     * Update the list with the new POD (called once a POD is created)
      */
     public void updateList(){
         ListView list = rootView.findViewById(R.id.list_view_pod);

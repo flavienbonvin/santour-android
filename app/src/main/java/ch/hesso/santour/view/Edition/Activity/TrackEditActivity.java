@@ -1,15 +1,11 @@
 package ch.hesso.santour.view.Edition.Activity;
 
 import android.app.AlertDialog;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,14 +18,8 @@ import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Fragment.FragmentDetailsTrack;
 import ch.hesso.santour.view.Edition.Fragment.FragmentListPOD;
 import ch.hesso.santour.view.Edition.Fragment.FragmentListPOI;
-import ch.hesso.santour.view.Edition.Fragment.FragmentListTracks;
-import ch.hesso.santour.view.Tracking.Fragment.FragmentNewTrack;
 
 public class TrackEditActivity extends AppCompatActivity {
-
-    //Tabs layout adapter for fragment
-    private SectionsPageAdapter sectionsPageAdapter;
-    private ViewPager viewPager;
 
 
     public static Track trackDetails;
@@ -69,9 +59,9 @@ public class TrackEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.edition_activity);
-        sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
+        SectionsPageAdapter sectionsPageAdapter = new SectionsPageAdapter(getFragmentManager());
 
-        viewPager = findViewById(R.id.track_edit_container);
+        ViewPager viewPager = findViewById(R.id.track_edit_container);
         viewPager.setOffscreenPageLimit(3);
         setupViewPager(viewPager);
 

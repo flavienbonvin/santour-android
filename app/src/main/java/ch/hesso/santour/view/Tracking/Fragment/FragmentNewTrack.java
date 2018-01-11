@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -20,12 +22,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.business.LocationManagement;
+import ch.hesso.santour.business.PermissionManagement;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.Position;
-import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Main.MainActivity;
 import ch.hesso.santour.view.Tracking.Activity.TrackActivity;
+
 
 
 public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
@@ -34,6 +37,10 @@ public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
     private MapView mapView;
     private GoogleMap map;
 
+    private LocationCallback locationCallback;
+
+    private LocationManagement locationManagement;
+
     public FragmentNewTrack() {
         // Required empty public constructor
     }
@@ -41,23 +48,28 @@ public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.tracking_fragment_fragment_newtrack, container, false);
-
+        PermissionManagement.initialCheck(this.getActivity());
+        getActivity().setTitle(R.string.createTrack);
 
         mapView = rootView.findViewById(R.id.add_track_map_mapView2);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
+        locationManagement = new LocationManagement();
 
         //button login
         Button btnSave = rootView.findViewById(R.id.add_track_save_button);
         btnSave.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                EditText nameTrack  = (EditText)rootView.findViewById(R.id.add_track_textView_nameTrack);
+                EditText nameTrack  = rootView.findViewById(R.id.add_track_textView_nameTrack);
                 String name = nameTrack.getText().toString();
                 if(name.equals("")){
+                    Toast.makeText(FragmentNewTrack.this.getActivity(), R.string.error_no_name_track, Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                locationManagement.stopTempTracking(FragmentNewTrack.this.getActivity());
 
                 //Create a new track in the Mainactivity (where there is a track in static)
                 String newId = TrackDB.getNewId();
@@ -78,6 +90,8 @@ public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
         UiSettings uiSettings = map.getUiSettings();
         uiSettings.setAllGesturesEnabled(false);
         uiSettings.setMyLocationButtonEnabled(false);
+
+        locationManagement.createTempTracking(this.getActivity(), map);
 
         LatLng coordinate = new LatLng(86, 20);
         map.moveCamera(CameraUpdateFactory.newLatLng(coordinate));

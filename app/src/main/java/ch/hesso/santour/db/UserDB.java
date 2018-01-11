@@ -1,9 +1,6 @@
 package ch.hesso.santour.db;
 
-import android.util.Log;
-
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -13,7 +10,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Semaphore;
 
 import ch.hesso.santour.model.User;
 
@@ -21,10 +17,12 @@ import ch.hesso.santour.model.User;
  * Created by Maxime on 18.11.2017.
  */
 
-public class UserDB {
-    private static DatabaseReference usersDB = FirebaseDatabase.getInstance().getReference("users");
+class UserDB {
+    private static boolean bool = false;
+    private static final DatabaseReference usersDB = FirebaseDatabase.getInstance().getReference("users");
 
     public static void add(User u) {
+        checkPersistance();
         // on récupere l'id généré par firebase
         String id = usersDB.push().getKey();
         // on ajoute l'enfant dans la DB
@@ -32,6 +30,7 @@ public class UserDB {
     }
 
     public static void add(User track, final DBCallback callback) {
+        checkPersistance();
         final String id = usersDB.push().getKey();
         usersDB.child(id).setValue(track).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -42,10 +41,12 @@ public class UserDB {
     }
 
     public static void update(User u) {
+        checkPersistance();
         usersDB.child(u.id).setValue(u);
     }
 
     public static void update(final User u, final DBCallback callback) {
+        checkPersistance();
         usersDB.child(u.id).setValue(u).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -55,6 +56,7 @@ public class UserDB {
     }
 
     public static void getAll(final DBCallback callback) {
+        checkPersistance();
         // on fait une query pour firebase
         Query q = usersDB.orderByChild("pseudo");
         // le callback quand firebase return une réponse
@@ -83,7 +85,8 @@ public class UserDB {
         q.addValueEventListener(valueEventListener);
     }
 
-    public static void getById(String id, final DBCallback callback) {
+    private static void getById(String id, final DBCallback callback) {
+        checkPersistance();
         // on récupère la bonne entrée
         Query q = usersDB.child(id);
         ValueEventListener valueEventListener = new ValueEventListener() {
@@ -105,15 +108,24 @@ public class UserDB {
     }
 
     public static void delete(String id) {
+        checkPersistance();
         usersDB.child(id).removeValue();
     }
 
     public static void delete(String id, final DBCallback callback) {
+        checkPersistance();
         usersDB.child(id).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 callback.resolve(true);
             }
         });
+    }
+
+    private static void checkPersistance(){
+        if(!bool){
+            usersDB.keepSynced(true);
+            bool = true;
+        }
     }
 }
