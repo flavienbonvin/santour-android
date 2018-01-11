@@ -108,6 +108,7 @@ public class PictureManagement extends Activity{
         int newWidth = (int)Math.round(imageBitmap.getWidth() * facteur);
         Log.d("maxDebug", "facteur "+facteur+" newHeight "+newHeight+" newWidth "+newWidth);
         Bitmap small = Bitmap.createScaledBitmap(imageBitmap, newWidth, newHeight, false);
+        imageBitmap.recycle();
         return small;
     }
 

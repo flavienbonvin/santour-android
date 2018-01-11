@@ -26,6 +26,7 @@ import java.util.Locale;
 
 import ch.hesso.santour.R;
 import ch.hesso.santour.business.PreferenceDownload;
+import ch.hesso.santour.db.DBCallback;
 
 public class SettingsFragment extends Fragment {
 
@@ -55,7 +56,7 @@ public class SettingsFragment extends Fragment {
         getActivity().setTitle(R.string.settings);
         setHasOptionsMenu(true);
 
-        new PreferenceDownload().execute();
+
 
         final SharedPreferences sharedPref = SettingsFragment.this.getActivity().getPreferences(Context.MODE_PRIVATE);
 
@@ -67,15 +68,15 @@ public class SettingsFragment extends Fragment {
         buttonDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new PreferenceDownload().execute();
-
-                minDistance.setText(sharedPref.getString("minimanlDistance", "Missing"));
+                new PreferenceDownload(true).execute();
+                minDistance.setText(sharedPref.getString("minimalDistance", "Missing"));
                 seekStep.setText(sharedPref.getString("seekbarValue", "Missing"));
-                Log.d(SettingsFragment.class.getCanonicalName(), "min: " +  sharedPref.getString("minimanlDistance", "Missing") + " seek: " + sharedPref.getString("seekbarValue", "Missing"));
+                Log.d(SettingsFragment.class.getCanonicalName(), "min: " +  sharedPref.getString("minimalDistance", "Missing") + " seek: " + sharedPref.getString("seekbarValue", "Missing"));
+
             }
         });
 
-        minDistance.setText(sharedPref.getString("minimanlDistance", "Missing"));
+        minDistance.setText(sharedPref.getString("minimalDistance", "Missing"));
         seekStep.setText(sharedPref.getString("seekbarValue", "Missing"));
 
 

@@ -82,7 +82,10 @@ public class PictureFirebaseManagement extends AsyncTask<Context, Void, Void> {
 
         Bitmap b = BitmapFactory.decodeFile(PictureManagement.localStoragePath+fileName);
         Bitmap bmRotated = PictureManagement.rotatePicture(b);
-        bmRotated = PictureManagement.resizeImage(bmRotated);
+        int newHeight = 800;
+        double facteur = ((double)(newHeight)/bmRotated.getHeight());
+        int newWidth = (int)Math.round(bmRotated.getWidth() * facteur);
+        bmRotated = Bitmap.createScaledBitmap(bmRotated, newWidth, newHeight, false);
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bmRotated.compress(Bitmap.CompressFormat.JPEG, 50, baos);

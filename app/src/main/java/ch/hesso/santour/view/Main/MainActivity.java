@@ -21,6 +21,7 @@ import ch.hesso.santour.R;
 import ch.hesso.santour.business.PermissionManagement;
 import ch.hesso.santour.business.PreferenceDownload;
 import ch.hesso.santour.business.TrackingManagement;
+import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Edition.Fragment.FragmentListTracks;
 import ch.hesso.santour.view.Login.LoginActivity;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static MainActivity mainActivity;
 
     //URL needed in the APP
-    public static final String URL_SETTINGS = "http://cobwebsite.ch/settings.txt";
+    public static final String URL_SETTINGS = "http://pikj.ddns.net:666/settings.txt";
     public static final String URL_RESET_PASS = "http://pikj.ddns.net:666/users/resetPassword";
 
     private static Fragment fragment;
@@ -149,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void checkPreferences(){
-        new PreferenceDownload().execute();
+        new PreferenceDownload(false).execute();
     }
 
     public static void switchToTrackLists(){

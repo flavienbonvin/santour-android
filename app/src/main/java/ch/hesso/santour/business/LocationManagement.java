@@ -201,7 +201,8 @@ public class LocationManagement {
 
             //Get the value of the preference
             SharedPreferences sharedPref = MainActivity.mainActivity.getPreferences(Context.MODE_PRIVATE);
-            int minDistance = Integer.parseInt(sharedPref.getString("minimanlDistance", "Missing"));
+
+            int minDistance = Integer.parseInt(sharedPref.getString("minimanlDistance", "8"));
 
             if(distance < 100 && distance > minDistance){
                 Log.d(LocationManagement.class.getName(), "Location added to the track, distance: " + distance);
