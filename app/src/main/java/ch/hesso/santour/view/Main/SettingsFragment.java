@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -54,22 +55,33 @@ public class SettingsFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
+        new PreferenceDownload().execute();
+
+        final SharedPreferences sharedPref = SettingsFragment.this.getActivity().getPreferences(Context.MODE_PRIVATE);
+
+        final TextView minDistance = rootView.findViewById(R.id.settings_tv_minimal_dist_value);
+        final TextView seekStep = rootView.findViewById(R.id.settings_tv_seekbar_value);
+
+
         Button buttonDownload = rootView.findViewById(R.id.bt_settings_server_download_file);
         buttonDownload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new PreferenceDownload().execute();
+
+                minDistance.setText(sharedPref.getString("minimanlDistance", "Missing"));
+                seekStep.setText(sharedPref.getString("seekbarValue", "Missing"));
+                Log.d(SettingsFragment.class.getCanonicalName(), "min: " +  sharedPref.getString("minimanlDistance", "Missing") + " seek: " + sharedPref.getString("seekbarValue", "Missing"));
             }
         });
 
-        spinner = (Spinner)rootView.findViewById(R.id.settings_spinner_language);
-
-        TextView minDistance = rootView.findViewById(R.id.settings_tv_minimal_dist_value);
-        TextView seekStep = rootView.findViewById(R.id.settings_tv_seekbar_value);
-
-        SharedPreferences sharedPref = SettingsFragment.this.getActivity().getPreferences(Context.MODE_PRIVATE);
         minDistance.setText(sharedPref.getString("minimanlDistance", "Missing"));
         seekStep.setText(sharedPref.getString("seekbarValue", "Missing"));
+
+
+        spinner = (Spinner)rootView.findViewById(R.id.settings_spinner_language);
+
+
 
         String lang = PreferenceManager.getDefaultSharedPreferences(getContext()).getString("lang", "fr");
         switch (lang){

@@ -101,20 +101,14 @@ public class PictureManagement extends Activity{
 
 
 
-    private void resizeImage(Bitmap imageBitmap){
+    public static Bitmap resizeImage(Bitmap imageBitmap){
         //hauteur de 800 demandé par le PO
         int newHeight = 800;
         double facteur = ((double)(newHeight)/imageBitmap.getHeight());
         int newWidth = (int)Math.round(imageBitmap.getWidth() * facteur);
         Log.d("maxDebug", "facteur "+facteur+" newHeight "+newHeight+" newWidth "+newWidth);
         Bitmap small = Bitmap.createScaledBitmap(imageBitmap, newWidth, newHeight, false);
-        encodeBitmapBase64(small);
-    }
-    private void encodeBitmapBase64(Bitmap imageBitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        String imageEncoded = Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
-        resolve(imageEncoded);
+        return small;
     }
 
     private void resolve(String imageString){

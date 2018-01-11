@@ -33,6 +33,7 @@ import ch.hesso.santour.business.LocationManagement;
 import ch.hesso.santour.business.TrackingManagement;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.Position;
+import ch.hesso.santour.model.Track;
 import ch.hesso.santour.view.Main.MainActivity;
 import ch.hesso.santour.view.Tracking.Fragment.Recording.FragmentAddPOD;
 import ch.hesso.santour.view.Tracking.Fragment.Recording.FragmentAddPOI;
@@ -66,6 +67,8 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
     private BottomNavigationView navigation;
 
     private Marker marker;
+
+    private boolean isPaused = false;
 
 
     public FragmentRecording() {
@@ -109,7 +112,12 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 chrono.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
                 chrono.start();
 
-                TrackingManagement.startTracking(FragmentRecording.this.getActivity());
+                if(!isPaused) {
+                    TrackingManagement.startTracking(FragmentRecording.this.getActivity());
+                }else {
+                    TrackingManagement.resumeTracking(FragmentRecording.this.getActivity());
+                    isPaused = false;
+                }
 
                 //TODO change style of the button when disabled
                 addPOIButton.setEnabled(true);
@@ -127,6 +135,8 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
 
                 timeWhenStopped = chrono.getBase() - SystemClock.elapsedRealtime();
                 chrono.stop();
+
+                isPaused = true;
 
                 TrackingManagement.pauseTracking(FragmentRecording.this.getActivity());
             }
@@ -156,6 +166,8 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.main_content, fragment).commit();
+
+                isPaused = false;
             }
         });
 
