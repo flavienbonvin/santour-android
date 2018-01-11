@@ -118,7 +118,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 handleNavigation();
                 return true;
             case R.id.main_navigation_item4:
-                Toast.makeText(this, "Feature to come", Toast.LENGTH_SHORT).show();
+                fragment = new AboutFragment();
+                transaction.addToBackStack(null);
+                transaction.replace(R.id.main_container, fragment).commit();
                 handleNavigation();
                 return true;
             case R.id.main_navigation_item5:

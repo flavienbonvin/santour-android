@@ -90,4 +90,7 @@
     <string name="error_no_name_track">Vous devez entrer un nom pour la track</string>
     <string name="settings_updated">Réglages mis à jour</string>
     <string name="firebase_download">Tout a été téléchargé depuis Firebase</string>
+    <string name="edition_distance">Distance</string>
+    <string name="edition_time">Durée</string>
+    <string name="about_text">Dans le cadre du module 645-2 Software Development Project, il nous a été demandé de créer une application qui recueille des points GPS à partir d\'une piste et offre la possibilité d\'ajouter des Points d\'Intérêt (POI) et des Points de Difficultés (POD) qui seront liés à une image. L\'application devra être gérée depuis une interface d\'administration et utiliser firebase comme cloud.</string>
 </resources>
