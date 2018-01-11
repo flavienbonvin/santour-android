@@ -134,12 +134,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        setTitle("List of tracks");
-    }
-
     public void handleNavigation() {
         if (drawerLayout.isDrawerOpen(Gravity.START))
             drawerLayout.closeDrawer(Gravity.LEFT);
