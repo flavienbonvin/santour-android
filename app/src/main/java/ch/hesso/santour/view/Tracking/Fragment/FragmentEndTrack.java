@@ -54,7 +54,7 @@ public class FragmentEndTrack extends Fragment implements OnMapReadyCallback {
         final View rootView = inflater.inflate(R.layout.tracking_fragment_end_track, container, false);
         setHasOptionsMenu(true);
 
-        ((EditText)rootView.findViewById(R.id.edit_track_textView_nameTrack)).setText(MainActivity.track.getName());
+        ((TextView)rootView.findViewById(R.id.edit_track_textView_nameTrack)).setText(MainActivity.track.getName());
 
         final TextView editTextDifficulty = rootView.findViewById(R.id.tv_difficulty_end_track);
 

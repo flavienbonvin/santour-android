@@ -23,8 +23,8 @@
         android:layout_below="@id/edit_track_map_mapView2"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
         <TextView
             android:id="@+id/text_view_edit_track_name"
             android:layout_width="0dp"
@@ -46,9 +46,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/linear_layout_edit_track_distance"
         android:layout_below="@id/linear_layout_edit_track"
-        android:paddingLeft="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:paddingBottom="20dp"
-        android:paddingRight="10dp"
         android:weightSum="2">
         <TextView
             android:id="@+id/text_view_edit_track_textview_distance"
@@ -71,9 +71,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/linear_layout_edit_track_time"
         android:layout_below="@id/linear_layout_edit_track_distance"
-        android:paddingLeft="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:paddingBottom="20dp"
-        android:paddingRight="10dp"
         android:weightSum="2">
         <TextView
             android:id="@+id/text_view_edit_track_textview_time"
@@ -97,49 +97,35 @@
         android:layout_height = "wrap_content"
         android:id="@+id/linear_layout_edit_track_difficulty"
         android:orientation="horizontal"
-        android:weightSum = "1"
+        android:weightSum = "4"
         android:layout_below="@id/linear_layout_edit_track_time"
         android:paddingBottom="20dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
-
-        <ScrollView
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+        <TextView
+            android:id="@+id/edit_track_textView_difficulty"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="4">
-
-                <TextView
-                    android:id="@+id/edit_track_textView_difficulty"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:textSize="20dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/track_difficulty" />
+            android:textSize="20dp"
+            android:layout_height="wrap_content"
+            android:text="@string/track_difficulty" />
 
 
-                <TextView
-                    android:id="@+id/tv_difficulty_detail_track"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:textSize="20dp"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"/>
+        <TextView
+            android:id="@+id/tv_difficulty_detail_track"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="20dp"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"/>
 
-                <SeekBar
-                    android:id="@+id/edit_track_seekBar_difficulty"
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="wrap_content"
-                    android:max="10"/>
-
-
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+        <SeekBar
+            android:id="@+id/edit_track_seekBar_difficulty"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:max="10"/>
+        </LinearLayout>
 
 </RelativeLayout>
