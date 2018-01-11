@@ -115,4 +115,7 @@
     <string name="delete">Delete</string>
     <string name="infoSynch">Force sync</string>
 
+    <string name="about_text">As part of the 645-2 Software Development Project module, we have been asked to create an application that collects GPS points from a track and offers the possibility to add "Points of Interests" (POI) and "Points of Difficulty" (POD) that will be linked to an image. The application will have to be managed from an admin interface and use firebase as cloud.</string>
+    <string name="copyright">Copyright© SanTour 2017</string>
+
 </resources>

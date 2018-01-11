@@ -1,0 +1,23 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ch.hesso.santour.view.Main.SettingsFragment"
+    android:padding="50dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/about_text"
+        android:text="@string/about_text"
+        android:gravity="center_vertical"
+        android:textSize="20dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="20dp"
+        android:layout_below="@id/about_text"
+        android:text="@string/copyright"
+        android:textAlignment="textEnd"
+        android:textSize="20dp"/>
+</RelativeLayout>
