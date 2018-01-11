@@ -1,6 +1,7 @@
 package ch.hesso.santour.business;
 
 import android.app.AlertDialog;
+import android.app.PictureInPictureParams;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -81,6 +82,7 @@ public class PictureFirebaseManagement extends AsyncTask<Context, Void, Void> {
 
         Bitmap b = BitmapFactory.decodeFile(PictureManagement.localStoragePath+fileName);
         Bitmap bmRotated = PictureManagement.rotatePicture(b);
+        bmRotated = PictureManagement.resizeImage(bmRotated);
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bmRotated.compress(Bitmap.CompressFormat.JPEG, 50, baos);

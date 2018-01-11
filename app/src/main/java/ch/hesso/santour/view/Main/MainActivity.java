@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static MainActivity mainActivity;
 
     //URL needed in the APP
-    public static final String URL_SETTINGS = "http://pikj.ddns.net:666/settings.txt";
+    public static final String URL_SETTINGS = "http://cobwebsite.ch/settings.txt";
     public static final String URL_RESET_PASS = "http://pikj.ddns.net:666/users/resetPassword";
 
     private static Fragment fragment;
@@ -134,12 +134,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        setTitle("List of tracks");
-    }
-
     public void handleNavigation() {
         if (drawerLayout.isDrawerOpen(Gravity.START))
             drawerLayout.closeDrawer(Gravity.LEFT);
@@ -155,12 +149,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void checkPreferences(){
-        File f = new File(
-                "/data/data/ch.hesso.santour/shared_prefs/view.Main.MainActivity.xml");
-
-        if (!f.exists()){
-            new PreferenceDownload().execute();
-        }
+        new PreferenceDownload().execute();
     }
 
     public static void switchToTrackLists(){
