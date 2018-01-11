@@ -118,5 +118,6 @@
     <string name="settings_updated">Settings updated</string>
     <string name="_0_0m">0.0m</string>
     <string name="_0">0</string>
+    <string name="firebase_download">All downloaded from Firebase</string>
 
 </resources>

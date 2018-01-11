@@ -88,4 +88,6 @@
     <string name="edition_distance">Distance</string>
     <string name="edition_time">Temps</string>
     <string name="error_no_name_track">Vous devez entrer un nom pour la track</string>
+    <string name="settings_updated">Réglages mis à jour</string>
+    <string name="firebase_download">Tout a été téléchargé depuis Firebase</string>
 </resources>
