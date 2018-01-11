@@ -43,6 +43,7 @@
     <string name="details">Details</string>
     <string name="check">Check</string>
     <string name="settings">settings</string>
+    <string name="language">Language</string>
     <string name="cloud">Cloud</string>
     <!-- Strings related to add poi/pod-->
     <string name="latitude">Lat : 80.028</string>
