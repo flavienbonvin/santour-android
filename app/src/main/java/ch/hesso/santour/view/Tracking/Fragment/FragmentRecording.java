@@ -8,12 +8,14 @@ import android.os.SystemClock;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -165,7 +167,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 fragmentManager = getFragmentManager();
                 fragment = new FragmentEndTrack();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.addToBackStack(null);
+                transaction.addToBackStack("NoReturn");
                 transaction.replace(R.id.main_content, fragment).commit();
 
                 isPaused = false;
@@ -183,7 +185,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 fragmentManager  = getFragmentManager();
                 fragment  = new FragmentAddPOI();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.addToBackStack(null);
+                transaction.addToBackStack("ADD");
                 transaction.replace(R.id.main_content, fragment).commit();
             }
         });
@@ -196,7 +198,7 @@ public class FragmentRecording extends Fragment implements OnMapReadyCallback, F
                 fragmentManager  = getFragmentManager();
                 fragment  = new FragmentAddPOD();
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.addToBackStack("NoReturn");
+                transaction.addToBackStack("ADD");
                 transaction.replace(R.id.main_content, fragment).commit();
             }
         });

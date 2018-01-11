@@ -85,4 +85,7 @@
     <string name="danger_rating_">"Note du danger: "</string>
     <string name="detail_pod">"Détail du PdD: "</string>
     <string name="delete">Supprimer</string>
+    <string name="edition_distance">Distance</string>
+    <string name="edition_time">Temps</string>
+    <string name="error_no_name_track">Vous devez entrer un nom pour la track</string>
 </resources>

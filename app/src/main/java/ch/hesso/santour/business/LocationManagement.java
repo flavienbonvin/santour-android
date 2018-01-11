@@ -15,12 +15,15 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.google.android.gms.maps.GoogleMap;
 
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.model.Position;
@@ -81,6 +84,30 @@ public class LocationManagement {
     protected List<Position> stopTracking(Activity activity){
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
         return positionsList;
+    }
+
+    public void createTempTracking(Activity activity, GoogleMap map){
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
+        locationRequest = new LocationRequest();
+        locationRequest.setInterval(0).setFastestInterval(0).setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        callbackCreationTemp(activity, map);
+        PermissionManagement.checkMandatoryPermission(activity);
+        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null);
+    }
+
+    public void stopTempTracking(Activity activity){
+        fusedLocationProviderClient.removeLocationUpdates(locationCallback);
+    }
+
+    private void callbackCreationTemp(final Activity activity, final GoogleMap map){
+        locationCallback = new LocationCallback(){
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                map.clear();
+                map.addMarker(new MarkerOptions().position(new LatLng(locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude())));
+            }
+        };
     }
 
     /**

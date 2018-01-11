@@ -1,8 +1,11 @@
 package ch.hesso.santour.view.Tracking.Fragment;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +13,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.UiSettings;
@@ -22,6 +31,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import ch.hesso.santour.R;
 import ch.hesso.santour.business.LocationManagement;
 import ch.hesso.santour.business.PermissionManagement;
+import ch.hesso.santour.business.TrackingManagement;
 import ch.hesso.santour.db.DBCallback;
 import ch.hesso.santour.db.TrackDB;
 import ch.hesso.santour.model.Position;
@@ -35,6 +45,10 @@ public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
     //Google Map
     private MapView mapView;
     private GoogleMap map;
+
+    private LocationCallback locationCallback;
+
+    private LocationManagement locationManagement;
 
     public FragmentNewTrack() {
         // Required empty public constructor
@@ -50,6 +64,8 @@ public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(this);
 
+        locationManagement = new LocationManagement();
+
         //button login
         Button btnSave = rootView.findViewById(R.id.add_track_save_button);
         btnSave.setOnClickListener(new View.OnClickListener() {
@@ -58,9 +74,11 @@ public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
                 EditText nameTrack  = rootView.findViewById(R.id.add_track_textView_nameTrack);
                 String name = nameTrack.getText().toString();
                 if(name.equals("")){
-                    Toast.makeText(FragmentNewTrack.this.getActivity(), "You have to enter a name to your track", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FragmentNewTrack.this.getActivity(), R.string.error_no_name_track, Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                locationManagement.stopTempTracking(FragmentNewTrack.this.getActivity());
 
                 //Create a new track in the Mainactivity (where there is a track in static)
                 String newId = TrackDB.getNewId();
@@ -81,6 +99,8 @@ public class FragmentNewTrack extends Fragment implements OnMapReadyCallback{
         UiSettings uiSettings = map.getUiSettings();
         uiSettings.setAllGesturesEnabled(false);
         uiSettings.setMyLocationButtonEnabled(false);
+
+        locationManagement.createTempTracking(this.getActivity(), map);
 
         LatLng coordinate = new LatLng(86, 20);
         map.moveCamera(CameraUpdateFactory.newLatLng(coordinate));

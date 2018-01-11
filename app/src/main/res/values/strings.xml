@@ -113,6 +113,7 @@
     <string name="detail_pod">Details of the POD:</string>
     <string name="delete">Delete</string>
     <string name="infoSynch">Force sync</string>
+    <string name="error_no_name_track">You have to enter a name to your track</string>
     <string name="settings_updated">Settings updated</string>
 
 </resources>
