@@ -37,13 +37,11 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".view.Tracking.Activity.TrackActivity"
-            android:label="@string/track"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".view.Edition.Activity.TrackEditActivity"
-            android:label="Edit track"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
@@ -53,7 +51,6 @@
         <activity
             android:name=".view.Main.MainFullScreenPictureActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_main_full_screen_picture"
             android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".view.Edition.Activity.TrackEditPOIActivity"

@@ -51,7 +51,7 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.main_fragment_settings, container, false);
-
+        getActivity().setTitle(R.string.settings);
         setHasOptionsMenu(true);
 
         Button buttonDownload = rootView.findViewById(R.id.bt_settings_server_download_file);

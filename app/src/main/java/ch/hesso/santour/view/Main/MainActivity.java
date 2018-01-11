@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.main_container, fragment).commit();
-        setTitle("List of tracks");
 
         //Navigation Listener
         navigationView.setNavigationItemSelectedListener(this);
@@ -86,7 +85,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.main_container, fragment).commit();
-                setTitle("Settings");
                 return true;
             case android.R.id.home:
                 handleNavigation();
@@ -108,7 +106,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new FragmentNewTrack();
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.main_container, fragment).commit();
-                setTitle("Create a track");
                 handleNavigation();
                 track = new Track();
                 return true;
@@ -116,14 +113,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragment = new FragmentListTracks();
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.main_container, fragment).commit();
-                setTitle("List of tracks");
                 handleNavigation();
                 return true;
             case R.id.main_navigation_item3:
                 fragment = new SettingsFragment();
                 transaction.addToBackStack(null);
                 transaction.replace(R.id.main_container, fragment).commit();
-                setTitle("Settings");
                 handleNavigation();
                 return true;
             case R.id.main_navigation_item4:
