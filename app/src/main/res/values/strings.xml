@@ -1,6 +1,6 @@
 <resources>
     <!--Strings related to titles-->
-    <string name="app_name" translatable="false">SanTour</string>
+    <string name="app_name">SanTour</string>
     <string name="title_activity_login">Sign in</string>
     <string name="title_edit_details">Edit details</string>
     <string name="title_edit_list_pod">Edit list PODs</string>
@@ -116,8 +116,8 @@
     <string name="infoSynch">Force sync</string>
     <string name="error_no_name_track">You have to enter a name to your track</string>
     <string name="settings_updated">Settings updated</string>
-    <string name="_0_0m">0.0m</string>
-    <string name="_0">0</string>
+    <string name="_0_0m" translatable="false">0.0m</string>
+    <string name="_0" translatable="false">0</string>
     <string name="firebase_download">All downloaded from Firebase</string>
 
     <string name="about_text">As part of the 645-2 Software Development Project module, we have been asked to create an application that collects GPS points from a track and offers the possibility to add "Points of Interests" (POI) and "Points of Difficulty" (POD) that will be linked to an image. The application will have to be managed from an admin interface and use firebase as cloud.</string>
