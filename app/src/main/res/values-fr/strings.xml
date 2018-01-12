@@ -23,7 +23,7 @@
     <string name="pois_list">Liste des PdI</string>
     <string name="pods_list">Liste des PdD</string>
     <string name="createTrack">Créer une track</string>
-    <string name="listTrack">Liste des track</string>
+    <string name="listTrack">Liste des tracks</string>
     <string name="listPOI">Liste des PdI</string>
     <string name="listPOD">Liste des PdD</string>
     <string name="about">A propos</string>
@@ -57,7 +57,7 @@
     <string name="edition_details_list_pod">Liste des PdDs</string>
     <string name="edition_details_poi">Détails du PdI</string>
     <string name="edition_categories_poi">Catégories PdI</string>
-    <string name="edition_details_pod">Déatail du PdD</string>
+    <string name="edition_details_pod">Détail du PdD</string>
     <string name="edition_categories_pod">Catégories PdD</string>
     <string name="main_navigation_item1">Créer une track</string>
     <string name="main_navigation_item2">Liste des tracks</string>
@@ -85,8 +85,6 @@
     <string name="danger_rating_">"Note du danger: "</string>
     <string name="detail_pod">"Détail du PdD: "</string>
     <string name="delete">Supprimer</string>
-    <string name="edition_distance">Distance</string>
-    <string name="edition_time">Temps</string>
     <string name="error_no_name_track">Vous devez entrer un nom pour la track</string>
     <string name="settings_updated">Réglages mis à jour</string>
     <string name="firebase_download">Tout a été téléchargé depuis Firebase</string>

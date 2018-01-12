@@ -21,6 +21,7 @@ public class AboutFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View rootView = inflater.inflate(R.layout.fragment_about, container, false);
+        getActivity().setTitle(getString(R.string.main_navigation_item4));
         return rootView;
     }
 }

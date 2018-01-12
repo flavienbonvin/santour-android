@@ -42,7 +42,7 @@
     <string name="searchPOI">Search POI</string>
     <string name="details">Details</string>
     <string name="check">Check</string>
-    <string name="settings">settings</string>
+    <string name="settings">Settings</string>
     <string name="language">Language</string>
     <string name="cloud">Cloud</string>
     <!-- Strings related to add poi/pod-->
@@ -94,7 +94,7 @@
     <string name="minutes">minutes</string>
     <string name="title_activity_track_edit_poi" translatable="false">TrackEditPOIActivity</string>
     <string name="resetPass">Reset your password</string>
-    <string name="sychronise">Sychronise</string>
+    <string name="sychronise">Synchronise</string>
     <string name="back">back</string>
     <string name="minimal_distance_server">Minimal Distance (server)</string>
     <string name="seekbar_steps_server">Seekbar steps (server)</string>
